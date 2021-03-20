@@ -1,0 +1,6 @@
+[submodule "pyMOSChar"]
+	path = pyMOSChar
+	url = git@github.com:ashwith/pyMOSChar.git
+[submodule "skywater-pdk"]
+	path = skywater-pdk
+	url = git@github.com:google/skywater-pdk.git
