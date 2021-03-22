@@ -3,7 +3,7 @@ import sys
 # ==================================================
 # EDIT THE FOLLOWING PATH TO POINT TO YOUR DIRECTORY
 # ==================================================
-sys.path.append('/home/ashwith/Development/pyMOSChar')
+sys.path.append('/home/kustinj/ee272b/pyMOSChar')
 # ==================================================
 
 import charMOS
@@ -14,11 +14,11 @@ import numpy as np
 # nmos and pmos transistors. Then generate the netlist in
 # ADE. You'll then be able to view the netlist and see what
 # the name of the model is.
-nmos = "CMOSN"
-pmos = "CMOSP"
+nmos = "sky130_fd_pr__nfet_01v8"
+pmos = "sky130_fd_pr__pfet_01v8_hvt"
 
 # Specify the MOSFET width in microns.
-width = 1
+width = 0.65*1e6
 
 
 # Specify the MOSFET lengths you're interested
@@ -31,7 +31,7 @@ width = 1
 # step size too small. Fine steps will use a 
 # LOT of RAM can cause the machine to hang!
 #                     start, stop, step
-mosLengths = np.arange(0.1, 5.1, 0.1)
+mosLengths = np.arange(0.15, 4.1, 0.1)*1e6
 
 ## Example 2 for lenghs
 #mosLengths = np.concatenate(
@@ -46,18 +46,18 @@ mosLengths = np.arange(0.1, 5.1, 0.1)
 charMOS.init(
 simulator='ngspice',
 mosLengths=mosLengths,
-modelFiles=("/home/ashwith/Development/pyMOSChar/pdk.mod",),
+modelFiles=("/afs/ir.stanford.edu/class/ee272/skywater-pdk/libraries/sky130_fd_pr/latest/models/sky130.lib.spice",),
 modelN=nmos,
 modelP=pmos,
 simOptions="",
-corners=("",),
+corners=("tt",),
 subcktPath="",
-datFileName="mosPDK_90_W{0}u.dat".format(width),
-vgsMax=1,
+datFileName="mosSKY130__W{0}u.dat".format(width),
+vgsMax=1.95,
 vgsStep=20e-3,
-vdsMax=1,
+vdsMax=1.95,
 vdsStep=20e-3,
-vsbMax=1,
+vsbMax=1.95,
 vsbStep=20e-3,
 numfing=1,
 temp=300,
