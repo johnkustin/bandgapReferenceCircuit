@@ -33,12 +33,12 @@ vgs = None
 vds = None
 vsb = None
 
-def handleKill(signal, frame):
-    print('Data generation halted. Cleaning up...')
-    os.system('rm -fr {0} charNMOS.net charPMOS.net simParams.net outN.raw outP.raw b3v33check.log, charMOS.scs, charMOS.raw charMOS.psf.raw'.format(datFileName))
-    sys.exit(0)
+# def handleKill(signal, frame):
+#     print('Data generation halted. Cleaning up...')
+#     os.system('rm -fr {0} charNMOS.net charPMOS.net simParams.net outN.raw outP.raw b3v33check.log, charMOS.scs, charMOS.raw charMOS.psf.raw'.format(datFileName))
+#     sys.exit(0)
 
-signal.signal(signal.SIGINT, handleKill)
+# signal.signal(signal.SIGINT, handleKill)
 
 def init(**settings):
 
