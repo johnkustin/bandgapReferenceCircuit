@@ -1,4 +1,8 @@
 # pyMOSChar
+Author: Ashwith Jerome Rego 
+Github: @aswith
+Original Repo: https://github.com/ashwith/pyMOSChar
+
 pyMOSChar, a MOSFET Characterization package, is a python port of the gm/ID
 starter kit by Prof. Boris Murmann of Stanford University. It provides
 functions to characterize MOSFETs using simulators (spectre and ngspice are
