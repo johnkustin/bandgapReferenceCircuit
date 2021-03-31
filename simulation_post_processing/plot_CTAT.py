@@ -20,7 +20,21 @@ for i in range(np.shape(plotDat[xVar])[0]):
     colors.append(lns[i][0].get_c())
     #print(np.format_float_scientific(current[i],precision=3))
 labs = [l[0].get_label() for l in lns]
-#labs = [mlines.Line2D([],[], color=colors[i], label=lns[i][0].get_label()) for i in range(len(lns))]
 ax1.legend(labs, loc=3)
+dT = plotDat[xVar][0][1] - plotDat[xVar][0][0]
+dVbe = [np.gradient(plotDat[yVar][i], dT)*1E3 for i in range(np.shape(plotDat[xVar])[0])] 
+
+fig, ax2 = plt.subplots(1)
+ax2.set_xlabel('Temp (degC)')
+ax2.set_ylabel('dVeb/dT (mV/degC)')
+ax2.set_title('PNP CTAT Behavior')
+lns = []
+colors = []
+for i in range(np.shape(plotDat[xVar])[0]):
+    lns.append(ax2.plot(plotDat[xVar][i], dVbe[i], label=np.format_float_scientific(current[i], precision=3)))
+    colors.append(lns[i][0].get_c())
+    #print(np.format_float_scientific(current[i],precision=3))
+labs = [l[0].get_label() for l in lns]
+ax2.legend(labs, loc=3)
 plt.show()
 
