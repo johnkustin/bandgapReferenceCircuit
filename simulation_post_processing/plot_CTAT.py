@@ -27,7 +27,7 @@ dVbe = [np.gradient(plotDat[yVar][i], dT)*1E3 for i in range(np.shape(plotDat[xV
 fig, ax2 = plt.subplots(1)
 ax2.set_xlabel('Temp (degC)')
 ax2.set_ylabel('dVeb/dT (mV/degC)')
-ax2.set_title('PNP CTAT Behavior')
+ax2.set_title('PNP Derivative CTAT Behavior w.r.t Temperature')
 lns = []
 colors = []
 for i in range(np.shape(plotDat[xVar])[0]):
