@@ -20,7 +20,7 @@ for i in range(np.shape(plotDat[xVar])[0]):
     colors.append(lns[i][0].get_c())
     #print(np.format_float_scientific(current[i],precision=3))
 labs = [l[0].get_label() for l in lns]
-ax1.legend(labs, loc=3)
+ax1.legend(labs, loc=3, title='Ic')
 dT = plotDat[xVar][0][1] - plotDat[xVar][0][0]
 dVbe = [np.gradient(plotDat[yVar][i], dT)*1E3 for i in range(np.shape(plotDat[xVar])[0])] 
 
@@ -35,6 +35,6 @@ for i in range(np.shape(plotDat[xVar])[0]):
     colors.append(lns[i][0].get_c())
     #print(np.format_float_scientific(current[i],precision=3))
 labs = [l[0].get_label() for l in lns]
-ax2.legend(labs, loc=3)
+ax2.legend(labs, loc=3, title='Ic')
 plt.show()
 
