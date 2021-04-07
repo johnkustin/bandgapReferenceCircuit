@@ -16,7 +16,7 @@ N 500 -60 520 -60 { lab=0}
 N 500 -180 500 -130 { lab=E2}
 N 500 -260 500 -240 { lab=0}
 C {sky130_fd_pr/pnp_05v5.sym} 480 -100 0 0 {name=Q2
-model=pnp_05v5_W0p68L0p68
+model=pnp_05v5_W3p40L3p40
 spiceprefix=X
 }
 C {devices/lab_pin.sym} 500 -160 0 0 {name=l1 lab=E2}
@@ -29,11 +29,10 @@ only_toplevel=true
 value="
 .control
 save E2
-dc i0 5n 5u 0.05u TEMP -40 125 10
+dc TEMP -40 125 10 i0 0.1156u 115.6u 0.1u
 plot E2
-dc TEMP -40 125 10 i0 5n 5u 500n
-plot E2
-write bipolar_char_temp_vbe_current.raw
+plot deriv(E2)
+write bipolar_char_temp_vbe_current_3p40.raw E2 deriv(E2)
 .endc
 " }
 C {devices/code.sym} -170 -110 0 0 {name=TT_MODELS

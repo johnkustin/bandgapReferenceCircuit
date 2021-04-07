@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib.lines as mlines
 
-plotDat = s3r.read('/home/users/kustinj/.xschem/simulations/bipolar_char_temp_vbe_current.raw')
+plotDat = s3r.read('/home/users/kustinj/.xschem/simulations/bipolar_char_temp_vbe_current_3p40.raw')
 current = np.arange(5e-3,5,500e-3) # in units of uA
 fig, ax1 = plt.subplots(1)
 ax1.set_xlabel('Temp (degC)')
@@ -37,4 +37,3 @@ for i in range(np.shape(plotDat[xVar])[0]):
 labs = [l[0].get_label() for l in lns]
 ax2.legend(labs, loc=3, title='Ic')
 plt.show()
-

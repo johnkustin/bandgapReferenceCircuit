@@ -4,39 +4,53 @@ K {}
 V {}
 S {}
 E {}
-T {to sweep Ic and temperature} 560 -30 0 0 0.4 0.4 {}
-T {to measure the Is of a pnp} 40 40 0 0 0.4 0.4 {}
-N 440 -100 460 -100 { lab=0}
-N 500 -70 500 -60 { lab=0}
-N 440 -60 500 -60 { lab=0}
-N 440 -100 440 -60 { lab=0}
-N 500 -100 520 -100 { lab=0}
-N 520 -100 520 -60 { lab=0}
-N 500 -60 520 -60 { lab=0}
-N 500 -180 500 -130 { lab=E2}
-N 500 -260 500 -240 { lab=0}
-C {sky130_fd_pr/pnp_05v5.sym} 480 -100 0 0 {name=Q2
-model=pnp_05v5_W0p68L0p68
-spiceprefix=X
-}
-C {devices/lab_pin.sym} 500 -160 0 0 {name=l1 lab=E2}
-C {devices/isource.sym} 500 -210 0 0 {name=I0 value=1u
-}
-C {devices/lab_pin.sym} 500 -260 0 0 {name=l2 lab=0}
-C {devices/lab_pin.sym} 440 -60 0 0 {name=l4 lab=0}
-C {devices/code_shown.sym} 20 -430 0 0 {name=NGSPICE
+N 60 -200 60 -180 { lab=Ic}
+N 70 -160 70 -130 { lab=Ic}
+N 60 -180 70 -180 { lab=Ic}
+N 240 -100 260 -100 { lab=GND}
+N 240 -100 240 -60 { lab=GND}
+N 260 -70 260 -60 { lab=GND}
+N 300 -100 300 -60 { lab=GND}
+N 250 -60 300 -60 { lab=GND}
+N 160 -280 160 -60 { lab=GND}
+N 70 -180 70 -160 { lab=Ic}
+N 160 -340 160 -280 { lab=GND}
+N 60 -340 160 -340 { lab=GND}
+N 60 -210 60 -200 { lab=Ic}
+N 60 -280 60 -270 { lab=#net1}
+N 70 -70 70 0 { lab=#net2}
+N 50 30 70 30 { lab=#net3}
+N 50 30 50 60 { lab=#net3}
+N 70 60 120 60 { lab=GND}
+N 120 30 120 60 { lab=GND}
+N 110 30 120 30 { lab=GND}
+N 160 -60 160 60 { lab=GND}
+N 120 60 170 60 { lab=GND}
+N 240 -60 250 -60 { lab=GND}
+N 160 -60 240 -60 { lab=GND}
+N 160 -340 260 -340 { lab=GND}
+N 260 -140 260 -130 { lab=#net4}
+N 260 -210 260 -200 { lab=#net5}
+N 260 -280 260 -270 { lab=#net6}
+C {devices/isource.sym} 60 -310 0 0 {name=I0 value=1u}
+C {devices/code_shown.sym} 0 -430 0 0 {name=NGSPICE
 only_toplevel=true
 value="
 .control
-save E2
-dc i0 5n 5u 0.05u TEMP -40 125 10
-plot E2
-dc TEMP -40 125 10 i0 5n 5u 500n
-plot E2
-write bipolar_char_temp_vbe_current.raw
+save all
+dc TEMP -40 125 10 i0 0.1156u 115.6u 0.1u
 .endc
 " }
-C {devices/code.sym} -170 -110 0 0 {name=TT_MODELS
+C {devices/lab_pin.sym} 60 -180 0 0 {name=l1 lab=Ic}
+C {sky130_fd_pr/pnp_05v5.sym} 90 30 0 1 {name=Q3
+model=pnp_05v5_W3p40L3p40
+spiceprefix=X
+}
+C {sky130_fd_pr/pnp_05v5.sym} 280 -100 0 1 {name=Q1
+model="pnp_05v5_W3p40L3p40 m=100"
+spiceprefix=X
+}
+C {devices/code.sym} -160 -320 0 0 {name=TT_MODELS
 only_toplevel=true
 format="tcleval( @value )"
 value="
@@ -68,7 +82,7 @@ value="
 * Resistor\\\\$::SKYWATER_MODELS\\\\/Capacitor
 .include \\\\$::SKYWATER_MODELS\\\\/models/r+c/res_typical__cap_typical.spice
 .include \\\\$::SKYWATER_MODELS\\\\/models/r+c/res_typical__cap_typical__lin.spice
-* Special cells/
+* Special cells
 .include \\\\$::SKYWATER_MODELS\\\\/models/corners/tt/specialized_cells.spice
 * All models
 .include \\\\$::SKYWATER_MODELS\\\\/models/all.spice
@@ -76,3 +90,13 @@ value="
 * Corner
 .include \\\\$::SKYWATER_MODELS\\\\/models/corners/tt/rf.spice
 "}
+C {devices/res.sym} 260 -170 0 0 {name=R3
+value='39.3k*100'
+footprint=1206
+device=resistor
+m=1}
+C {devices/vsource.sym} 60 -240 0 0 {name=V1 value=0}
+C {devices/gnd.sym} 170 60 0 0 {name=l2 lab=GND}
+C {devices/vsource.sym} 70 -100 0 0 {name=V2 value=0}
+C {devices/cccs.sym} 260 -310 0 0 {name=F2 vnam=v2 value=1}
+C {devices/vsource.sym} 260 -240 0 0 {name=V4 value=0}

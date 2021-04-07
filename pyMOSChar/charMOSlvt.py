@@ -14,11 +14,11 @@ import numpy as np
 # nmos and pmos transistors. Then generate the netlist in
 # ADE. You'll then be able to view the netlist and see what
 # the name of the model is.
-nmos = "sky130_fd_pr__nfet_01v8"
-pmos = "sky130_fd_pr__pfet_01v8"
+nmos = "sky130_fd_pr__nfet_01v8_lvt"
+pmos = "sky130_fd_pr__pfet_01v8_lvt"
 
 # Specify the MOSFET width in microns.
-width = 1
+width = 0.65*1e6
 
 
 # Specify the MOSFET lengths you're interested
@@ -31,13 +31,13 @@ width = 1
 # step size too small. Fine steps will use a 
 # LOT of RAM can cause the machine to hang!
 #                     start, stop, step
-#mosLengths = np.arange(0.15, 4.1, 0.1)*1e6
+mosLengths = np.arange(1, 8.1, 0.1)*1e6
 
 ## Example 2 for lenghs
-mosLengths = np.concatenate(
-np.arange(0.15, 1, 0.1),
-np.arange(1, 10, 0.5),
-np.arange(10, 100, 10)) * 1e6
+#mosLengths = np.concatenate(
+#np.arange(0.1, 1, 0.1),
+#np.arange(1, 10, 0.5),
+#np.arange(10, 100, 10))
 
 # Initialize the characterization process. Modify
 # the values below as per your requirements. Ensure
@@ -52,7 +52,7 @@ modelP=pmos,
 simOptions="",
 corners=("tt",),
 subcktPath="",
-datFileName="mosSKY130__W{0}u.{1}.{2}.dat".format(width,nmos,pmos),
+datFileName="mosSKY130__W{0}u.dat".format(width),
 vgsMax=1.95,
 vgsStep=20e-3,
 vdsMax=1.95,

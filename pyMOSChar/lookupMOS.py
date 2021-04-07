@@ -120,7 +120,6 @@ def lookup(mosType, *outVars, **inVars):
         points = (mosDat[mosType]['length'], -mosDat[mosType]['vsb'], mosDat[mosType]['vds'], mosDat[mosType]['vgs'])
     else:
         points = (mosDat[mosType]['length'],  mosDat[mosType]['vsb'], -mosDat[mosType]['vds'], -mosDat[mosType]['vgs'])
-    
     xi_mesh = np.array(np.meshgrid(L, VSB, VDS, VGS))
     xi = np.rollaxis(xi_mesh, 0, 5)
     xi = xi.reshape(xi_mesh.size/4, 4)
