@@ -60,8 +60,8 @@ N 860 -150 860 -100 { lab=GND}
 N 860 -100 880 -100 { lab=GND}
 N 400 -100 400 50 { lab=Veb}
 N 400 -390 400 -330 { lab=#net6}
-N 360 -420 840 -420 { lab=xxx}
-N 520 -420 520 -240 { lab=xxx}
+N 360 -420 840 -420 { lab=vgate}
+N 520 -420 520 -240 { lab=vgate}
 N 430 -240 460 -240 { lab=GND}
 N 430 -240 430 -230 { lab=GND}
 C {sky130_fd_pr/pnp_05v5.sym} 420 80 0 1 {name=Q2
@@ -159,70 +159,16 @@ C {devices/ammeter.sym} 880 -340 0 0 {name=Vm3}
 C {devices/ammeter.sym} 210 -130 0 0 {name=Vr1}
 C {devices/ammeter.sym} 400 -130 0 0 {name=Vq2}
 C {sky130_fd_pr/pnp_05v5.sym} 640 80 0 1 {name=Q1
-model="pnp_05v5_W3p40L3p40 m=36"
+model="pnp_05v5_W3p40L3p40 m=39"
 spiceprefix=X
 }
 C {devices/lab_pin.sym} 620 10 0 0 {name=l4 lab=vbneg}
-C {sky130_fd_pr/res_xhigh_po_0p35.sym} 210 -50 0 0 {name=R1
-W=0.35
-L=66.862
-model=res_xhigh_po_0p35
-spiceprefix=X
-mult=1}
-C {sky130_fd_pr/res_xhigh_po_0p35.sym} 750 -50 0 0 {name=R2
-W=0.35
-L=66.862
-model=res_xhigh_po_0p35
-spiceprefix=X
-mult=1}
-C {sky130_fd_pr/res_xhigh_po_0p35.sym} 620 -50 0 0 {name=R3
-W=0.35
-L=5
-model=res_xhigh_po_0p35
-spiceprefix=X
-mult=1}
-C {sky130_fd_pr/res_xhigh_po_0p35.sym} 880 -150 0 0 {name=R4
-W=0.35
-L=20.595
-model=res_xhigh_po_0p35
-spiceprefix=X
-mult=1}
 C {sky130_fd_pr/pfet3_01v8.sym} 380 -420 0 0 {name=M1
 L=0.15
-W=1
+W=2
 body=VDD
 nf=1
-mult=50
-ad="'int((nf+1)/2) * W/nf * 0.29'" 
-pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
-as="'int((nf+2)/2) * W/nf * 0.29'" 
-ps="'2*int((nf+2)/2) * (W/nf + 0.29)'"
-nrd="'0.29 / W'" nrs="'0.29 / W'"
-sa=0 sb=0 sd=0
-model=pfet_01v8
-spiceprefix=X
-}
-C {sky130_fd_pr/pfet3_01v8.sym} 600 -420 0 0 {name=M2
-L=0.15
-W=1
-body=VDD
-nf=1
-mult=50
-ad="'int((nf+1)/2) * W/nf * 0.29'" 
-pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
-as="'int((nf+2)/2) * W/nf * 0.29'" 
-ps="'2*int((nf+2)/2) * (W/nf + 0.29)'"
-nrd="'0.29 / W'" nrs="'0.29 / W'"
-sa=0 sb=0 sd=0
-model=pfet_01v8
-spiceprefix=X
-}
-C {sky130_fd_pr/pfet3_01v8.sym} 860 -420 0 0 {name=M3
-L=0.15
-W=1
-body=VDD
-nf=1
-mult=50
+mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
@@ -236,3 +182,53 @@ C {devices/lab_pin.sym} 400 -70 2 0 {name=l10 lab=Veb}
 C {devices/vcvs.sym} 490 -240 1 1 {name=E1 value=100k}
 C {devices/gnd.sym} 430 -230 0 0 {name=l2 lab=GND}
 C {devices/lab_wire.sym} 510 -420 0 0 {name=l11 lab=vgate}
+C {devices/res.sym} 210 -50 0 0 {name=R1
+value=9.32636k
+footprint=1206
+device=resistor
+m=1}
+C {devices/res.sym} 620 -50 0 0 {name=R2
+value=2k
+footprint=1206
+device=resistor
+m=1}
+C {devices/res.sym} 880 -150 0 0 {name=R3
+value=4.46957k
+footprint=1206
+device=resistor
+m=1}
+C {devices/res.sym} 750 -50 0 0 {name=R4
+value=9.32636k
+footprint=1206
+device=resistor
+m=1}
+C {sky130_fd_pr/pfet3_01v8.sym} 600 -420 0 0 {name=M2
+L=0.15
+W=2
+body=VDD
+nf=1
+mult=1
+ad="'int((nf+1)/2) * W/nf * 0.29'" 
+pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
+as="'int((nf+2)/2) * W/nf * 0.29'" 
+ps="'2*int((nf+2)/2) * (W/nf + 0.29)'"
+nrd="'0.29 / W'" nrs="'0.29 / W'"
+sa=0 sb=0 sd=0
+model=pfet_01v8
+spiceprefix=X
+}
+C {sky130_fd_pr/pfet3_01v8.sym} 860 -420 0 0 {name=M3
+L=0.15
+W=2
+body=VDD
+nf=1
+mult=1
+ad="'int((nf+1)/2) * W/nf * 0.29'" 
+pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
+as="'int((nf+2)/2) * W/nf * 0.29'" 
+ps="'2*int((nf+2)/2) * (W/nf + 0.29)'"
+nrd="'0.29 / W'" nrs="'0.29 / W'"
+sa=0 sb=0 sd=0
+model=pfet_01v8
+spiceprefix=X
+}
