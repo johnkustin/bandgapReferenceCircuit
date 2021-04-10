@@ -18,7 +18,7 @@ nmos = "sky130_fd_pr__nfet_01v8"
 pmos = "sky130_fd_pr__pfet_01v8"
 
 # Specify the MOSFET width in microns.
-width = 1
+width = 1e6
 
 
 # Specify the MOSFET lengths you're interested
@@ -34,10 +34,10 @@ width = 1
 #mosLengths = np.arange(0.15, 4.1, 0.1)*1e6
 
 ## Example 2 for lenghs
-mosLengths = np.concatenate(
-np.arange(0.15, 1, 0.1),
-np.arange(1, 10, 0.5),
-np.arange(10, 100, 10)) * 1e6
+mosLengths = (np.concatenate([
+np.linspace(0.15, 1, endpoint=False),
+np.linspace(1, 10, num=25, endpoint=False),
+np.linspace(10, 110, num=10, endpoint=True)]) * 1e6).astype('int')
 
 # Initialize the characterization process. Modify
 # the values below as per your requirements. Ensure
@@ -52,7 +52,7 @@ modelP=pmos,
 simOptions="",
 corners=("tt",),
 subcktPath="",
-datFileName="mosSKY130__W{0}u.{1}.{2}.dat".format(width,nmos,pmos),
+datFileName="mosSKY130__W{0}u.{1}.{2}.fixed.dat".format(width,nmos,pmos),
 vgsMax=1.95,
 vgsStep=20e-3,
 vdsMax=1.95,

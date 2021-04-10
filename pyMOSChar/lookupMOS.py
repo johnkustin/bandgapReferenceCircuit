@@ -113,8 +113,6 @@ def lookup(mosType, *outVars, **inVars):
         ydata = eval("mosDat[mosType][outVarList[0]]" + outVarList[1] + "mosDat[mosType][outVarList[2]]")
         if (mode == 3):
             xdata = eval("mosDat[mosType][outVarList[3]]" + outVarList[4] + "mosDat[mosType][outVarList[5]]")
-            
-    
     # Interpolate for the input variables provided
     if (mosType == 'nfet'):
         points = (mosDat[mosType]['length'], -mosDat[mosType]['vsb'], mosDat[mosType]['vds'], mosDat[mosType]['vgs'])

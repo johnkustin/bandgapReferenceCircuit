@@ -19,7 +19,7 @@ current = np.arange(0.1156,115.6,0.1) # in units of uA
 
 dVbe = plotDat[dVar]
 steadiestdVbes = np.std(dVbe,axis=1)
-mostConstantdVbe = np.argmin(np.abs(steadiestdVbes))
+mostConstantdVbe = np.argmin(np.abs(steadiestdVbes)) # choose most constant dVbe to have easiest TC cancellation
 T = plotDat[xVar]
 targI = mostConstantdVbe
 indx = (np.abs(current - targI)).argmin() # https://philbull.wordpress.com/2012/01/11/numpy-tip-getting-index-of-an-array-element-nearest-to-some-value/

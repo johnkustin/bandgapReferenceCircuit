@@ -125,7 +125,7 @@ value="
 * Corner
 .include \\\\$::SKYWATER_MODELS\\\\/models/corners/tt/rf.spice
 "}
-C {devices/code_shown.sym} -430 -520 0 0 {name=NGSPICE
+C {devices/code_shown.sym} -420 -690 0 0 {name=NGSPICE
 only_toplevel=true
 value="
 .option savecurrents
@@ -171,6 +171,7 @@ plot veb vptat
 plot deriv(veb) deriv(vptat)
 let TCratio=deriv(veb)/deriv(vptat)
 plot TCratio
+plot vb - va
 echo 'alpha correction factor'
 let alpha=TCratio[670]
 print alpha
