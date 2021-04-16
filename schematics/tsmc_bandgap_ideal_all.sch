@@ -13,13 +13,11 @@ N 210 140 400 140 { lab=GND}
 N 340 80 400 80 { lab=GND}
 N 340 80 340 140 { lab=GND}
 N 460 -180 470 -180 { lab=Va}
-N 510 -180 520 -180 { lab=Vb}
 N 400 -520 400 -450 { lab=VDD}
 N 400 -520 620 -520 { lab=VDD}
 N 620 -520 880 -520 { lab=VDD}
 N 880 -280 1000 -280 { lab=Vbg}
 N 620 -180 620 -160 { lab=Vb}
-N 400 -270 400 -180 { lab=Va}
 N 620 -260 620 -180 { lab=Vb}
 N 880 -310 880 -280 { lab=Vbg}
 N 880 -280 880 -180 { lab=Vbg}
@@ -46,8 +44,6 @@ N 580 80 620 80 { lab=GND}
 N 580 80 580 140 { lab=GND}
 N 440 80 460 80 { lab=GND}
 N 460 80 460 140 { lab=GND}
-N 470 -200 470 -180 { lab=Va}
-N 510 -200 510 -180 { lab=Vb}
 N 190 -50 190 0 { lab=GND}
 N 190 0 210 0 { lab=GND}
 N 730 -50 730 10 { lab=GND}
@@ -57,12 +53,11 @@ N 520 -50 520 140 { lab=GND}
 N 860 -150 860 -100 { lab=GND}
 N 860 -100 880 -100 { lab=GND}
 N 400 -100 400 50 { lab=Veb}
-N 400 -390 400 -330 { lab=#net5}
 N 430 -240 460 -240 { lab=GND}
 N 430 -240 430 -230 { lab=GND}
 N 400 -440 440 -440 { lab=vgate}
 N 360 -450 400 -450 { lab=VDD}
-N 360 -390 400 -390 { lab=#net5}
+N 360 -390 400 -390 { lab=#net6}
 N 620 -460 620 -450 { lab=VDD}
 N 880 -450 910 -450 { lab=VDD}
 N 910 -450 910 -440 { lab=VDD}
@@ -76,6 +71,11 @@ N 580 -440 580 -430 { lab=vgate}
 N 580 -430 870 -430 { lab=vgate}
 N 520 -440 520 -240 { lab=vgate}
 N 440 -400 440 -240 { lab=GND}
+N 400 -270 400 -170 { lab=Va}
+N 470 -200 470 -180 { lab=Va}
+N 510 -200 510 -180 { lab=Vb}
+N 510 -180 520 -180 { lab=Vb}
+N 400 -390 400 -330 { lab=#net6}
 C {sky130_fd_pr/pnp_05v5.sym} 420 80 0 1 {name=Q2
 model=pnp_05v5_W3p40L3p40
 spiceprefix=X
@@ -137,7 +137,7 @@ value="
 .param R4val='R2val*R4R2ratio'
 .control
 save all
-dc TEMP  -40 125 0.1
+dc TEMP  -40 140 0.1
 plot Vbg
 plot deriv(Vbg)
 let i = vm3#branch
@@ -164,7 +164,8 @@ let r1 =va/@r1[i]
 let r2 =vb/@r2[i]
 let r3 =deltav/@r3[i]
 let vptat =(r2/r3*deltav)
-plot veb vptat
+let sum = veb+vptat
+plot veb vptat sum
 plot deriv(veb) deriv(vptat)
 let TCratio=deriv(veb)/deriv(vptat)
 plot TCratio
@@ -203,22 +204,30 @@ C {devices/res.sym} 620 -50 0 0 {name=R3
 value='R3val'
 footprint=1206
 device=resistor
-m=1}
+m=1
+tc1=0
+tc2=0}
 C {devices/res.sym} 880 -150 0 0 {name=R4
 value='R4val'
 footprint=1206
 device=resistor
-m=1}
+m=1
+tc1=0
+tc2=0}
 C {devices/res.sym} 210 -50 0 0 {name=R1
 value='R2val'
 footprint=1206
 device=resistor
-m=1}
+m=1
+tc1=0
+tc2=0}
+C {devices/vccs.sym} 910 -410 0 0 {name=G3 value=10m}
 C {devices/res.sym} 750 -50 0 0 {name=R2
 value='R2val'
 footprint=1206
 device=resistor
-m=1}
-C {devices/vccs.sym} 360 -420 0 1 {name=G1 value=10m}
-C {devices/vccs.sym} 620 -420 0 0 {name=G2 value=10m}
-C {devices/vccs.sym} 910 -410 0 0 {name=G3 value=10m}
+m=1
+tc1=0
+tc2=0}
+C {devices/vccs.sym} 360 -420 0 1 {name=G2 value=10m}
+C {devices/vccs.sym} 620 -420 0 0 {name=G1 value=10m}

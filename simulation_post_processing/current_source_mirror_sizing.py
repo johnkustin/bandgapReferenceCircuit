@@ -16,16 +16,16 @@ import lookupMOS as lk
 import numpy as np
 import matplotlib.pyplot as plt
 
-gm = 10e-3
-L = 40 * 16e-9 # based on TSMC. 40 stacked transistors. gate length is 16nm in their FET tech?
-lk.init('../pyMOSChar/data/mosSKY130__W650000.0u.dat')
+gm = 100e-6
+width = 1 #um
+L = 0.705102*1e6 # based on gmid curves. in um without the 1e6. 1e6 is there for LUT compatability
+lk.init('/tmp/kustinj/ee272b/pyMOSChar/mosSKY130__W1000000.0u.sky130_fd_pr__nfet_01v8.sky130_fd_pr__pfet_01v8.dat')
 VGS = np.arange(0, 1.8, 20e-3)
-gmonId = 25e-3 # from looking at gm/id curve for 640nm transistor
+gmonId = 15 # from looking at gm/id curve for 640nm transistor
 Id = gm / gmonId
-id = lk.lookup('nfet', 'id', l=640000,vsb=0, vgs=VGS)
-gm = lk.lookup('nfet', 'gm', l=640000,vsb=0, vgs=VGS)
-JD = lk.lookup('nfet', 'id/width', l=640e3, vsb=0, vgs=VGS, vds=1.7)*1e12
-# plt.semilogy(gm/id, JD)
-# plt.show()
-W = Id/ JD
-print(W)
+gmid = lk.lookup('pfet', 'gm/id', vds=1.8/2, vgs=VGS, l=L)
+indc = np.abs(gmid - gmonId).argmin()
+JDpmos = lk.lookup('pfet', 'id', vds=1.8/2, vgs=VGS, l=L)/width
+wpmos = Id/JDpmos[int(indc)]
+print('pmos: {} um'.format(wpmos))
+print('pmos area {} mm^2'.format(wpmos*(L/1e6) / 1e6))

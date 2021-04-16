@@ -4,6 +4,10 @@ K {}
 V {}
 S {}
 E {}
+T {all resistors modified with temperature coefficients:
+tc1=-1.47e-3
+tc2=2.7e-6;
+both coefficients were pulled from the sky130_fd_pr__res_xhigh_po_base spice model} 920 -80 0 0 0.4 0.4 {}
 N 210 -180 460 -180 { lab=Va}
 N 520 -180 620 -180 { lab=Vb}
 N 620 -180 750 -180 { lab=Vb}
@@ -14,12 +18,9 @@ N 340 80 400 80 { lab=GND}
 N 340 80 340 140 { lab=GND}
 N 460 -180 470 -180 { lab=Va}
 N 510 -180 520 -180 { lab=Vb}
-N 400 -520 400 -450 { lab=VDD}
-N 400 -520 620 -520 { lab=VDD}
 N 620 -520 880 -520 { lab=VDD}
 N 880 -280 1000 -280 { lab=Vbg}
 N 620 -180 620 -160 { lab=Vb}
-N 400 -270 400 -180 { lab=Va}
 N 620 -260 620 -180 { lab=Vb}
 N 880 -310 880 -280 { lab=Vbg}
 N 880 -280 880 -180 { lab=Vbg}
@@ -29,9 +30,7 @@ N 750 -100 750 -80 { lab=#net2}
 N 210 -180 210 -160 { lab=Va}
 N 210 -100 210 -80 { lab=#net3}
 N 620 -390 620 -320 { lab=#net4}
-N 880 -520 880 -450 { lab=VDD}
 N 620 -20 620 0 { lab=vbneg}
-N 620 -520 620 -460 { lab=VDD}
 N 620 0 620 40 { lab=vbneg}
 N 620 40 620 50 { lab=vbneg}
 N 500 140 620 140 { lab=GND}
@@ -46,8 +45,6 @@ N 580 80 620 80 { lab=GND}
 N 580 80 580 140 { lab=GND}
 N 440 80 460 80 { lab=GND}
 N 460 80 460 140 { lab=GND}
-N 470 -200 470 -180 { lab=Va}
-N 510 -200 510 -180 { lab=Vb}
 N 190 -50 190 0 { lab=GND}
 N 190 0 210 0 { lab=GND}
 N 730 -50 730 10 { lab=GND}
@@ -57,25 +54,36 @@ N 520 -50 520 140 { lab=GND}
 N 860 -150 860 -100 { lab=GND}
 N 860 -100 880 -100 { lab=GND}
 N 400 -100 400 50 { lab=Veb}
-N 400 -390 400 -330 { lab=#net5}
 N 430 -240 460 -240 { lab=GND}
 N 430 -240 430 -230 { lab=GND}
 N 400 -440 440 -440 { lab=vgate}
-N 360 -450 400 -450 { lab=VDD}
 N 360 -390 400 -390 { lab=#net5}
-N 620 -460 620 -450 { lab=VDD}
-N 880 -450 910 -450 { lab=VDD}
-N 910 -450 910 -440 { lab=VDD}
-N 880 -380 910 -380 { lab=#net7}
-N 880 -380 880 -370 { lab=#net7}
-N 440 -440 580 -440 { lab=vgate}
+N 880 -380 910 -380 { lab=#net6}
+N 880 -380 880 -370 { lab=#net6}
 N 400 -400 580 -400 { lab=GND}
 N 580 -400 870 -400 { lab=GND}
 N 870 -400 870 -390 { lab=GND}
 N 580 -440 580 -430 { lab=vgate}
 N 580 -430 870 -430 { lab=vgate}
-N 520 -440 520 -240 { lab=vgate}
 N 440 -400 440 -240 { lab=GND}
+N 620 -520 620 -450 { lab=VDD}
+N 360 -520 620 -520 { lab=VDD}
+N 360 -520 360 -450 { lab=VDD}
+N 910 -520 910 -440 { lab=VDD}
+N 880 -520 910 -520 { lab=VDD}
+N 400 -270 400 -180 { lab=Va}
+N 220 -530 390 -530 { lab=#net7}
+N 450 -530 480 -530 { lab=vgate}
+N 500 -440 510 -440 { lab=vgate}
+N 510 -440 580 -440 { lab=vgate}
+N 480 -530 520 -530 { lab=vgate}
+N 520 -530 520 -440 { lab=vgate}
+N 400 -330 400 -270 { lab=Va}
+N 520 -310 520 -240 { lab=#net8}
+N 520 -440 520 -370 { lab=vgate}
+N 440 -440 500 -440 { lab=vgate}
+N 470 -200 470 -180 { lab=Va}
+N 510 -200 510 -180 { lab=Vb}
 C {sky130_fd_pr/pnp_05v5.sym} 420 80 0 1 {name=Q2
 model=pnp_05v5_W3p40L3p40
 spiceprefix=X
@@ -137,11 +145,11 @@ value="
 .param R4val='R2val*R4R2ratio'
 .control
 save all
-dc TEMP  -40 125 0.1
+dc TEMP  -140 140 0.1
 plot Vbg
 plot deriv(Vbg)
 let i = vm3#branch
-let indx = 670
+let indx = 1670
 *indx is the index of temperature sweep for 27degC
 echo 'Vbg @ 27degC'
 let vbg27c = vbg[indx]
@@ -159,10 +167,10 @@ let vth = @m.xm1.msky130_fd_pr__pfet_01v8['vth']
 let vov = vsg - vth
 plot vov vsd1 vsd2 vsd3
 let deltav = vb - vbneg
-let r4 =vbg/@r4[i]
-let r1 =va/@r1[i]
-let r2 =vb/@r2[i]
-let r3 =deltav/@r3[i]
+let r4 =vbg/vm3#branch
+let r1 =va/vr1#branch
+let r2 =vb/vr4#branch
+let r3 =deltav/vr2#branch
 let vptat =(r2/r3*deltav)
 plot veb vptat
 plot deriv(veb) deriv(vptat)
@@ -170,13 +178,20 @@ let TCratio=deriv(veb)/deriv(vptat)
 plot TCratio
 plot vb - va
 echo 'alpha correction factor'
-let alpha=TCratio[670]
+let alpha=TCratio[indx]
 print alpha
-*write tsmc_bandgap_temp.raw
-*op
-*write tsmc_bandgap_op.raw
-*print vbg 
-*print (vb - vbneg)
+*let t=-140
+*let tstop=140
+*foreach t -140 -40 0 27 140
+*option temp = $t
+*ac dec 100 1 1e9
+*let gainva=log10(abs(va/0.1))
+*let gainvb=log10(abs(vb/0.1))
+*let phaseb=(ph(vb/0.1)*180/pi)
+*let phasea=(ph(va/0.1)*180/pi)
+*plot gainva gainvb
+*plot phasea phaseb
+*end
 .endc
 " }
 C {devices/vsource.sym} 60 -580 0 0 {name=V1 net_name=true value=1.8}
@@ -185,7 +200,7 @@ C {devices/vdd.sym} 60 -610 0 0 {name=l8 lab=VDD}
 C {devices/gnd.sym} 60 -550 0 0 {name=l9 lab=GND}
 C {devices/ammeter.sym} 750 -130 0 0 {name=Vr4}
 C {devices/ammeter.sym} 620 -130 0 0 {name=Vr2}
-C {devices/ammeter.sym} 400 -300 0 0 {name=Vm1}
+C {devices/ammeter.sym} 400 -360 0 0 {name=Vm1}
 C {devices/ammeter.sym} 620 -290 0 0 {name=Vm2}
 C {devices/ammeter.sym} 880 -340 0 0 {name=Vm3}
 C {devices/ammeter.sym} 210 -130 0 0 {name=Vr1}
@@ -199,26 +214,42 @@ C {devices/lab_pin.sym} 400 -70 2 0 {name=l10 lab=Veb}
 C {devices/vcvs.sym} 490 -240 1 1 {name=E1 value=1}
 C {devices/gnd.sym} 430 -230 0 0 {name=l2 lab=GND}
 C {devices/lab_wire.sym} 510 -440 0 0 {name=l11 lab=vgate}
-C {devices/res.sym} 620 -50 0 0 {name=R3
-value='R3val'
-footprint=1206
-device=resistor
-m=1}
-C {devices/res.sym} 880 -150 0 0 {name=R4
-value='R4val'
-footprint=1206
-device=resistor
-m=1}
-C {devices/res.sym} 210 -50 0 0 {name=R1
-value='R2val'
-footprint=1206
-device=resistor
-m=1}
-C {devices/res.sym} 750 -50 0 0 {name=R2
-value='R2val'
-footprint=1206
-device=resistor
-m=1}
 C {devices/vccs.sym} 360 -420 0 1 {name=G1 value=10m}
+C {devices/ind.sym} 520 -340 2 0 {name=L1
+m=1
+value=1T
+footprint=1206
+device=inductor}
+C {devices/capa.sym} 420 -530 3 0 {name=C1
+m=1
+value=1T
+footprint=1206
+device="ceramic capacitor"}
+C {devices/gnd.sym} 220 -470 0 0 {name=l12 lab=GND}
+C {devices/vsource.sym} 220 -500 0 1 {name=V2 value="ac 0.1"}
 C {devices/vccs.sym} 620 -420 0 0 {name=G2 value=10m}
 C {devices/vccs.sym} 910 -410 0 0 {name=G3 value=10m}
+C {sky130_fd_pr/res_xhigh_po_0p35.sym} 210 -50 0 0 {name=R1
+W=0.35
+L=18.231
+model=res_xhigh_po_0p35
+spiceprefix=X
+mult=1}
+C {sky130_fd_pr/res_xhigh_po_0p35.sym} 750 -50 0 0 {name=R2
+W=0.35
+L=18.231
+model=res_xhigh_po_0p35
+spiceprefix=X
+mult=1}
+C {sky130_fd_pr/res_xhigh_po_0p35.sym} 620 -50 0 0 {name=R3
+W=0.35
+L=3.38
+model=res_xhigh_po_0p35
+spiceprefix=X
+mult=1}
+C {sky130_fd_pr/res_xhigh_po_0p35.sym} 880 -150 0 0 {name=R4
+W=0.35
+L=8.675
+model=res_xhigh_po_0p35
+spiceprefix=X
+mult=1}

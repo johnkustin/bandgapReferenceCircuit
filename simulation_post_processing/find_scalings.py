@@ -21,7 +21,7 @@ dVbe = plotDat[dVar]
 steadiestdVbes = np.std(dVbe,axis=1)
 mostConstantdVbe = np.argmin(np.abs(steadiestdVbes)) # choose most constant dVbe to have easiest TC cancellation
 T = plotDat[xVar]
-targI = mostConstantdVbe
+targI = mostConstantdVbe #16.4 #
 indx = (np.abs(current - targI)).argmin() # https://philbull.wordpress.com/2012/01/11/numpy-tip-getting-index-of-an-array-element-nearest-to-some-value/
 # interp Vbe to find its value when T=27degC
 VbeNominal = np.interp(27, plotDat[xVar][indx], plotDat[yVar][indx])
@@ -46,7 +46,7 @@ scaler = np.log(n)*R2R3ratio
 
 N = np.ceil(np.interp(-realCTAT,scaler,n))
 R2R3ratio_final = -realCTAT/np.log(N)
-R3 = 2e3
+R3 = 20e3
 R2 = R3*R2R3ratio_final
 Vref = 0.6
 R4R2ratio = Vref/(VbeNominal + k/q*300*R2R3ratio_final*np.log(N))
