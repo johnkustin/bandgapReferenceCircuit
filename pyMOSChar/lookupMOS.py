@@ -21,7 +21,6 @@ def lookup(mosType, *outVars, **inVars):
     mosType = mosType.lower()
     if (mosType not in ['nfet', 'pfet']):
         print("ERROR: Invalid MOSFET type. Valid types are 'nfet' and 'pfet'.")
-
     defaultL = min(mosDat[mosType]['length'])
     defaultVGS = mosDat[mosType]['vgs']
     defaultVDS = max(mosDat[mosType]['vds'])/2;

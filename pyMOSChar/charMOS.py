@@ -11,7 +11,8 @@ import sys
 mosDat = {}
 
 modelFiles  = ("mosfet.mod",)
-mosLengths  = np.arange(1, 10, 1)
+mosLengthsNfet  = np.arange(1, 10, 1)
+mosLengthsPfet  = np.arange(1, 10, 1)
 simulator   = "ngspice"
 modelN      = "cmosn"
 modelP      = "cmosp"
@@ -67,7 +68,7 @@ def init(**settings):
 
     mosDat['nfet']['corners'] = corners
     mosDat['nfet']['temp'] = temp
-    mosDat['nfet']['length'] = mosLengths
+    mosDat['nfet']['length'] = mosLengthsNfet
     mosDat['nfet']['width'] = width
     mosDat['nfet']['numfing'] = numfing
     mosDat['nfet']['vgs'] = vgs
@@ -76,37 +77,37 @@ def init(**settings):
     
     mosDat['pfet']['corners'] = corners
     mosDat['pfet']['temp'] = temp
-    mosDat['pfet']['length'] = mosLengths
+    mosDat['pfet']['length'] = mosLengthsPfet
     mosDat['pfet']['width'] = width
     mosDat['pfet']['numfing'] = numfing
     mosDat['pfet']['vgs'] = -vgs
     mosDat['pfet']['vds'] = -vds
     mosDat['pfet']['vsb'] = vsb
-
+    assert(len(mosDat['nfet']['length']) == len(mosDat['pfet']['length']))
     # 4D arrays to store MOS data-->f(L,               VSB,      VDS,      VGS      )
-    mosDat['nfet']['id']  = np.zeros((len(mosLengths), len(vsb), len(vds), len(vgs)))
-    mosDat['nfet']['vt']  = np.zeros((len(mosLengths), len(vsb), len(vds), len(vgs)))
-    mosDat['nfet']['gm']  = np.zeros((len(mosLengths), len(vsb), len(vds), len(vgs)))
-    mosDat['nfet']['gmb'] = np.zeros((len(mosLengths), len(vsb), len(vds), len(vgs)))
-    mosDat['nfet']['gds'] = np.zeros((len(mosLengths), len(vsb), len(vds), len(vgs)))
-    mosDat['nfet']['cgg'] = np.zeros((len(mosLengths), len(vsb), len(vds), len(vgs)))
-    mosDat['nfet']['cgs'] = np.zeros((len(mosLengths), len(vsb), len(vds), len(vgs)))
-    mosDat['nfet']['cgd'] = np.zeros((len(mosLengths), len(vsb), len(vds), len(vgs)))
-    mosDat['nfet']['cgb'] = np.zeros((len(mosLengths), len(vsb), len(vds), len(vgs)))
-    mosDat['nfet']['cdd'] = np.zeros((len(mosLengths), len(vsb), len(vds), len(vgs)))
-    mosDat['nfet']['css'] = np.zeros((len(mosLengths), len(vsb), len(vds), len(vgs)))
+    mosDat['nfet']['id']  = np.zeros((len(mosLengthsNfet), len(vsb), len(vds), len(vgs)))
+    mosDat['nfet']['vt']  = np.zeros((len(mosLengthsNfet), len(vsb), len(vds), len(vgs)))
+    mosDat['nfet']['gm']  = np.zeros((len(mosLengthsNfet), len(vsb), len(vds), len(vgs)))
+    mosDat['nfet']['gmb'] = np.zeros((len(mosLengthsNfet), len(vsb), len(vds), len(vgs)))
+    mosDat['nfet']['gds'] = np.zeros((len(mosLengthsNfet), len(vsb), len(vds), len(vgs)))
+    mosDat['nfet']['cgg'] = np.zeros((len(mosLengthsNfet), len(vsb), len(vds), len(vgs)))
+    mosDat['nfet']['cgs'] = np.zeros((len(mosLengthsNfet), len(vsb), len(vds), len(vgs)))
+    mosDat['nfet']['cgd'] = np.zeros((len(mosLengthsNfet), len(vsb), len(vds), len(vgs)))
+    mosDat['nfet']['cgb'] = np.zeros((len(mosLengthsNfet), len(vsb), len(vds), len(vgs)))
+    mosDat['nfet']['cdd'] = np.zeros((len(mosLengthsNfet), len(vsb), len(vds), len(vgs)))
+    mosDat['nfet']['css'] = np.zeros((len(mosLengthsNfet), len(vsb), len(vds), len(vgs)))
 
-    mosDat['pfet']['id']  = np.zeros((len(mosLengths), len(vsb), len(vds), len(vgs)))
-    mosDat['pfet']['vt']  = np.zeros((len(mosLengths), len(vsb), len(vds), len(vgs)))
-    mosDat['pfet']['gm']  = np.zeros((len(mosLengths), len(vsb), len(vds), len(vgs)))
-    mosDat['pfet']['gmb'] = np.zeros((len(mosLengths), len(vsb), len(vds), len(vgs)))
-    mosDat['pfet']['gds'] = np.zeros((len(mosLengths), len(vsb), len(vds), len(vgs)))
-    mosDat['pfet']['cgg'] = np.zeros((len(mosLengths), len(vsb), len(vds), len(vgs)))
-    mosDat['pfet']['cgs'] = np.zeros((len(mosLengths), len(vsb), len(vds), len(vgs)))
-    mosDat['pfet']['cgd'] = np.zeros((len(mosLengths), len(vsb), len(vds), len(vgs)))
-    mosDat['pfet']['cgb'] = np.zeros((len(mosLengths), len(vsb), len(vds), len(vgs)))
-    mosDat['pfet']['cdd'] = np.zeros((len(mosLengths), len(vsb), len(vds), len(vgs)))
-    mosDat['pfet']['css'] = np.zeros((len(mosLengths), len(vsb), len(vds), len(vgs)))
+    mosDat['pfet']['id']  = np.zeros((len(mosLengthsPfet), len(vsb), len(vds), len(vgs)))
+    mosDat['pfet']['vt']  = np.zeros((len(mosLengthsPfet), len(vsb), len(vds), len(vgs)))
+    mosDat['pfet']['gm']  = np.zeros((len(mosLengthsPfet), len(vsb), len(vds), len(vgs)))
+    mosDat['pfet']['gmb'] = np.zeros((len(mosLengthsPfet), len(vsb), len(vds), len(vgs)))
+    mosDat['pfet']['gds'] = np.zeros((len(mosLengthsPfet), len(vsb), len(vds), len(vgs)))
+    mosDat['pfet']['cgg'] = np.zeros((len(mosLengthsPfet), len(vsb), len(vds), len(vgs)))
+    mosDat['pfet']['cgs'] = np.zeros((len(mosLengthsPfet), len(vsb), len(vds), len(vgs)))
+    mosDat['pfet']['cgd'] = np.zeros((len(mosLengthsPfet), len(vsb), len(vds), len(vgs)))
+    mosDat['pfet']['cgb'] = np.zeros((len(mosLengthsPfet), len(vsb), len(vds), len(vgs)))
+    mosDat['pfet']['cdd'] = np.zeros((len(mosLengthsPfet), len(vsb), len(vds), len(vgs)))
+    mosDat['pfet']['css'] = np.zeros((len(mosLengthsPfet), len(vsb), len(vds), len(vgs)))
 
 def genNetlistNngspice(fName='charNMOS.net'):
     netlistN = open(fName, 'w')
@@ -121,7 +122,7 @@ def genNetlistNngspice(fName='charNMOS.net'):
     netlistN.write("vgs  nGate  0 dc 0\n")
     netlistN.write("vbs  nBulk  0 dc {-mosChar_sb}\n")
     netlistN.write("\n")
-    netlistN.write("xn nDrain nGate 0 nBulk {0}  L={{length*1e-6}} W={{{1}*1e-6}}\n".format(modelN, width))
+    netlistN.write("xn nDrain nGate 0 nBulk {0}  L={{lengthn*1e-6}} W={{{1}*1e-6}}\n".format(modelN, width))
     netlistN.write("\n")
     netlistN.write(".options dccap post brief accurate\n")
     netlistN.write(".control\n")
@@ -169,7 +170,7 @@ def genNetlistPngspice(fName='charPMOS.net'):
     netlistP.write("vgs  nGate  0 dc 0\n")
     netlistP.write("vbs  nBulk  0 dc mosChar_sb\n")
     netlistP.write("\n")
-    netlistP.write("xp nDrain nGate 0 nBulk {0}  L={{length*1e-6}} W={{{1}*1e-6}}\n".format(modelP, width))
+    netlistP.write("xp nDrain nGate 0 nBulk {0}  L={{lengthp*1e-6}} W={{{1}*1e-6}}\n".format(modelP, width))
     netlistP.write("\n")
     netlistP.write(".options dccap post brief accurate\n")
     netlistP.write(".control\n")
@@ -241,7 +242,8 @@ def genNetlistSpectre(fName='charMOS.scs'):
 
 def genSimParams(L, VSB):
     paramFile = open("simParams.net", 'w')
-    paramFile.write(".param length={0}\n".format(L))
+    for i, t in enumerate(['n', 'p']):
+        paramFile.write(".param length"+t+"={0}\n".format(L[i]))
     paramFile.write(".param mosChar_sb={0}\n".format(VSB))
     paramFile.close()
 
@@ -266,16 +268,16 @@ def genDB():
         print "ERROR: Invalid/Unsupported simulator specified"
         sys.exit(0)
 
-    progTotal = len(mosLengths)*len(vsb)
+    progTotal = len(mosLengthsNfet)*len(vsb)
     progCurr  = 0
     print("Data generation in progress. Go have a coffee...")
-    for idxL in range(len(mosLengths)):
+    for idxL in range(len(mosLengthsNfet)):
         for idxVSB in range(len(vsb)):
             
             if (simulator == "ngspice"):
-                genSimParams(mosLengths[idxL], vsb[idxVSB])
+                genSimParams((mosLengthsNfet[idxL], mosLengthsPfet[idxL]), vsb[idxVSB])
                 myfile = open("charMOSpy.log", "a")
-                myfile.write("charMOS: Simulating for L={0}, VSB={1}\n".format(mosLengths[idxL], vsb[idxVSB]))
+                myfile.write("charMOS: Simulating for NMOS L={0} PMOS L={2}, VSB={1}\n".format(mosLengthsNfet[idxL], vsb[idxVSB], mosLengthsPfet[idxL]))
                 myfile.close()
 
                 runSim("charNMOS.net", "ngspice")

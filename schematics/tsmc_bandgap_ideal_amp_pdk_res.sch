@@ -13,7 +13,6 @@ N 210 140 400 140 { lab=GND}
 N 340 80 400 80 { lab=GND}
 N 340 80 340 140 { lab=GND}
 N 460 -180 470 -180 { lab=Va}
-N 400 -520 400 -450 { lab=VDD}
 N 400 -520 620 -520 { lab=VDD}
 N 620 -520 880 -520 { lab=VDD}
 N 880 -280 1000 -280 { lab=Vbg}
@@ -53,29 +52,29 @@ N 520 -50 520 140 { lab=GND}
 N 860 -150 860 -100 { lab=GND}
 N 860 -100 880 -100 { lab=GND}
 N 400 -100 400 50 { lab=Veb}
-N 430 -240 460 -240 { lab=GND}
-N 430 -240 430 -230 { lab=GND}
-N 400 -440 440 -440 { lab=vgate}
-N 360 -450 400 -450 { lab=VDD}
-N 360 -390 400 -390 { lab=#net5}
 N 620 -460 620 -450 { lab=VDD}
 N 880 -450 910 -450 { lab=VDD}
 N 910 -450 910 -440 { lab=VDD}
-N 880 -380 910 -380 { lab=#net6}
-N 880 -380 880 -370 { lab=#net6}
-N 440 -440 580 -440 { lab=vgate}
-N 400 -400 580 -400 { lab=GND}
-N 580 -400 870 -400 { lab=GND}
-N 870 -400 870 -390 { lab=GND}
-N 580 -440 580 -430 { lab=vgate}
+N 880 -380 910 -380 { lab=#net5}
+N 880 -380 880 -370 { lab=#net5}
 N 580 -430 870 -430 { lab=vgate}
-N 520 -440 520 -240 { lab=vgate}
-N 440 -400 440 -240 { lab=GND}
 N 400 -270 400 -170 { lab=Va}
 N 470 -200 470 -180 { lab=Va}
 N 510 -200 510 -180 { lab=Vb}
 N 510 -180 520 -180 { lab=Vb}
-N 400 -390 400 -330 { lab=#net5}
+N 400 -390 400 -330 { lab=#net6}
+N 580 -430 580 -420 { lab=vgate}
+N 620 -450 620 -420 { lab=VDD}
+N 870 -430 870 -410 { lab=vgate}
+N 910 -440 910 -410 { lab=VDD}
+N 400 -520 400 -450 { lab=VDD}
+N 520 -430 580 -430 { lab=vgate}
+N 520 -430 520 -240 { lab=vgate}
+N 510 -430 520 -430 { lab=vgate}
+N 360 -430 510 -430 { lab=vgate}
+N 360 -430 360 -420 { lab=vgate}
+N 400 -450 400 -420 { lab=VDD}
+N 340 -240 460 -240 { lab=#net7}
 C {sky130_fd_pr/pnp_05v5.sym} 420 80 0 1 {name=Q2
 model=pnp_05v5_W3p40L3p40
 spiceprefix=X
@@ -130,18 +129,18 @@ value="
 .option savecurrents
 .option warn=1
 .param R3val=20k
-.param alpha=1.12439
+.param alpha='0.773875'
 .param R2R3ratio='4.663181043*alpha'
 .param R2val='R3val*R2R3ratio' 
 .param R4R2ratio=0.47924034354
 .param R4val='R2val*R4R2ratio'
 .control
 save all
-dc TEMP  -40 140 0.1
+dc TEMP  -140 140 0.1
 plot Vbg
 plot deriv(Vbg)
 let i = vm3#branch
-let indx = 670
+let indx = 1670
 *indx is the index of temperature sweep for 27degC
 echo 'Vbg @ 27degC'
 let vbg27c = vbg[indx]
@@ -150,6 +149,7 @@ echo 'dVbe/degC & ppm @ 27degC'
 print deriv(vbg)[indx] deriv(vbg)[indx]/vbg27c
 plot deriv(vbg)/vbg27c
 plot v(va, vb) vs i
+plot v(va, vb)
 plot vm1#branch vm2#branch vm3#branch
 let vsg = vdd - vgate
 let vsd1 = vdd - va
@@ -159,10 +159,10 @@ let vth = @m.xm1.msky130_fd_pr__pfet_01v8['vth']
 let vov = vsg - vth
 plot vov vsd1 vsd2 vsd3
 let deltav = vb - vbneg
-let r4 =vbg/@r4[i]
-let r1 =va/@r1[i]
-let r2 =vb/@r2[i]
-let r3 =deltav/@r3[i]
+let r4 =vbg/vm3#branch
+let r1 =va/vr1#branch
+let r2 =vb/vr4#branch
+let r3 =deltav/vr2#branch
 let vptat =(r2/r3*deltav)
 let sum = veb+vptat
 plot veb vptat sum
@@ -171,8 +171,13 @@ let TCratio=deriv(veb)/deriv(vptat)
 plot TCratio
 plot vb - va
 echo 'alpha correction factor'
-let alpha=TCratio[670]
+let alpha=TCratio[indx]
 print alpha
+let gm1=@m.xm1.msky130_fd_pr__pfet_01v8[gm]
+let gm2=@m.xm2.msky130_fd_pr__pfet_01v8[gm]
+let Av2=gm2 * ((r3 + r3/ln(39)) * r2 / (r3 + r3/ln(39) + r2) )
+let Av1=gm1 * (r1 * r3/ln(39))/(r1 + r3/ln(39))
+plot Av1 Av2 Av2/Av1
 *write tsmc_bandgap_temp.raw
 *op
 *write tsmc_bandgap_op.raw
@@ -197,37 +202,73 @@ spiceprefix=X
 }
 C {devices/lab_pin.sym} 620 10 0 0 {name=l4 lab=vbneg}
 C {devices/lab_pin.sym} 400 -70 2 0 {name=l10 lab=Veb}
-C {devices/vcvs.sym} 490 -240 1 1 {name=E1 value=1}
-C {devices/gnd.sym} 430 -230 0 0 {name=l2 lab=GND}
-C {devices/lab_wire.sym} 510 -440 0 0 {name=l11 lab=vgate}
-C {devices/res.sym} 620 -50 0 0 {name=R3
-value='R3val'
-footprint=1206
-device=resistor
-m=1
-tc1=0
-tc2=0}
-C {devices/res.sym} 880 -150 0 0 {name=R4
-value='R4val'
-footprint=1206
-device=resistor
-m=1
-tc1=0
-tc2=0}
-C {devices/res.sym} 210 -50 0 0 {name=R1
-value='R2val'
-footprint=1206
-device=resistor
-m=1
-tc1=0
-tc2=0}
-C {devices/vccs.sym} 910 -410 0 0 {name=G3 value=10m}
-C {devices/res.sym} 750 -50 0 0 {name=R2
-value='R2val'
-footprint=1206
-device=resistor
-m=1
-tc1=0
-tc2=0}
-C {devices/vccs.sym} 360 -420 0 1 {name=G2 value=10m}
-C {devices/vccs.sym} 620 -420 0 0 {name=G1 value=10m}
+C {devices/vcvs.sym} 490 -240 1 1 {name=E1 value=20}
+C {devices/lab_wire.sym} 510 -430 0 0 {name=l11 lab=vgate}
+C {sky130_fd_pr/pfet_01v8.sym} 380 -420 0 0 {name=M1
+L=0.705102
+W=1
+nf=1
+mult=20
+ad="'int((nf+1)/2) * W/nf * 0.29'" 
+pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
+as="'int((nf+2)/2) * W/nf * 0.29'" 
+ps="'2*int((nf+2)/2) * (W/nf + 0.29)'"
+nrd="'0.29 / W'" nrs="'0.29 / W'"
+sa=0 sb=0 sd=0
+model=pfet_01v8
+spiceprefix=X
+}
+C {sky130_fd_pr/pfet_01v8.sym} 600 -420 0 0 {name=M2
+L=0.705102
+W=1
+nf=1
+mult=20
+ad="'int((nf+1)/2) * W/nf * 0.29'" 
+pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
+as="'int((nf+2)/2) * W/nf * 0.29'" 
+ps="'2*int((nf+2)/2) * (W/nf + 0.29)'"
+nrd="'0.29 / W'" nrs="'0.29 / W'"
+sa=0 sb=0 sd=0
+model=pfet_01v8
+spiceprefix=X
+}
+C {sky130_fd_pr/pfet_01v8.sym} 890 -410 0 0 {name=M3
+L=0.705102
+W=1
+nf=1
+mult=20
+ad="'int((nf+1)/2) * W/nf * 0.29'" 
+pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
+as="'int((nf+2)/2) * W/nf * 0.29'" 
+ps="'2*int((nf+2)/2) * (W/nf + 0.29)'"
+nrd="'0.29 / W'" nrs="'0.29 / W'"
+sa=0 sb=0 sd=0
+model=pfet_01v8
+spiceprefix=X
+}
+C {sky130_fd_pr/res_xhigh_po_0p35.sym} 210 -50 0 0 {name=R1
+W=0.35
+L=13.95
+model=res_xhigh_po_0p35
+spiceprefix=X
+mult=1}
+C {sky130_fd_pr/res_xhigh_po_0p35.sym} 620 -50 0 0 {name=R3
+W=0.35
+L=3.38
+model=res_xhigh_po_0p35
+spiceprefix=X
+mult=1}
+C {sky130_fd_pr/res_xhigh_po_0p35.sym} 880 -150 0 0 {name=R4
+W=0.35
+L=6.624
+model=res_xhigh_po_0p35
+spiceprefix=X
+mult=1}
+C {sky130_fd_pr/res_xhigh_po_0p35.sym} 750 -50 0 0 {name=R2
+W=0.35
+L=13.95
+model=res_xhigh_po_0p35
+spiceprefix=X
+mult=1}
+C {devices/vsource.sym} 340 -270 2 0 {name=V2 value=0.9}
+C {devices/gnd.sym} 340 -300 2 0 {name=l2 lab=GND}

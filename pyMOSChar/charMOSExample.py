@@ -14,8 +14,8 @@ import numpy as np
 # nmos and pmos transistors. Then generate the netlist in
 # ADE. You'll then be able to view the netlist and see what
 # the name of the model is.
-nmos = "sky130_fd_pr__nfet_01v8"
-pmos = "sky130_fd_pr__pfet_01v8"
+nmos = "sky130_fd_pr__nfet_01v8_lvt"
+pmos = "sky130_fd_pr__pfet_01v8_lvt"
 
 # Specify the MOSFET width in microns.
 width = 1e6
@@ -34,10 +34,14 @@ width = 1e6
 #mosLengths = np.arange(0.15, 4.1, 0.1)*1e6
 
 ## Example 2 for lenghs
-mosLengths = (np.concatenate([
+mosLengthsN = (np.concatenate([
 np.linspace(0.15, 1, endpoint=False),
 np.linspace(1, 10, num=25, endpoint=False),
 np.linspace(10, 110, num=10, endpoint=True)]) * 1e6).astype('int')
+
+mosLenghtsP = (np.concatenate([
+np.linspace(0.35, 1, endpoint=False),
+np.linspace(1, 8, num=35, endpoint=True)]) * 1e6).astype('int')
 
 # Initialize the characterization process. Modify
 # the values below as per your requirements. Ensure
@@ -45,14 +49,15 @@ np.linspace(10, 110, num=10, endpoint=True)]) * 1e6).astype('int')
 # your RAM will get used up.
 charMOS.init(
 simulator='ngspice',
-mosLengths=mosLengths,
+mosLengthsNfet=mosLengthsN,
+mosLengthsPfet=mosLenghtsP,
 modelFiles=("/afs/ir.stanford.edu/class/ee272/skywater-pdk/libraries/sky130_fd_pr/latest/models/sky130.lib.spice",),
 modelN=nmos,
 modelP=pmos,
 simOptions="",
 corners=("tt",),
 subcktPath="",
-datFileName="mosSKY130__W{0}u.{1}.{2}.fixed.dat".format(width,nmos,pmos),
+datFileName="mosSKY130__W{0}u.{1}.{2}.lvt.moreLenghts.dat".format(width,nmos,pmos),
 vgsMax=1.95,
 vgsStep=20e-3,
 vdsMax=1.95,
