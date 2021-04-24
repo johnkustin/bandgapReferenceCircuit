@@ -213,8 +213,8 @@ plot db(abs(adm)) vs vdm
 .endc
 " }
 C {sky130_fd_pr/nfet_01v8_lvt.sym} 390 -90 0 1 {name=M2
-L=1
-W=15
+L='4'
+W='15*4'
 nf=1
 mult=4
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -263,8 +263,8 @@ C {devices/gnd.sym} 680 10 0 0 {name=l12 lab=GND}
 C {devices/gnd.sym} 680 -120 2 0 {name=l13 lab=GND}
 C {devices/vsource.sym} 220 60 3 0 {name=V4 value="0"}
 C {sky130_fd_pr/nfet_01v8_lvt.sym} 140 -90 0 0 {name=M1
-L=1
-W=15
+L='4'
+W='15*4'
 nf=1
 mult=4
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -277,8 +277,8 @@ model=nfet_01v8_lvt
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8_lvt.sym} 180 -220 0 1 {name=M3
-L=0.35
-W=7
+L='1.4'
+W='7*4'
 nf=1
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -291,8 +291,8 @@ model=pfet_01v8_lvt
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8_lvt.sym} 350 -220 0 0 {name=M4
-L=0.35
-W=7
+L='1.4'
+W='7*4'
 nf=1
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
