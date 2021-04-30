@@ -326,34 +326,34 @@ sa=0 sb=0 sd=0
 model=pfet_01v8_lvt
 spiceprefix=X
 }
-C {sky130_fd_pr/res_xhigh_po_0p35.sym} 740 190 0 0 {name=R1
+C {sky130_fd_pr/res_xhigh_po_0p35.sym} 540 -210 0 0 {name=R1
 W=0.35
 L=21.839
 model=res_xhigh_po_0p35
 spiceprefix=X
 mult=1}
-C {sky130_fd_pr/res_xhigh_po_0p35.sym} 1220 190 0 0 {name=R2
+C {sky130_fd_pr/res_xhigh_po_0p35.sym} 1020 -210 0 0 {name=R2
 W=0.35
 L=21.839
 model=res_xhigh_po_0p35
 spiceprefix=X
 mult=1}
-C {sky130_fd_pr/res_xhigh_po_0p35.sym} 1090 190 0 0 {name=R3
+C {sky130_fd_pr/res_xhigh_po_0p35.sym} 890 -210 0 0 {name=R3
 W=0.35
 L=3.763
 model=res_xhigh_po_0p35
 spiceprefix=X
 mult=1}
-C {sky130_fd_pr/res_xhigh_po_0p35.sym} 1600 90 0 0 {name=R4
+C {sky130_fd_pr/res_xhigh_po_0p35.sym} 1400 -310 0 0 {name=R4
 W=0.35
-L=10.38
+L=17.38
 model=res_xhigh_po_0p35
 spiceprefix=X
 mult=1}
 C {devices/lab_pin.sym} 1400 -390 0 1 {name=l3 lab=vbg}
 C {devices/code_shown.sym} 1810 -470 0 0 {name=s1 
 only_toplevel=true 
-spice_ignore=false
+spice_ignore=true
 
 value="
 .option savecurrents
@@ -363,8 +363,8 @@ value="
 .param R2val='R3val*R2R3ratio'
 .param R4R2ratio='0.47810041'
 .param R4val='R2val*R4R2ratio
-.nodeset v(vgate)=1.3
-.option temp=27
+.nodeset v(vgate)=1.4
+.option temp=70
 .control
 save all
 + @m.xm1.msky130_fd_pr__pfet_01v8_lvt[gm]
@@ -576,28 +576,28 @@ write tsmc_bandgap_real.raw
 " }
 C {devices/ngspice_probe.sym} 270 -560 0 0 {name=r27}
 C {devices/gnd.sym} 740 220 0 0 {name=l13 lab=GND}
-C {devices/res.sym} 890 -210 0 0 {name=R7
+C {devices/res.sym} 1090 190 0 0 {name=R7
 value='R3val'
 footprint=1206
 device=resistor
 m=1
 tc1=-1.47e-3
 tc2=2.7e-6}
-C {devices/res.sym} 540 -210 0 0 {name=R5
+C {devices/res.sym} 740 190 0 0 {name=R5
 value='R2val'
 footprint=1206
 device=resistor
 m=1
 tc1=-1.47e-3
 tc2=2.7e-6}
-C {devices/res.sym} 1020 -210 0 0 {name=R6
+C {devices/res.sym} 1220 190 0 0 {name=R6
 value='R2val'
 footprint=1206
 device=resistor
 m=1
 tc1=-1.47e-3
 tc2=2.7e-6}
-C {devices/res.sym} 1400 -310 0 0 {name=R8
+C {devices/res.sym} 1600 90 0 0 {name=R8
 value='R4val'
 footprint=1206
 device=resistor
@@ -664,7 +664,7 @@ footprint=1206
 device="ceramic capacitor"}
 C {devices/code_shown.sym} 2350 -480 0 0 {name=s2 
 only_toplevel=true 
-spice_ignore=true
+spice_ignore=false
 
 value="
 .option savecurrents
@@ -672,7 +672,7 @@ value="
 .param alpha='1'
 .param R2R3ratio='5.6555038*alpha'
 .param R2val='R3val*R2R3ratio'
-.param R4R2ratio='0.47810041'
+.param R4R2ratio='0.79694273'
 .param R4val='R2val*R4R2ratio
 .control
 save all
