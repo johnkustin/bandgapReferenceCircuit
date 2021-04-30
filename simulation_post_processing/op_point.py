@@ -57,5 +57,13 @@ vdsmargins = np.asarray([
     vdsmargin9
 ]).flatten()
 print('vdsmargins')
+
 for i, n in enumerate(indx):
     print('vds{}margin = {}'.format(n,vdsmargins[i]))
+
+if np.all(vdsmargins > 0):
+    print('All Vds margins are positive')
+    print('The lowest Vds margin is {}'.format(np.min(vdsmargins)))
+else:
+    print('Vds margins are violated. Most violated is {}'.format(np.min(vdsmargins)))
+    
