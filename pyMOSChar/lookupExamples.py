@@ -1,11 +1,13 @@
 import lookupMOS as lk
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib
 
 filename = 'mosSKY130__W1000000.0u.sky130_fd_pr__nfet_01v8_lvt.sky130_fd_pr__pfet_01v8_lvt.moreLengths.dat'
 lk.init(filename)
 VGS = np.linspace(0, 1.8, endpoint=True)
-
+matplotlib.rc('xtick',labelsize=15)
+matplotlib.rc('ytick',labelsize=15)
 # print('Available Lenghts: {}'.format(lk.mosDat['nfet']['length']))
 lengths = [0.35, 0.705102, 0.9250000] # micron
 width = 1 # micron
@@ -69,59 +71,59 @@ for typ in types:
     for i,id in enumerate(idarr) :
         ax.plot(VGS, id*1e6, label=str((0.5 * i + 1)/1e6) + ' um')
     ax.legend()
-# plt.show()
+plt.show()
 
-print('sizing for amplifier circuit')
-filename = 'mosSKY130__W1000000.0u.sky130_fd_pr__nfet_01v8_lvt.sky130_fd_pr__pfet_01v8_lvt.moreLengths.dat'
-lk.init(filename)
-nlengths = lk.mosDat['nfet']['length']
-plengths = lk.mosDat['pfet']['length']
-print('Available PMOS Lenghts: {}'.format(plengths))
-print('Available NMOS Lenghts: {}'.format(nlengths))
+# print('sizing for amplifier circuit')
+# filename = 'mosSKY130__W1000000.0u.sky130_fd_pr__nfet_01v8_lvt.sky130_fd_pr__pfet_01v8_lvt.moreLengths.dat'
+# lk.init(filename)
+# nlengths = lk.mosDat['nfet']['length']
+# plengths = lk.mosDat['pfet']['length']
+# print('Available PMOS Lenghts: {}'.format(plengths))
+# print('Available NMOS Lenghts: {}'.format(nlengths))
 
-gain = 75e3
-gmn = 100e-6 
-gm_id = 10
-id = gmn/gm_id
-gdsn = lk.lookup('nfet','gds', vds=1.8/2, vgs=VGS,l=nlengths)
-gdsp = lk.lookup('pfet','gds', vds=1.8/2, vgs=VGS,l=plengths)
-idn = lk.lookup('nfet','id', vds=1.8/2, vgs=VGS,l=nlengths)
-idp = lk.lookup('pfet','id', vds=1.8/2, vgs=VGS,l=plengths)
-gmidn = lk.lookup('nfet', 'gm/id', vds=1.8/2, vgs=VGS,l=nlengths)
-gmidp = lk.lookup('pfet', 'gm/id', vds=1.8/2, vgs=VGS,l=plengths)
-gmn = lk.lookup('nfet', 'gm', vds=1.8/2, vgs=VGS,l=nlengths)
-gmp = lk.lookup('pfet', 'gm', vds=1.8/2, vgs=VGS,l=plengths)
-JDnmos = lk.lookup('nfet', 'id', vds=1.8/2, vgs=VGS,l=nlengths)/width
-JDpmos = lk.lookup('pfet', 'id', vds=1.8/2, vgs=VGS,l=plengths)/width
-indcn = np.unravel_index(np.argmin(np.abs(gmidn - gm_id)), (gmidn - gm_id).shape)
-indcp = np.unravel_index(np.argmin(np.abs(gmidp - gm_id)), (gmidp - gm_id).shape)
+# gain = 75e3
+# gmn = 100e-6 
+# gm_id = 10
+# id = gmn/gm_id
+# gdsn = lk.lookup('nfet','gds', vds=1.8/2, vgs=0.7,l=8e6)
+# gdsp = lk.lookup('pfet','gds', vds=0.6, vgs=0.6,l=8e6)
+# idn = lk.lookup('nfet','id', vds=1.8/2, vgs=0.7,l=8e6)
+# idp = lk.lookup('pfet','id', vds=0.6, vgs=0.6,l=8e6)
+# gmidn = lk.lookup('nfet', 'gm/id', vds=1.8/2, vgs=0.7,l=8e6)
+# gmidp = lk.lookup('pfet', 'gm/id', vds=0.6, vgs=0.6,l=8e6)
+# gmn = lk.lookup('nfet', 'gm', vds=1.8/2, vgs=0.7,l=8e6)
+# gmp = lk.lookup('pfet', 'gm', vds=0.6, vgs=0.6,l=8e6)
+# JDnmos = lk.lookup('nfet', 'id', vds=1.8/2, vgs=0.7,l=8e6)/width
+# JDpmos = lk.lookup('pfet', 'id', vds=0.6, vgs=0.6,l=8e6)/width
+# indcn = np.unravel_index(np.argmin(np.abs(gmidn - gm_id)), (gmidn - gm_id).shape)
+# indcp = np.unravel_index(np.argmin(np.abs(gmidp - gm_id)), (gmidp - gm_id).shape)
 
-# ro1 = 1/gdsn.flatten()[indcn]
-ro1 = 1/gdsn
-# ro4 = 1/gdsp.flatten()[indcp]
-ro4 = 1/gdsp
-# possible_gain = gmn[indcn] * ro1[indcn] * ro4[indcp] / (ro1[indcn] + ro4[indcp]) * (2*gmp[indcp] * ro4[indcp] + 1) / (2*(gmp[indcp] * ro4[indcp] + 1))
+# # ro1 = 1/gdsn.flatten()[indcn]
+# ro1 = 1/gdsn
+# # ro4 = 1/gdsp.flatten()[indcp]
+# ro4 = 1/gdsp
+# # possible_gain = gmn[indcn] * ro1[indcn] * ro4[indcp] / (ro1[indcn] + ro4[indcp]) * (2*gmp[indcp] * ro4[indcp] + 1) / (2*(gmp[indcp] * ro4[indcp] + 1))
 
-possible_gain = gmn * ro1 * ro4 / (ro1 + ro4) * (2*gmp * ro4 + 1) / (2*(gmp * ro4 + 1))
-lIndx, vgsIndx = np.unravel_index(np.argmin(np.abs(possible_gain - gain)),possible_gain.shape)
-assert lIndx != None and vgsIndx != None
-wnmos = id/JDnmos[indcn]
-lnmos = nlengths[indcn[0]]
-print('nmos: {} / {} um'.format(wnmos,lnmos/1e6))
-wpmos = id/JDpmos[indcp]
-lpmos = plengths[indcp[0]]
-print('pmos: {} / {} um'.format(wpmos,lpmos/1e6))
-idn = idn[indcn]
-idp = idp[indcp]
+# possible_gain = gmn * (ro1 * ro4 / (ro1 + ro4)) * ((2*gmp * ro4 + 1) / (2*(gmp * ro4 + 1)))
+# lIndx, vgsIndx = np.unravel_index(np.argmin(np.abs(possible_gain - gain)),possible_gain.shape)
+# assert lIndx != None and vgsIndx != None
+# wnmos = id/JDnmos[indcn]
+# lnmos = nlengths[indcn[0]]
+# print('nmos: {} / {} um'.format(wnmos,lnmos/1e6))
+# wpmos = id/JDpmos[indcp]
+# lpmos = plengths[indcp[0]]
+# print('pmos: {} / {} um'.format(wpmos,lpmos/1e6))
+# idn = idn[indcn]
+# idp = idp[indcp]
 
-gm_n = gmn[indcn]
-gm_p = gmp[indcp]
+# gm_n = gmn[indcn]
+# gm_p = gmp[indcp]
 
-# current mirror and source sizing
-opVout = 1.2307
-JDpmos = lk.lookup('pfet', 'id', vds=1.8/2, vgs=-(opVout - 1.8))/width
-wpmos = id/JDpmos
-print('pmos mirror: {} um'.format(wpmos))
-JDnmos = lk.lookup('nfet', 'id', vds=1.8/2, vgs=1.8/2)/width
-wnmos = id/JDnmos
-print('nmos mirror: {} um'.format(wnmos))
+# # current mirror and source sizing
+# opVout = 1.2307
+# JDpmos = lk.lookup('pfet', 'id', vds=1.8/2, vgs=-(opVout - 1.8))/width
+# wpmos = id/JDpmos
+# print('pmos mirror: {} um'.format(wpmos))
+# JDnmos = lk.lookup('nfet', 'id', vds=1.8/2, vgs=1.8/2)/width
+# wnmos = id/JDnmos
+# print('nmos mirror: {} um'.format(wnmos))

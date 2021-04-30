@@ -14,25 +14,25 @@ N 500 -100 520 -100 { lab=0}
 N 520 -100 520 -60 { lab=0}
 N 500 -60 520 -60 { lab=0}
 N 500 -180 500 -130 { lab=E2}
-N 500 -260 500 -240 { lab=0}
+N 500 -320 500 -300 { lab=0}
 C {sky130_fd_pr/pnp_05v5.sym} 480 -100 0 0 {name=Q2
 model=pnp_05v5_W3p40L3p40
 spiceprefix=X
 }
 C {devices/lab_pin.sym} 500 -160 0 0 {name=l1 lab=E2}
-C {devices/isource.sym} 500 -210 0 0 {name=I0 value=1u
+C {devices/isource.sym} 500 -270 0 0 {name=I0 value=1u
 }
-C {devices/lab_pin.sym} 500 -260 0 0 {name=l2 lab=0}
+C {devices/lab_pin.sym} 500 -320 0 0 {name=l2 lab=0}
 C {devices/lab_pin.sym} 440 -60 0 0 {name=l4 lab=0}
 C {devices/code_shown.sym} 20 -430 0 0 {name=NGSPICE
 only_toplevel=true
 value="
 .control
-save E2
-dc TEMP -40 125 10 i0 0.1156u 115.6u 0.1u
+save E2 v1#branch
+dc TEMP -40 125 1 i0 0.01u 126u 20u
 plot E2
 plot deriv(E2)
-write bipolar_char_temp_vbe_current_3p40.raw E2 deriv(E2)
+write bipolar_char_temp_vbe_current_3p40.raw E2 deriv(E2) v1#branch
 .endc
 " }
 C {devices/code.sym} -170 -110 0 0 {name=TT_MODELS
@@ -75,3 +75,4 @@ value="
 * Corner
 .include \\\\$::SKYWATER_MODELS\\\\/models/corners/tt/rf.spice
 "}
+C {devices/vsource.sym} 500 -210 0 0 {name=V1 value=0}

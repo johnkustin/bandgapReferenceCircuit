@@ -57,7 +57,7 @@ modelP=pmos,
 simOptions="",
 corners=("tt",),
 subcktPath="",
-datFileName="mosSKY130__W{0}u.{1}.{2}.lvt.moreLenghts.dat".format(width,nmos,pmos),
+datFileName="mosSKY130__W{0}u.{1}.{2}.lvt.moreLenghtsv2.dat".format(width,nmos,pmos),
 vgsMax=1.95,
 vgsStep=20e-3,
 vdsMax=1.95,
@@ -65,7 +65,7 @@ vdsStep=20e-3,
 vsbMax=1.95,
 vsbStep=550e-3,
 numfing=1,
-temp=300,
+temp=300.15,
 width=width)
 
 # This function call finally generates the required database.
