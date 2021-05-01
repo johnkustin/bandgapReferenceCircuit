@@ -61,8 +61,7 @@ set XSCHEM_START_WINDOW {}
 #### DIRECTORY WHERE SIMULATIONS, NETLIST AND SIMULATOR OUTPUTS ARE PLACED
 ###########################################################################
 #### If unset $USER_CONF_DIR/simulations is assumed (normally ~/.xschem/simulations) 
-#set netlist_dir $env(HOME)/.xschem/simulations
-set netlist_dir /tmp/kustinj/ee272b/sims
+set netlist_dir ./sims
 
 ###########################################################################
 #### CHANGE DEFAULT [] WITH SOME OTHER CHARACTERS FOR BUSSED SIGNALS 
@@ -212,8 +211,8 @@ set netlist_type spice
 ###########################################################################
 #### editor must not detach from launching shell (-f mandatory for gvim)
 #### default for linux: gvim -f
- set editor {vim -f -geometry 90x28}
-# set editor { xterm -geometry 100x40 -e nano }
+# set editor {vim -f -geometry 90x28}
+set editor { xterm -geometry 100x40 -e nano }
 # set editor { xterm -geometry 100x40 -e pico }
 
 #### For Windows

@@ -61,8 +61,7 @@ set XSCHEM_START_WINDOW {}
 #### DIRECTORY WHERE SIMULATIONS, NETLIST AND SIMULATOR OUTPUTS ARE PLACED
 ###########################################################################
 #### If unset $USER_CONF_DIR/simulations is assumed (normally ~/.xschem/simulations) 
-#set netlist_dir $env(HOME)/.xschem/simulations
-set netlist_dir /tmp/kustinj/ee272b/sims
+set netlist_dir ./sims
 
 ###########################################################################
 #### CHANGE DEFAULT [] WITH SOME OTHER CHARACTERS FOR BUSSED SIGNALS 
