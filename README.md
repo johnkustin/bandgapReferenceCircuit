@@ -35,3 +35,9 @@ there are three tests so far
 | transient | this simulation is a time based simulation; the supply, VDD, is ramped up over 5 microseconds. a power on reset pulse is then applied. the circuit then settles into a desired operating point. this simulation performs the test at three temperatures: 0, 27, 70 degrees celcius. | `sims/tsmc_bandgap_real_tran.spice` |
 | transient, with VDD and some process variation | this test varies VDD, threshold voltage (Vth), and oxide thickness (tox). each variation is according to a normally distributed Gaussian distribution. | `sims/tsmc_bandgap_real_tran_gauss.spice` |
 | temperature sweep | this simulation solves for an initial operating point at temp = 0 degC and then does an incremental Newton Raphson to solve for the opearting points at successive temperatures. | `sims/tsmc_bandgap_real.spice` |
+
+### test results
+#### `ppm.py`
+![result of running `ppm.py`, which processes the output of the transient test](plots/readme/tran.png)
+#### `variation.py`
+![result of running `variation.py`, which processes the output of the transient test with normally distributed VDD and parameter variations](plots/readme/tran_gauss.png)
