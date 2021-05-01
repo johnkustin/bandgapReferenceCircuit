@@ -63,5 +63,28 @@ if you want to play with simulations yourself, use `schematics/tsmc_bandgap_real
 ![result of running `variation.py`, which processes the output of the transient test with normally distributed VDD and parameter variations](plots/readme/tran_gauss.png)
 #### `vdsat.py`
 ```
-
+vdsats
+vdsat1 = 0.119118534825
+vdsat13 = 0.119989426873
+vdsat2 = 0.119117901861
+vdsat3 = 0.117848616789
+vdsat4 = 0.116704938791
+vdsat5 = 0.0805043993246
+vdsat6 = 0.124497921656
+vdsat7 = 0.126205001268
+vdsat8 = 0.116669110799
+vdsat9 = 0.0805160282384
+vdsmargins
+vds1margin = 0.962670748553
+vds13margin = 1.13964936048
+vds2margin = 0.962545006157
+vds3margin = 0.718283119402
+vds4margin = 0.274703493756
+vds5margin = 1.058842579
+vds6margin = 0.144746667472
+vds7margin = 0.414156211377
+vds8margin = 0.281004171586
+vds9margin = 1.05256610025
+All Vds margins are positive
+The lowest Vds margin is 0.144746667472
 ```
