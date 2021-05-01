@@ -3,3 +3,5 @@
 *.net
 *.out
 *.dat
+*.raw
+*.spice
