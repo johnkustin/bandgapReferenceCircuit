@@ -1,6 +1,10 @@
 # stanford ee272b project - bandgap voltage reference in SKY130 technology
 so you want to make a voltage reference. welcome.  
-if y
+this readme will first cover what a bandgap circuit is and how it's supposed to work. if you know this already, skip past it to the "prerequisites" section to ensure you have the tools to use this repo.
+
+### what's a bandgap circuit?
+
+### how's the bandgap circuit work?
 
 # prerequisites
 it's assumed that you've installed ngspice, skywater-pdk, Xschem_sky130, and Xschem. if you're missing one of these, please follow the steps in [this video](https://xschem.sourceforge.io/stefan/xschem_man/video_tutorials/install_xschem_sky130_and_ngspice.mp4). the written documentation for Xschem is available [here](http://repo.hu/projects/xschem/xschem_man/xschem_man.html).  
