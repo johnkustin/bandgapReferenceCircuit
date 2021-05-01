@@ -7,17 +7,12 @@ it's assumed that you've installed ngspice, skywater-pdk, Xschem_sky130, and Xsc
 **note:** Xschem_sky130 is different from the skywater-pdk but is **entirely necessary.** make sure you have it installed.  
 
 ## steps to set up the repository
-1. enter bash and source `caddy.bashrc`
-
-before you can do anything with this repository, you have to update some paths within some files.  
-### updating paths  
+1. enter bash and source `caddy.bashrc` 
 2. in `project-paths.json` fill in the **absolute paths** for each of the entries. my paths are left in that file as an example.  
 3. `python edit-xschemrc-paths.py`  
-
-### testing the environment  
-see if xschem opens without error. **important:** please launch xschem from this top directory. `xschemrc` must be in the current working directory, i.e. only launch `xschem` from the root of this repository.  
-4. `xschem &`  
+4. `xschem &`. see if xschem opens without error. **important:** please launch xschem from this top directory. `xschemrc` must be in the current working directory, i.e. only launch `xschem` from the root of this repository.  
 5. `File -> Open -> /path/to/repo/schematics/tsmc_bandgap_real.sch`  
+hopefully, you can now see the full bandgap circuit schematic. try generating a netlist from this schematic; click `netlist` in the top right corner. to verify this worked, click the `simulation` tab in the top toolbar and then click `edit netlist`. a nano editor window should pop up, showing the various circuit components in the netlist.
 
 ## design blocks
 the bandgap circuit is compact and the entire design schematic is contained in the following file  
@@ -28,3 +23,9 @@ the bandgap circuit is compact and the entire design schematic is contained in t
 `python run-tests.py`
 
 ### test descriptions
+there are three tests so far
+| test | description | path to relevant schematic |
+| ---- | ----------- | -------------------------- |
+| operating point | this simulation solves for a dc operating point for the circuit at 27 degrees celcius. the operating point represents the dc behavior in steady state | `sims/tsmc_bandgap_real_op.spice` |
+| transient | this simulation is a time based simulation; the supply, VDD, is ramped up over 5 microseconds. a power on reset pulse is then applied. the circuit then settles into a desired operating point. this simulation performs the test at three temperatures: 0, 27, 70 degrees celcius. | `sims/tsmc_bandgap_real_tran.spice` |
+| transient, with VDD and some process variation | this test varies VDD, threshold voltage (Vth), and oxide thickness (tox). each variation is according to a normally distributed Gaussian distribution. | `sims/tsmc_bandgap_real_tran_gauss.spice` |
