@@ -12,7 +12,8 @@ this readme will first cover what a bandgap circuit is and how it's supposed to 
 7. viewing results
 8. viewing unscripted results
 9. test descriptions
-10. test results
+10. summary of design metrics
+11. test results
 
 ### what's a bandgap circuit?
 a circuit which provides a voltage that's (ideally) independent of temperature. the circuit in this repository is shown below.
@@ -82,6 +83,19 @@ if you want to play with simulations yourself, use `schematics/tsmc_bandgap_real
 | transient | this simulation is a time based simulation; the supply, VDD, is ramped up over 5 microseconds. a power on reset pulse is then applied. the circuit then settles into a desired operating point. this simulation performs the test at three temperatures: 0, 27, 70 degrees celcius. | `schematics/tsmc_bandgap_real_tran.sch` |
 | transient, with VDD and some process variation | this test varies the following quantities: VDD, threshold voltage (Vth), gate oxide thickness (tox), offset voltage in the subthreshold region, subthreshold swing, ideal max forward beta, transport saturation current, and transport saturation curent's temperature effect exponent. each variation is according to a normally distributed Gaussian distribution. | `schematics/tsmc_bandgap_real_tran_gauss.sch` |
 | temperature sweep | this simulation solves for an initial operating point at temp = 0 degC and then does an incremental Newton Raphson to solve for the opearting points at successive temperatures. | `schematics/tsmc_bandgap_real.sch` |
+
+### summary of design metrics
+|   | intended specs | achieved specs |
+| - | -------------- | -------------- |
+| Vref | 1 V | 963.87 mV |
+| TC (ppm/degC) | <= 50 | 44 |
+| Area (mm^2) | <= 0.1 | fill |
+| Inaccuracy | <= 2 % | fill |
+| Start up Time (microseconds) | N/A | |
+| Power (microwatts) | N/A |  |
+| Supply (V) | 1.8 | |
+
+
 
 ### test results
 below are examples of what you should expect to see when running the tests.
