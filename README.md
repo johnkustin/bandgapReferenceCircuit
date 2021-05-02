@@ -24,6 +24,13 @@ A bandgap circuit consists of the following blocks
 
 a bipolar junction transistor (BJT) given some current, will produce a voltage between its base and emitter. This voltage is dependent on temperature and that dependence is *typically* around -2mV/degC. Notice that the dependence is negative (the negative dependence is usually called "complementary" to absolute temperature, or CTAT). the Vt generator is *typically* produced by taking the difference in base-emitter voltages between a pair of BJTs with **different current densities**, which is achieved by either supplying the BJTs with different currents, or by making the area of one BJT larger than the other. The temperature dependence of this difference, i.e. the output of the Vt generator, is *typically* +0.085mV/degC, **much** smaller than the CTAT voltage's dependence. Because this Vt dependence is positive, it's often reffered to as a proportional to absolute temperature (PTAT) voltage. The PTAT voltage is scaled (by *M* in the figure) such that when the CTAT and PTAT voltages are added, the resulting temperature dependence is zero, since the positive and negative temperature dependencies cancel out.  
 
+this circuit has its nuances  
+![an annotated screenshot of the circuit in this repository](schematics/annotated-schematic.png)  
+the bandgap reference core generates both the CTAT and PTAT voltages. assuming Va=Vb, the currents in R1 and R2 will be the same and they will correspond to the CTAT voltage Veb (since V=IR). The generated Vt appears across R3, so the current through R3 corresponds to the PTAT voltage. These PTAT and CTAT currents are summmed at node Vb and mirrored to the output, where that current generates the reference voltage across R4.  
+the amplifier works to keep Va=Vb so that the above process can happen (we assumed Va=Vb). the self-bias circuit supplies the amplifier with a bias current.  
+the startup circuit helps the circuit find its stable operating point after the circuit is powerd on.  
+the current mirror mirrors current!  
+
 # prerequisites
 it's assumed that you've installed ngspice, skywater-pdk, Xschem_sky130, and Xschem. if you're missing one of these, please follow the steps in [this video](https://xschem.sourceforge.io/stefan/xschem_man/video_tutorials/install_xschem_sky130_and_ngspice.mp4). the written documentation for Xschem is available [here](http://repo.hu/projects/xschem/xschem_man/xschem_man.html).  
 
@@ -79,9 +86,16 @@ if you want to play with simulations yourself, use `schematics/tsmc_bandgap_real
 ### test results
 below are examples of what you should expect to see when running the tests.
 #### `ppm.py`
-![result of running `ppm.py`, which processes the output of the transient test](plots/readme/tran.png)
+![result of running `ppm.py`, which processes the output of the transient test](plots/readme/tran.png) 
+from this plot, we arrive at the ppm spec of `44.262 ppm/degC`.  
 #### `variation.py`
-![result of running `variation.py`, which processes the output of the transient test with normally distributed VDD and parameter variations](plots/readme/tran_gauss.png)
+![result of running `variation.py`, which processes the output of the transient test with normally distributed VDD and parameter variations](plots/readme/tran_gauss.png)  
+from this plot, we arrive at the following specs:  
+`1.7165 <= Vdd <= 1.8727`  
+mean reference voltage of `964.729 mV`  
+standard deviation of reference voltage of `29.682 mV`  
+`0 <= Temperature <= 70`  
+
 #### `vdsat.py`
 ```
 vdsats
@@ -108,4 +122,4 @@ vds8margin = 0.281004171586
 vds9margin = 1.05256610025
 All Vds margins are positive
 The lowest Vds margin is 0.144746667472
-```
+```  
