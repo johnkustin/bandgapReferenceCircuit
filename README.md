@@ -15,8 +15,13 @@ this readme will first cover what a bandgap circuit is and how it's supposed to 
 10. test results
 
 ### what's a bandgap circuit?
-
+a circuit which provides a voltage that's (ideally) independent of temperature. the circuit in this repository is shown below.
+![a screenshot of the circuit in this repository](schematics/tsmc-bandgap-real.png)
 ### how's the bandgap circuit work?
+A bandgap circuit consists of the following blocks
+![an image from Gray and Meyer's *Analysis and Design of Analog Integrated Circuits* show a hypothetical bandgap reference circuit](schematics/graymeyerfigure.png)  
+
+a bipolar junction transistor (BJT) given some current, will produce a voltage between its base and emitter. This voltage is dependent on temperature and that dependence is *typically* around -2mV/degC. Notice that the dependence is negative (the negative dependence is usually called "complementary" to absolute temperature, or CTAT). the Vt generator is *typically* produced by taking the difference in base-emitter voltages between a pair of BJTs with **different current densities**, which is achieved by either supplying the BJTs with different currents, or by making the area of one BJT larger than the other. The temperature dependence of this difference, i.e. the output of the Vt generator, is *typically* +0.085mV/degC, **much** smaller than the CTAT voltage's dependence. Because this Vt dependence is positive, it's often reffered to as a proportional to absolute temperature (PTAT) voltage. The PTAT voltage is scaled (by *M* in the figure) such that when the CTAT and PTAT voltages are added, the resulting temperature dependence is zero, since the positive and negative temperature dependencies cancel out.  
 
 # prerequisites
 it's assumed that you've installed ngspice, skywater-pdk, Xschem_sky130, and Xschem. if you're missing one of these, please follow the steps in [this video](https://xschem.sourceforge.io/stefan/xschem_man/video_tutorials/install_xschem_sky130_and_ngspice.mp4). the written documentation for Xschem is available [here](http://repo.hu/projects/xschem/xschem_man/xschem_man.html).  
