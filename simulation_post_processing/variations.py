@@ -35,15 +35,17 @@ fig, ax = plt.subplots()
 for i, vdd in enumerate(vdds):
     ax.plot(maxtime*1e6, vbgs_interpd[i])
 
+vddvarplus = np.max(vdds)/1.8 - 1.0
+vddvarminus = 1.0 - np.min(vdds)/1.8
 ax.grid()
 label=np.around(vdd, 3)
 ax.set_title(r"Transient simulation (n = {})."
 "\n"  
-r"{} $\leq$ Vdd $\leq$ {}"
+r"1.8 - {}\% $\leq$ Vdd $\leq$ 1.8 + {}\%"
 "\n"
 r"$\mu$ = {} mV. $\sigma$ = {} mV"
 "\n"
-"Temperature = 0, 27, 70 $^\circ$C".format(len(vdds), np.around(np.min(vdds), 4), np.around(np.max(vdds), 4), np.around(mean_vbgs*1e3,3), np.around(std_vbgs*1e3,3)))
+"Temperature = 0, 27, 70 $^\circ$C".format(len(vdds), np.around(vddvarplus*100, 4), np.around(vddvarminus*100, 4), np.around(mean_vbgs*1e3,3), np.around(std_vbgs*1e3,3)))
 ax.set_xlabel(r"Time ($\mu$s)")
 ax.set_ylabel('Vout (V)')
 plt.show()
