@@ -51,7 +51,7 @@ the bandgap circuit is compact and the entire design schematic is contained in t
 **note:** you will need xscheme to open the above! if you just want to run the tests for this design, see the next section.
 
 ## running all tests
-first, each `.spice` file must be generated through `xschem`.
+first, each `.spice` file must be generated through `xschem`. all tests are listed in `tests.json`.
 1. `xschem &`
 2. one by one, open the schematics in table below
 3. click `Netlist` in the top right corner of the screen
