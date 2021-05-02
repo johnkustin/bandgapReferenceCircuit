@@ -90,9 +90,9 @@ if you want to play with simulations yourself, use `schematics/tsmc_bandgap_real
 | Vref | 1 V | 963.87 mV |
 | TC (ppm/degC) | <= 50 | 44 |
 | Area (mm^2) | <= 0.1 | fill |
-| Inaccuracy | <= 2 % | fill |
-| Start up Time (microseconds) | N/A | |
-| Power (microwatts) | N/A |  |
+| Inaccuracy | <= 2 % | 3.07 % |
+| Start up Time (microseconds) | N/A | fill |
+| Power (microwatts) | N/A | fill |
 | Supply (V) | 1.8 | |
 
 
@@ -108,6 +108,7 @@ from this plot, we verify the supply voltage is 1.8 V and can withstand some var
 `1.7165 <= Vdd <= 1.8727`  
 mean reference voltage of `964.729 mV`  
 standard deviation of reference voltage of `29.682 mV`  
+inaccuracy of `0.030767 = 3.0767 %`  
 `0 <= Temperature <= 70`  
 #### tempsweep.py
 ![result of running `tempsweep.py`, which processes the output of the dc sweep of temperature from -10 to 80 degrees celsius](plots/readme/tempsweep.png)  
