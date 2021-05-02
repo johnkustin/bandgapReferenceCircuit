@@ -2,6 +2,18 @@
 so you want to make a voltage reference. welcome.  
 this readme will first cover what a bandgap circuit is and how it's supposed to work. if you know this already, skip past it to the "prerequisites" section to ensure you have the tools to use this repo.
 
+## table of contents
+1. what's a bandgap circuit?
+2. how's the bandgap circuit work?
+3. prerequisites
+4. steps to set up the repository
+5. design files
+6. running all tests
+7. viewing results
+8. viewing unscripted results
+9. test descriptions
+10. test results
+
 ### what's a bandgap circuit?
 
 ### how's the bandgap circuit work?
@@ -19,7 +31,7 @@ it's assumed that you've installed ngspice, skywater-pdk, Xschem_sky130, and Xsc
 5. `File -> Open -> /path/to/repo/schematics/tsmc_bandgap_real.sch`  
 hopefully, you can now see the full bandgap circuit schematic. try generating a netlist from this schematic; click `netlist` in the top right corner. to verify this worked, click the `simulation` tab in the top toolbar and then click `edit netlist`. a nano editor window should pop up, showing the various circuit components in the netlist.
 
-## design blocks
+## design files
 the bandgap circuit is compact and the entire design schematic is contained in the following file  
 `schematics/tsmc_bandgap_real.sch`  
 **note:** you will need xscheme to open the above! if you just want to run the tests for this design, see the next section.
