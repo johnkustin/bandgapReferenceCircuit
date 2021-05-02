@@ -2,6 +2,18 @@
 so you want to make a voltage reference. welcome.  
 this readme will first cover what a bandgap circuit is and how it's supposed to work. if you know this already, skip past it to the "prerequisites" section to ensure you have the tools to use this repo.
 
+## table of contents
+1. what's a bandgap circuit?
+2. how's the bandgap circuit work?
+3. prerequisites
+4. steps to set up the repository
+5. design files
+6. running all tests
+7. viewing results
+8. viewing unscripted results
+9. test descriptions
+10. test results
+
 ### what's a bandgap circuit?
 
 ### how's the bandgap circuit work?
@@ -19,7 +31,7 @@ it's assumed that you've installed ngspice, skywater-pdk, Xschem_sky130, and Xsc
 5. `File -> Open -> /path/to/repo/schematics/tsmc_bandgap_real.sch`  
 hopefully, you can now see the full bandgap circuit schematic. try generating a netlist from this schematic; click `netlist` in the top right corner. to verify this worked, click the `simulation` tab in the top toolbar and then click `edit netlist`. a nano editor window should pop up, showing the various circuit components in the netlist.
 
-## design blocks
+## design files
 the bandgap circuit is compact and the entire design schematic is contained in the following file  
 `schematics/tsmc_bandgap_real.sch`  
 **note:** you will need xscheme to open the above! if you just want to run the tests for this design, see the next section.
@@ -35,11 +47,13 @@ first, each `.spice` file must be generated through `xschem`.
 7. all of the tests will run. to view the relevant results, follow the steps of "viewing results"
 
 ## viewing results
-There is a script to interpret the `ngspice` data generated from each test, i.e. to get the most salient information you can run these scripts
+There is a script to interpret the `ngspice` data generated from each test, i.e. to get the most salient information you can run these scripts  
+
 | script | description | path to relevant script |
+| ------ | ----------- | ----------------------- |
 | `vdsat.py` | this script will read from the operating point simulation all of the vdsats and the vdsat margins. all margins should be positive to ensure the transistors can be in saturation. | `simulation_post_processing/vdsats.py` |
 | `ppm.py` | this script will read from the transient simulation (no variation) to plot the start up of the circuit at 0, 27, and 70 degrees celsius. the script will also print out the ppm of the circuit. | `simulation_post_processing/ppm.py` |
-| `variations.py` | this script will read from the transient simulation with variations to plot many startups of the circuit at 0, 27, and 70 degrees celsius. the script will also print out the mean and standard deviation of the resulting reference voltage |  
+| `variations.py` | this script will read from the transient simulation with variations to plot many startups of the circuit at 0, 27, and 70 degrees celsius. the script will also print out the mean and standard deviation of the resulting reference voltage | `simulation_post_processing/variations.py` |
 
 ### viewing unscripted results
 a printout of relevant operating point voltages is available at `sims/tsmc_bandgap_real_op.out`.  
