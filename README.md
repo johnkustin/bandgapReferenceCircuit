@@ -9,9 +9,9 @@ this readme will first cover what a bandgap circuit is and how it's supposed to 
 4. steps to set up the repository
 5. design files
 6. running all tests
-7. viewing results
-8. viewing unscripted results
-9. test descriptions
+7. test descriptions
+8. viewing results
+9. viewing unscripted results
 10. summary of design metrics
 11. test results
 
@@ -60,6 +60,15 @@ first, each `.spice` file must be generated through `xschem`. all tests are list
 6. `python run-tests.py`
 7. all of the tests will run. to view the relevant results, follow the steps of "viewing results"
 
+
+### test descriptions
+| test | description | path to relevant schematic |
+| ---- | ----------- | -------------------------- |
+| operating point | this simulation solves for a dc operating point for the circuit at 27 degrees celcius. the operating point represents the dc behavior in steady state | `schematics/tsmc_bandgap_real_op.sch` |
+| transient | this simulation is a time based simulation; the supply, VDD, is ramped up over 5 microseconds. a power on reset pulse is then applied. the circuit then settles into a desired operating point. this simulation performs the test at three temperatures: 0, 27, 70 degrees celcius. | `schematics/tsmc_bandgap_real_tran.sch` |
+| transient, with VDD and some process variation | this test varies the following quantities: VDD, threshold voltage (Vth), gate oxide thickness (tox), offset voltage in the subthreshold region, subthreshold swing, ideal max forward beta, transport saturation current, and transport saturation curent's temperature effect exponent. each variation is according to a normally distributed Gaussian distribution. | `schematics/tsmc_bandgap_real_tran_gauss.sch` |
+| temperature sweep | this simulation solves for an initial operating point at temp = 0 degC and then does an incremental Newton Raphson to solve for the opearting points at successive temperatures. | `schematics/tsmc_bandgap_real.sch` |
+
 ### running an individual test
 as an example, the following commands simulates only one SPICE netlist:  
 `ngspice -b -r ./sim/test-name-here.raw -o ./sim/test-name-here.out ./sim/test-name-here.spice`
@@ -79,15 +88,6 @@ a printout of relevant operating point voltages is available at `sims/tsmc_bandg
 
 ## running your own simulations
 if you want to play with simulations yourself, use `schematics/tsmc_bandgap_real.sch` as your sandbox. the difference between this schematic and the schematics in the test descriptions table is that the schematics in the table have specific simulation commands attached to them. `schematics/tsmc_bandgap_real.sch` has many ngspice commands in the schematic, **which are enabled and disabled by the "spice_ignore" variable in the command listing.** if you want a set of simulation commands to be ignore, set `spice_ignore = True`, but if you want to use a set of simulation commands, set `spice_ignore = False`.
-
-
-### test descriptions
-| test | description | path to relevant schematic |
-| ---- | ----------- | -------------------------- |
-| operating point | this simulation solves for a dc operating point for the circuit at 27 degrees celcius. the operating point represents the dc behavior in steady state | `schematics/tsmc_bandgap_real_op.sch` |
-| transient | this simulation is a time based simulation; the supply, VDD, is ramped up over 5 microseconds. a power on reset pulse is then applied. the circuit then settles into a desired operating point. this simulation performs the test at three temperatures: 0, 27, 70 degrees celcius. | `schematics/tsmc_bandgap_real_tran.sch` |
-| transient, with VDD and some process variation | this test varies the following quantities: VDD, threshold voltage (Vth), gate oxide thickness (tox), offset voltage in the subthreshold region, subthreshold swing, ideal max forward beta, transport saturation current, and transport saturation curent's temperature effect exponent. each variation is according to a normally distributed Gaussian distribution. | `schematics/tsmc_bandgap_real_tran_gauss.sch` |
-| temperature sweep | this simulation solves for an initial operating point at temp = 0 degC and then does an incremental Newton Raphson to solve for the opearting points at successive temperatures. | `schematics/tsmc_bandgap_real.sch` |
 
 ### summary of design metrics
 |   | intended specs | achieved specs |
