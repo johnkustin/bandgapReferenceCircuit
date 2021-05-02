@@ -51,7 +51,7 @@ the bandgap circuit is compact and the entire design schematic is contained in t
 **note:** you will need xscheme to open the above! if you just want to run the tests for this design, see the next section.
 
 ## running all tests
-first, each `.spice` file must be generated through `xschem`.
+first, each `.spice` file must be generated through `xschem`. all tests are listed in `tests.json`.
 1. `xschem &`
 2. one by one, open the schematics in table below
 3. click `Netlist` in the top right corner of the screen
@@ -59,6 +59,10 @@ first, each `.spice` file must be generated through `xschem`.
 5. in `sims/` you should see the different tests in their `.spice` format
 6. `python run-tests.py`
 7. all of the tests will run. to view the relevant results, follow the steps of "viewing results"
+
+### running an individual test
+as an example, the following commands simulates only one SPICE netlist:  
+`ngspice -b -r ./sim/test-name-here.raw -o ./sim/test-name-here.out ./sim/test-name-here.spice`
 
 ## viewing results
 There is a script to interpret the `ngspice` data generated from each test, i.e. to get the most salient information you can run these scripts  
@@ -68,6 +72,7 @@ There is a script to interpret the `ngspice` data generated from each test, i.e.
 | `vdsat.py` | this script will read from the operating point simulation all of the vdsats and the vdsat margins. all margins should be positive to ensure the transistors can be in saturation. | `simulation_post_processing/vdsats.py` |
 | `ppm.py` | this script will read from the transient simulation (no variation) to plot the start up of the circuit at 0, 27, and 70 degrees celsius. the script will also print out the ppm of the circuit. | `simulation_post_processing/ppm.py` |
 | `variations.py` | this script will read from the transient simulation with variations to plot many startups of the circuit at 0, 27, and 70 degrees celsius. the script will also print out the mean and standard deviation of the resulting reference voltage | `simulation_post_processing/variations.py` |
+| `tempsweep.py` | this script will read from the DC temperature sweep simulation to plot the voltage reference value over temperature. the script will also print out a ppm value according to the DC sweep. | `simulation_post_processing/tempsweep.py` |
 
 ### viewing unscripted results
 a printout of relevant operating point voltages is available at `sims/tsmc_bandgap_real_op.out`.  
@@ -91,9 +96,9 @@ if you want to play with simulations yourself, use `schematics/tsmc_bandgap_real
 | TC (ppm/degC) | <= 50 | 44 |
 | Area (mm^2) | <= 0.1 | 0.00330436735 |
 | Inaccuracy | <= 2 % | 3.07 % |
-| Start up Time (microseconds) | N/A | fill |
+| Start up Time (microseconds) | N/A | 2.129 |
 | Power (microwatts) | N/A | 61.013 |
-| Supply (V) | 1.8 | fill |
+| Supply (V) | 1.8 | 1.8 (+ 4.6 %, - 4 %)|
 
 
 
@@ -102,10 +107,11 @@ below are examples of what you should expect to see when running the tests.
 #### `ppm.py`
 ![result of running `ppm.py`, which processes the output of the transient test](plots/readme/tran.png) 
 from this plot, we verify the reference voltage at 27 degrees celsius is nearly 1V (963.877 mV), the circuit works from 0 to 70 degrees celsius, and the ppm spec is less than 50 ppm/degC: `44.262 ppm/degC`.  
+we can also verify taht the settling time is nearly 2 microseconds.
 #### `variation.py`
 ![result of running `variation.py`, which processes the output of the transient test with normally distributed VDD and parameter variations](plots/readme/tran_gauss.png)  
 from this plot, we verify the supply voltage is 1.8 V and can withstand some variation:  
-`1.7165 <= Vdd <= 1.8727`  
+`Vdd = 1.8 (+ 4.6 %, - 4 %)`  
 mean reference voltage of `964.729 mV`  
 standard deviation of reference voltage of `29.682 mV`  
 inaccuracy of `0.030767 = 3.0767 %`  
