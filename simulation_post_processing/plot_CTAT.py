@@ -1,5 +1,5 @@
 import sys
-sys.path.append('/tmp/kustinj/ee272b/pyMOSChar')
+sys.path.append('../pyMOSChar')
 import spice3read as s3r
 import matplotlib.pyplot as plt
 import numpy as np
