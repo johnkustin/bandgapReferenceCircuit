@@ -3,6 +3,10 @@ sys.path.append('../pyMOSChar')
 import spice3read as s3r
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib import rc
+
+rc('text', usetex=True)
+rc('font', family='serif')
 
 tran27 = s3r.read('../sims/tsmc_bandgap_real_27degc_vbg.raw')
 tran0 = s3r.read('../sims/tsmc_bandgap_real_0degc_vbg.raw')
@@ -25,12 +29,12 @@ tranvbg70 = np.interp(maxtime, times[2], tran70['v(vbg)'][0])
 
 fig = plt.figure()
 ax = fig.add_subplot(111)
-ax.plot(maxtime*1e6, tranvbg0, '--b' , label='0 degC')
-ax.plot(maxtime*1e6, tranvbg27, '--r' , label='27 degC')
-ax.plot(maxtime*1e6, tranvbg70, '--g' , label='70 degC')
-ax.set_xlabel('time (microseconds)')
+ax.plot(maxtime*1e6, tranvbg0, '--b' , label=r'0 $^\circ$C')
+ax.plot(maxtime*1e6, tranvbg27, '--r' , label=r'27 $^\circ$C')
+ax.plot(maxtime*1e6, tranvbg70, '--g' , label=r'70 $^\circ$C')
+ax.set_xlabel(r"time ($\mu$s)")
 ax.set_ylabel('Vout (V)')
-ax.set_title('Transient Simulation of Bandgap Circuit')
+ax.set_title(r"Transient Simulation of Bandgap Circuit. ppm/$^\circ$C = {}".format(np.around(ppm,3)))
 plt.legend()
 plt.grid()
 plt.show()

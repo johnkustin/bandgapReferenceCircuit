@@ -4,86 +4,78 @@ K {}
 V {}
 S {}
 E {}
-N 210 -180 460 -180 { lab=Va}
-N 520 -180 620 -180 { lab=Vb}
-N 620 -180 750 -180 { lab=Vb}
-N 400 110 400 140 { lab=GND}
-N 400 140 500 140 { lab=GND}
-N 210 140 400 140 { lab=GND}
-N 340 80 400 80 { lab=GND}
-N 340 80 340 140 { lab=GND}
-N 460 -180 470 -180 { lab=Va}
-N 400 -520 400 -450 { lab=VDD}
-N 400 -520 620 -520 { lab=VDD}
-N 620 -520 880 -520 { lab=VDD}
-N 880 -280 1000 -280 { lab=Vbg}
-N 620 -180 620 -160 { lab=Vb}
-N 620 -260 620 -180 { lab=Vb}
-N 880 -310 880 -280 { lab=Vbg}
-N 880 -280 880 -180 { lab=Vbg}
-N 620 -100 620 -80 { lab=#net1}
-N 750 -180 750 -160 { lab=Vb}
-N 750 -100 750 -80 { lab=#net2}
-N 210 -180 210 -160 { lab=Va}
-N 210 -100 210 -80 { lab=#net3}
-N 620 -390 620 -320 { lab=#net4}
-N 880 -520 880 -450 { lab=VDD}
-N 620 -20 620 0 { lab=vbneg}
-N 620 -520 620 -460 { lab=VDD}
-N 620 0 620 40 { lab=vbneg}
-N 620 40 620 50 { lab=vbneg}
-N 500 140 620 140 { lab=GND}
-N 210 -20 210 140 { lab=GND}
-N 750 -20 750 140 { lab=GND}
-N 880 -120 880 140 { lab=GND}
-N 620 140 880 140 { lab=GND}
-N 660 80 660 140 { lab=GND}
-N 400 -180 400 -160 { lab=Va}
-N 620 110 620 140 { lab=GND}
-N 580 80 620 80 { lab=GND}
-N 580 80 580 140 { lab=GND}
-N 440 80 460 80 { lab=GND}
-N 460 80 460 140 { lab=GND}
-N 190 -50 190 0 { lab=GND}
-N 190 0 210 0 { lab=GND}
-N 730 -50 730 10 { lab=GND}
-N 730 10 750 10 { lab=GND}
-N 520 -50 600 -50 { lab=GND}
-N 520 -50 520 140 { lab=GND}
-N 860 -150 860 -100 { lab=GND}
-N 860 -100 880 -100 { lab=GND}
-N 400 -100 400 50 { lab=Veb}
-N 430 -240 460 -240 { lab=GND}
-N 430 -240 430 -230 { lab=GND}
-N 400 -440 440 -440 { lab=vgate}
-N 360 -450 400 -450 { lab=VDD}
-N 360 -390 400 -390 { lab=#net5}
-N 620 -460 620 -450 { lab=VDD}
-N 880 -450 910 -450 { lab=VDD}
-N 910 -450 910 -440 { lab=VDD}
-N 880 -380 910 -380 { lab=#net6}
-N 880 -380 880 -370 { lab=#net6}
-N 440 -440 580 -440 { lab=vgate}
-N 400 -400 580 -400 { lab=GND}
-N 580 -400 870 -400 { lab=GND}
-N 870 -400 870 -390 { lab=GND}
-N 580 -440 580 -430 { lab=vgate}
-N 580 -430 870 -430 { lab=vgate}
-N 520 -440 520 -240 { lab=vgate}
-N 440 -400 440 -240 { lab=GND}
-N 400 -270 400 -170 { lab=Va}
-N 470 -200 470 -180 { lab=Va}
-N 510 -200 510 -180 { lab=Vb}
-N 510 -180 520 -180 { lab=Vb}
-N 400 -390 400 -330 { lab=#net5}
-C {sky130_fd_pr/pnp_05v5.sym} 420 80 0 1 {name=Q2
+N 240 -340 490 -340 { lab=Va}
+N 550 -340 650 -340 { lab=Vb}
+N 650 -340 780 -340 { lab=Vb}
+N 380 -50 380 -20 { lab=GND}
+N 430 -20 530 -20 { lab=GND}
+N 240 -20 430 -20 { lab=GND}
+N 320 -80 380 -80 { lab=GND}
+N 320 -80 320 -20 { lab=GND}
+N 490 -340 500 -340 { lab=Va}
+N 430 -680 650 -680 { lab=VDD}
+N 650 -680 910 -680 { lab=VDD}
+N 650 -340 650 -320 { lab=Vb}
+N 650 -420 650 -340 { lab=Vb}
+N 940 -470 940 -440 { lab=Vbg}
+N 940 -440 940 -340 { lab=Vbg}
+N 650 -260 650 -240 { lab=#net1}
+N 780 -340 780 -320 { lab=Vb}
+N 780 -260 780 -240 { lab=#net2}
+N 240 -340 240 -320 { lab=Va}
+N 240 -260 240 -240 { lab=#net3}
+N 650 -550 650 -480 { lab=#net4}
+N 650 -180 650 -160 { lab=vbneg}
+N 650 -680 650 -620 { lab=VDD}
+N 650 -160 650 -120 { lab=vbneg}
+N 650 -120 650 -110 { lab=vbneg}
+N 530 -20 650 -20 { lab=GND}
+N 240 -180 240 -20 { lab=GND}
+N 780 -180 780 -20 { lab=GND}
+N 940 -280 940 -20 { lab=GND}
+N 650 -20 910 -20 { lab=GND}
+N 690 -80 690 -20 { lab=GND}
+N 650 -50 650 -20 { lab=GND}
+N 610 -80 650 -80 { lab=GND}
+N 610 -80 610 -20 { lab=GND}
+N 420 -80 440 -80 { lab=GND}
+N 440 -80 440 -20 { lab=GND}
+N 380 -260 380 -110 { lab=Veb}
+N 460 -400 490 -400 { lab=GND}
+N 460 -400 460 -390 { lab=GND}
+N 430 -600 470 -600 { lab=vgate}
+N 650 -620 650 -610 { lab=VDD}
+N 470 -600 610 -600 { lab=vgate}
+N 430 -560 610 -560 { lab=GND}
+N 610 -560 900 -560 { lab=GND}
+N 550 -600 550 -400 { lab=vgate}
+N 470 -560 470 -400 { lab=GND}
+N 500 -360 500 -340 { lab=Va}
+N 540 -360 540 -340 { lab=Vb}
+N 540 -340 550 -340 { lab=Vb}
+N 380 -680 380 -610 { lab=VDD}
+N 60 -680 430 -680 { lab=VDD}
+N 60 -680 60 -610 { lab=VDD}
+N 60 -550 60 -20 { lab=GND}
+N 60 -20 240 -20 { lab=GND}
+N 380 -340 380 -320 { lab=Va}
+N 380 -430 380 -340 { lab=Va}
+N 420 -560 430 -560 { lab=GND}
+N 420 -600 430 -600 { lab=vgate}
+N 380 -550 380 -490 { lab=#net5}
+N 910 -680 940 -680 { lab=VDD}
+N 610 -600 900 -600 { lab=vgate}
+N 940 -550 940 -530 { lab=#net6}
+N 940 -680 940 -610 { lab=VDD}
+N 910 -20 940 -20 { lab=GND}
+C {sky130_fd_pr/pnp_05v5.sym} 400 -80 0 1 {name=Q2
 model=pnp_05v5_W3p40L3p40
 spiceprefix=X
 }
-C {devices/gnd.sym} 500 140 0 0 {name=l1 lab=GND}
-C {devices/lab_pin.sym} 1000 -280 0 1 {name=l3 lab=Vbg}
-C {devices/lab_pin.sym} 460 -180 3 0 {name=l5 lab=Va}
-C {devices/lab_pin.sym} 540 -180 3 0 {name=l6 lab=Vb}
+C {devices/gnd.sym} 530 -20 0 0 {name=l1 lab=GND}
+C {devices/lab_pin.sym} 940 -440 0 1 {name=l3 lab=Vbg}
+C {devices/lab_pin.sym} 490 -340 3 0 {name=l5 lab=Va}
+C {devices/lab_pin.sym} 570 -340 3 0 {name=l6 lab=Vb}
 C {devices/code.sym} -750 -190 0 0 {name=TT_MODELS
 only_toplevel=true
 format="tcleval( @value )"
@@ -133,7 +125,7 @@ value="
 .param alpha=1.12439
 .param R2R3ratio='4.663181043*alpha'
 .param R2val='R3val*R2R3ratio' 
-.param R4R2ratio=0.47924034354
+.param R4R2ratio='0.47924034354*1.01585'
 .param R4val='R2val*R4R2ratio'
 .control
 save all
@@ -181,53 +173,51 @@ print alpha
 .endc
 " }
 C {devices/vsource.sym} 60 -580 0 0 {name=V1 net_name=true value=1.8}
-C {devices/vdd.sym} 620 -520 0 0 {name=l7 lab=VDD}
-C {devices/vdd.sym} 60 -610 0 0 {name=l8 lab=VDD}
-C {devices/gnd.sym} 60 -550 0 0 {name=l9 lab=GND}
-C {devices/ammeter.sym} 750 -130 0 0 {name=Vr4}
-C {devices/ammeter.sym} 620 -130 0 0 {name=Vr2}
-C {devices/ammeter.sym} 400 -300 0 0 {name=Vm1}
-C {devices/ammeter.sym} 620 -290 0 0 {name=Vm2}
-C {devices/ammeter.sym} 880 -340 0 0 {name=Vm3}
-C {devices/ammeter.sym} 210 -130 0 0 {name=Vr1}
-C {devices/ammeter.sym} 400 -130 0 0 {name=Vq2}
-C {sky130_fd_pr/pnp_05v5.sym} 640 80 0 1 {name=Q1
+C {devices/vdd.sym} 650 -680 0 0 {name=l7 lab=VDD}
+C {devices/ammeter.sym} 780 -290 0 0 {name=Vr4}
+C {devices/ammeter.sym} 650 -290 0 0 {name=Vr2}
+C {devices/ammeter.sym} 380 -460 0 0 {name=Vm1}
+C {devices/ammeter.sym} 650 -450 0 0 {name=Vm2}
+C {devices/ammeter.sym} 940 -500 0 0 {name=Vm3}
+C {devices/ammeter.sym} 240 -290 0 0 {name=Vr1}
+C {devices/ammeter.sym} 380 -290 0 0 {name=Vq2}
+C {sky130_fd_pr/pnp_05v5.sym} 670 -80 0 1 {name=Q1
 model="pnp_05v5_W3p40L3p40 m=39"
 spiceprefix=X
 }
-C {devices/lab_pin.sym} 620 10 0 0 {name=l4 lab=vbneg}
-C {devices/lab_pin.sym} 400 -70 2 0 {name=l10 lab=Veb}
-C {devices/vcvs.sym} 490 -240 1 1 {name=E1 value=1}
-C {devices/gnd.sym} 430 -230 0 0 {name=l2 lab=GND}
-C {devices/lab_wire.sym} 510 -440 0 0 {name=l11 lab=vgate}
-C {devices/res.sym} 620 -50 0 0 {name=R3
+C {devices/lab_pin.sym} 650 -150 0 0 {name=l4 lab=vbneg}
+C {devices/lab_pin.sym} 380 -230 2 0 {name=l10 lab=Veb}
+C {devices/vcvs.sym} 520 -400 1 1 {name=E1 value=1}
+C {devices/gnd.sym} 460 -390 0 0 {name=l2 lab=GND}
+C {devices/lab_wire.sym} 540 -600 0 0 {name=l11 lab=vgate}
+C {devices/res.sym} 650 -210 0 0 {name=R3
 value='R3val'
 footprint=1206
 device=resistor
 m=1
 tc1=0
 tc2=0}
-C {devices/res.sym} 880 -150 0 0 {name=R4
+C {devices/res.sym} 940 -310 0 0 {name=R4
 value='R4val'
 footprint=1206
 device=resistor
 m=1
 tc1=0
 tc2=0}
-C {devices/res.sym} 210 -50 0 0 {name=R1
+C {devices/res.sym} 240 -210 0 0 {name=R1
 value='R2val'
 footprint=1206
 device=resistor
 m=1
 tc1=0
 tc2=0}
-C {devices/vccs.sym} 910 -410 0 0 {name=G3 value=10m}
-C {devices/res.sym} 750 -50 0 0 {name=R2
+C {devices/vccs.sym} 940 -580 0 0 {name=G3 value=10m}
+C {devices/res.sym} 780 -210 0 0 {name=R2
 value='R2val'
 footprint=1206
 device=resistor
 m=1
 tc1=0
 tc2=0}
-C {devices/vccs.sym} 360 -420 0 1 {name=G2 value=10m}
-C {devices/vccs.sym} 620 -420 0 0 {name=G1 value=10m}
+C {devices/vccs.sym} 380 -580 0 1 {name=G2 value=10m}
+C {devices/vccs.sym} 650 -580 0 0 {name=G1 value=10m}

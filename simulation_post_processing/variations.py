@@ -9,7 +9,7 @@ rc('text', usetex=True)
 rc('font', family='serif')
 
 from glob import glob
-runs = glob('../sims/tsmc_bandgap_real_variation[0-9]*.raw')
+runs = glob('../sims/tsmc_bandgap_real_tran_gauss[0-9]*.raw')
 simdata = []
 for run in runs:
     simdata.append(s3r.read(run))
@@ -41,7 +41,9 @@ ax.set_title(r"Transient simulation (n = {})."
 "\n"  
 r"{} $\leq$ Vdd $\leq$ {}"
 "\n"
-r"$\mu$ = {} mV. $\sigma$ = {} mV".format(len(vdds), np.around(np.min(vdds), 4), np.around(np.max(vdds), 4), np.around(mean_vbgs*1e3,3), np.around(std_vbgs*1e3,3)))
-ax.set_xlabel('Time (microseconds)')
+r"$\mu$ = {} mV. $\sigma$ = {} mV"
+"\n"
+"Temperature = 0, 27, 70 $^\circ$C".format(len(vdds), np.around(np.min(vdds), 4), np.around(np.max(vdds), 4), np.around(mean_vbgs*1e3,3), np.around(std_vbgs*1e3,3)))
+ax.set_xlabel(r"Time ($\mu$s)")
 ax.set_ylabel('Vout (V)')
 plt.show()

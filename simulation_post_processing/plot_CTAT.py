@@ -8,7 +8,7 @@ import matplotlib
 
 matplotlib.rc('xtick',labelsize=15)
 matplotlib.rc('ytick',labelsize=15)
-plotDat = s3r.read('/home/users/kustinj/.xschem/simulations/bipolar_char_temp_vbe_current_3p40.raw')
+plotDat = s3r.read('../sims/bipolar_char_temp_vbe_current_3p40.raw')
 current = np.arange(0.01,146,step=20) # in units of uA
 fig, ax1 = plt.subplots(1)
 ax1.set_xlabel('Temp (degC)')

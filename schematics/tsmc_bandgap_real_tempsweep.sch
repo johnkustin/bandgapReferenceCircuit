@@ -550,6 +550,7 @@ save (vdd-va-vdsat1) (vdd-vb-vdsat2) (vdd-vbg-vdsat3)
 + (vdd-vgate-vdsat4) (vgate-vq-vdsat5) (vq-0-vdsat6)
 + (vx-0-vdsat7) (vdd-vg-vdsat8) (vg-vq-vdsat9) (vdd-vx-vdsat13)
 
+write
 unset askquit
 quit
 .endc

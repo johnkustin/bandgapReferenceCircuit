@@ -3,7 +3,7 @@ sys.path.append('../pyMOSChar')
 import spice3read as s3r
 import numpy as np
 
-opdat = s3r.read('../sims/tsmc_bandgap_real.raw')
+opdat = s3r.read('../sims/tsmc_bandgap_real_op.raw')
 
 gms = [entry for entry in opdat.keys() if '[gm]' in entry]
 ids = [entry for entry in opdat.keys() if '[id]' in entry]

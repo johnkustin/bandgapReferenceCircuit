@@ -117,6 +117,7 @@ N 630 -590 850 -590 { lab=vgate}
 N 850 -590 1330 -590 { lab=vgate}
 N 70 -470 160 -470 { lab=Vq}
 N 270 -600 270 -590 { lab=vgate}
+N 270 -590 330 -590 { lab=vgate}
 N 270 -680 370 -680 { lab=VDD}
 N 670 -430 670 -340 { lab=Va}
 N 70 -500 260 -500 { lab=GND}
@@ -138,7 +139,6 @@ N -0 -380 780 -380 { lab=Vb}
 N 780 -380 780 -340 { lab=Vb}
 N 460 -250 460 -20 { lab=GND}
 N 460 -340 540 -340 { lab=Va}
-N 270 -590 330 -590 { lab=vgate}
 C {devices/code.sym} -750 -190 0 0 {name=TT_MODELS
 only_toplevel=true
 format="tcleval( @value )"
@@ -346,7 +346,7 @@ mult=1}
 C {devices/lab_pin.sym} 1400 -390 0 1 {name=l3 lab=vbg}
 C {devices/code_shown.sym} 1810 -470 0 0 {name=s1 
 only_toplevel=true 
-spice_ignore=true
+spice_ignore=false
 
 value="
 .option savecurrents
@@ -357,7 +357,7 @@ value="
 .param R4R2ratio='0.79694273'
 .param R4val='R2val*R4R2ratio
 .nodeset v(vgate)=1.4
-
+.param VDD=1.8
 .control
 save all
 + @m.xm1.msky130_fd_pr__pfet_01v8_lvt[gm]
@@ -372,7 +372,7 @@ save all
 + @m.xm13.msky130_fd_pr__pfet_01v8_lvt[gm]
 
 op
-write tsmc_bandgap_real.raw
+
 let id8=@m.xm8.msky130_fd_pr__pfet_01v8_lvt[id]
 let id1=@m.xm1.msky130_fd_pr__pfet_01v8_lvt[id]
 let vth5=@m.xm5.msky130_fd_pr__nfet_01v8_lvt[vth]
@@ -411,10 +411,12 @@ let vdsat8=2/(gm8/@m.xm8.msky130_fd_pr__pfet_01v8_lvt[id])
 let vdsat9=2/(gm9/@m.xm9.msky130_fd_pr__nfet_01v8_lvt[id])
 let vdsat13=2/(gm13/@m.xm13.msky130_fd_pr__pfet_01v8_lvt[id])
 
-
+write 
 print vbg vgate vg va vb vx vq
 print vdsat1 vdsat2 vdsat3 vdsat4 
 + vdsat5 vdsat6 vdsat7 vdsat8 vdsat9 vdsat13 
+unset askquit
+quit
 .endc
 "}
 C {devices/launcher.sym} 1880 -540 0 0 {name=h1
@@ -462,20 +464,16 @@ tclcommand="textwindow $netlist_dir/[file tail [file rootname [ xschem get schna
 }
 C {devices/code_shown.sym} -580 -690 0 0 {name=NGSPICE
 only_toplevel=true
-spice_ignore=false
+spice_ignore=true
 value="
 .option savecurrents
 .option warn=1
-.param VDD=1.8
-.param R3val='22.187k'
+.param R3val='800k'
 .param alpha='1'
-.param R2R3ratio='5.6555038*alpha'
+.param R2R3ratio='5.8366561*alpha'
 .param R2val='R3val*R2R3ratio' 
-.param R4R2ratio=0.79694273
+.param R4R2ratio=0.47810041
 .param R4val='R2val*R4R2ratio'
-.nodeset v(vgate)=1.3
-.option temp=0
-.dc temp -10 80 10m
 .control
 save all
 + @m.xm13.msky130_fd_pr__pfet_01v8_lvt[gm]
@@ -486,33 +484,29 @@ save all
 + @m.xm7.msky130_fd_pr__nfet_01v8_lvt[gm]
 + @m.xm8.msky130_fd_pr__pfet_01v8_lvt[gm]
 + @m.xm9.msky130_fd_pr__nfet_01v8_lvt[gm]
-run
-*plot Vbg
-*plot deriv(Vbg)
-save vbg deriv(vbg)
+dc temp -40 140 1
+plot Vbg
+plot deriv(Vbg)
 let i = vm3#branch
-let indx27 = 3700
-let indx0 = 1000
-let indx70 = 8000
+let indx = 67
 *indx is the index of temperature sweep for 27degC
 echo 'Vbg @ 27degC'
-let vbg27c = vbg[indx27]
+let vbg27c = vbg[indx]
 print vbg27c
 echo 'dVbe/degC & ppm @ 27degC'
-print deriv(vbg)[indx27] deriv(vbg)[indx27]/vbg27c
+print deriv(vbg)[indx] deriv(vbg)[indx]/vbg27c
 echo 'ppm real'
-print (vbg[indx70]-vbg[indx0])/vbg[indx27]/(70-0)*1e6
-*plot deriv(vbg)/vbg27c
-*plot v(va, vb) vs i
-*plot vm1#branch vm2#branch vm3#branch
-save deriv(vbg)/vbg27c
+print (vbg[110]-vbg[40])/vbg[67]/(70-0)*1e6
+plot deriv(vbg)/vbg27c
+plot v(va, vb) vs i
+plot vm1#branch vm2#branch vm3#branch
 let vsg = vdd - vgate
 let vsd1 = vdd - va
 let vsd2 = vdd - vb
 let vsd3 = vdd - vbg
 let vthp = @m.xm1.msky130_fd_pr__pfet_01v8_lvt['vth']
 let vov = vsg - vthp
-*plot vov vsd1 vsd2 vsd3
+plot vov vsd1 vsd2 vsd3
 let deltav = vb - vbneg
 let r4 =vbg/vm3#branch
 let r1 =va/vr1#branch
@@ -520,14 +514,19 @@ let r2 =vb/vr4#branch
 let r3 =deltav/vr2#branch
 let vptat =(r2/r3*deltav)
 let sum = veb+vptat
-*plot veb vptat sum
-*plot deriv(veb) deriv(vptat)
-save veb vptat sum deriv(veb) deriv(vptat)
+plot veb vptat sum
+plot deriv(veb) deriv(vptat)
+let TCratio=deriv(veb)/deriv(vptat)
+plot TCratio
+plot vb - va
+echo 'alpha correction factor'
+let alpha=TCratio[indx]
+print alpha
 let gm1=@m.xm1.msky130_fd_pr__pfet_01v8_lvt[gm]
 let gm2=@m.xm2.msky130_fd_pr__pfet_01v8_lvt[gm]
 let Av2=gm2 * ((r3 + r3/ln(39)) * r2 / (r3 + r3/ln(39) + r2) )
 let Av1=gm1 * (r1 * r3/ln(39))/(r1 + r3/ln(39))
-*plot Av1 Av2 Av2/Av1
+plot Av1 Av2 Av2/Av1
 let gm13=@m.xm13.msky130_fd_pr__pfet_01v8_lvt[gm]
 let gm3=@m.xm3.msky130_fd_pr__pfet_01v8_lvt[gm]
 let gm4=@m.xm4.msky130_fd_pr__pfet_01v8_lvt[gm]
@@ -546,12 +545,28 @@ let vdsat7=2/(gm7/@m.xm7.msky130_fd_pr__nfet_01v8_lvt[id])
 let vdsat8=2/(gm8/@m.xm8.msky130_fd_pr__pfet_01v8_lvt[id])
 let vdsat9=2/(gm9/@m.xm9.msky130_fd_pr__nfet_01v8_lvt[id])
 let vdsat13=2/(gm13/@m.xm13.msky130_fd_pr__pfet_01v8_lvt[id])
-save (vdd-va-vdsat1) (vdd-vb-vdsat2) (vdd-vbg-vdsat3)
+plot (vdd-va-vdsat1) (vdd-vb-vdsat2) (vdd-vbg-vdsat3)
 + (vdd-vgate-vdsat4) (vgate-vq-vdsat5) (vq-0-vdsat6)
 + (vx-0-vdsat7) (vdd-vg-vdsat8) (vg-vq-vdsat9) (vdd-vx-vdsat13)
+tran 0.1us 600us
+plot vbg vdd 
+plot vgate va vb 
+plot vx vq vinv
+reset
+save all
++ @m.xm13.msky130_fd_pr__pfet_01v8_lvt[gm]
++ @m.xm3.msky130_fd_pr__pfet_01v8_lvt[gm]
++ @m.xm4.msky130_fd_pr__pfet_01v8_lvt[gm]
++ @m.xm5.msky130_fd_pr__nfet_01v8_lvt[gm]
++ @m.xm6.msky130_fd_pr__nfet_01v8_lvt[gm]
++ @m.xm7.msky130_fd_pr__nfet_01v8_lvt[gm]
++ @m.xm8.msky130_fd_pr__pfet_01v8_lvt[gm]
++ @m.xm9.msky130_fd_pr__nfet_01v8_lvt[gm]
++ @m.xm1.msky130_fd_pr__pfet_01v8_lvt[gm]
++ @m.xm2.msky130_fd_pr__pfet_01v8_lvt[gm]
 
-unset askquit
-quit
+op
+write tsmc_bandgap_real.raw
 .endc
 " }
 C {devices/ngspice_probe.sym} 270 -560 0 0 {name=r27}
