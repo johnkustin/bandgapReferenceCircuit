@@ -89,11 +89,11 @@ if you want to play with simulations yourself, use `schematics/tsmc_bandgap_real
 | - | -------------- | -------------- |
 | Vref | 1 V | 963.87 mV |
 | TC (ppm/degC) | <= 50 | 44 |
-| Area (mm^2) | <= 0.1 | fill |
+| Area (mm^2) | <= 0.1 | 0.00330436735 |
 | Inaccuracy | <= 2 % | 3.07 % |
 | Start up Time (microseconds) | N/A | fill |
-| Power (microwatts) | N/A | fill |
-| Supply (V) | 1.8 | |
+| Power (microwatts) | N/A | 61.013 |
+| Supply (V) | 1.8 | fill |
 
 
 
