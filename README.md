@@ -12,7 +12,8 @@ this readme will first cover what a bandgap circuit is and how it's supposed to 
 7. viewing results
 8. viewing unscripted results
 9. test descriptions
-10. test results
+10. summary of design metrics
+11. test results
 
 ### what's a bandgap circuit?
 a circuit which provides a voltage that's (ideally) independent of temperature. the circuit in this repository is shown below.
@@ -83,18 +84,35 @@ if you want to play with simulations yourself, use `schematics/tsmc_bandgap_real
 | transient, with VDD and some process variation | this test varies the following quantities: VDD, threshold voltage (Vth), gate oxide thickness (tox), offset voltage in the subthreshold region, subthreshold swing, ideal max forward beta, transport saturation current, and transport saturation curent's temperature effect exponent. each variation is according to a normally distributed Gaussian distribution. | `schematics/tsmc_bandgap_real_tran_gauss.sch` |
 | temperature sweep | this simulation solves for an initial operating point at temp = 0 degC and then does an incremental Newton Raphson to solve for the opearting points at successive temperatures. | `schematics/tsmc_bandgap_real.sch` |
 
+### summary of design metrics
+|   | intended specs | achieved specs |
+| - | -------------- | -------------- |
+| Vref | 1 V | 963.87 mV |
+| TC (ppm/degC) | <= 50 | 44 |
+| Area (mm^2) | <= 0.1 | fill |
+| Inaccuracy | <= 2 % | 3.07 % |
+| Start up Time (microseconds) | N/A | fill |
+| Power (microwatts) | N/A | fill |
+| Supply (V) | 1.8 | |
+
+
+
 ### test results
 below are examples of what you should expect to see when running the tests.
 #### `ppm.py`
 ![result of running `ppm.py`, which processes the output of the transient test](plots/readme/tran.png) 
-from this plot, we arrive at the ppm spec of `44.262 ppm/degC`.  
+from this plot, we verify the reference voltage at 27 degrees celsius is nearly 1V (963.877 mV), the circuit works from 0 to 70 degrees celsius, and the ppm spec is less than 50 ppm/degC: `44.262 ppm/degC`.  
 #### `variation.py`
 ![result of running `variation.py`, which processes the output of the transient test with normally distributed VDD and parameter variations](plots/readme/tran_gauss.png)  
-from this plot, we arrive at the following specs:  
+from this plot, we verify the supply voltage is 1.8 V and can withstand some variation:  
 `1.7165 <= Vdd <= 1.8727`  
 mean reference voltage of `964.729 mV`  
 standard deviation of reference voltage of `29.682 mV`  
+inaccuracy of `0.030767 = 3.0767 %`  
 `0 <= Temperature <= 70`  
+#### tempsweep.py
+![result of running `tempsweep.py`, which processes the output of the dc sweep of temperature from -10 to 80 degrees celsius](plots/readme/tempsweep.png)  
+from this plot, we verify the refernce voltage at 27 degrees celsius is nearly 1V (963.867 mV), the circuit works from 0 to 70 degrees celsius, and the ppm spec is less than 50 ppm/degC: `44.495 ppm/degC`.   
 
 #### `vdsat.py`
 ```
