@@ -60,6 +60,10 @@ first, each `.spice` file must be generated through `xschem`.
 6. `python run-tests.py`
 7. all of the tests will run. to view the relevant results, follow the steps of "viewing results"
 
+### running an individual test
+as an example, the following commands simulates only one SPICE netlist:  
+`ngspice -b -r ./sim/test-name-here.raw -o ./sim/test-name-here.out ./sim/test-name-here.spice`
+
 ## viewing results
 There is a script to interpret the `ngspice` data generated from each test, i.e. to get the most salient information you can run these scripts  
 
