@@ -1,0 +1,21 @@
+v {xschem version=2.9.9 file_version=1.2 }
+G {}
+K {type=primative
+format="@name @pinlist @symname"
+template="name=XQ1
+model=W3p40L3p40"}
+V {}
+S {}
+E {}
+L 4 0 -30 0 -15 {}
+L 4 -18.75 -7.5 0 -15 {}
+L 4 -18.75 -15 -18.75 15 {}
+L 4 -18.75 7.5 0 15 {}
+L 4 0 15 0 30 {}
+L 4 -30 0 -18.75 0 {}
+B 5 -0.5 -30.5 0.5 -29.5 {name=E dir=inout}
+B 5 -30.5 -0.5 -29.5 0.5 {name=B dir=in}
+B 5 -0.5 29.5 0.5 30.5 {name=C dir=inout}
+P 4 6 -18.75 -7.5 -11.25 -7.5 -11.5 -9.382099999999999 -12.19459 -11.1437 -13.3187 -12.67215 -18.75 -7.5 {fill=true}
+T {@name} 5 -22.5 0 0 0.2 0.2 {vcenter=true}
+T {@model} 5 -7.5 0 0 0.2 0.2 {vcenter=true}
