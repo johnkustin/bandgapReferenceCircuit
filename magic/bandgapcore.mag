@@ -1,7 +1,7 @@
 magic
 tech sky130A
 magscale 1 2
-timestamp 1620596431
+timestamp 1620623188
 << locali >>
 rect 8400 -5000 8600 5300
 rect 9500 -5000 9900 5200
@@ -122,73 +122,73 @@ rect 14900 5100 15400 8400
 rect 14900 4100 15000 5100
 rect 15300 4100 15400 5100
 rect 14900 4000 15400 4100
-use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_2
+use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_0
 timestamp 1620596431
-transform 1 0 8937 0 1 7408
-box -37 -808 37 808
-use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_3
-timestamp 1620596431
-transform 1 0 9337 0 1 7408
-box -37 -808 37 808
-use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_4
-timestamp 1620596431
-transform 1 0 9737 0 1 7408
+transform 1 0 8137 0 1 7408
 box -37 -808 37 808
 use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_1
 timestamp 1620596431
 transform 1 0 8537 0 1 7408
 box -37 -808 37 808
-use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_0
+use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_4
 timestamp 1620596431
-transform 1 0 8137 0 1 7408
+transform 1 0 9737 0 1 7408
 box -37 -808 37 808
-use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_8
+use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_3
 timestamp 1620596431
-transform 1 0 11337 0 1 7408
+transform 1 0 9337 0 1 7408
 box -37 -808 37 808
-use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_5
+use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_2
 timestamp 1620596431
-transform 1 0 10137 0 1 7408
-box -37 -808 37 808
-use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_6
-timestamp 1620596431
-transform 1 0 10537 0 1 7408
+transform 1 0 8937 0 1 7408
 box -37 -808 37 808
 use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_7
 timestamp 1620596431
 transform 1 0 10937 0 1 7408
 box -37 -808 37 808
-use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_9
+use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_6
 timestamp 1620596431
-transform 1 0 11737 0 1 7408
+transform 1 0 10537 0 1 7408
 box -37 -808 37 808
-use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_10
+use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_5
 timestamp 1620596431
-transform 1 0 12137 0 1 7408
+transform 1 0 10137 0 1 7408
 box -37 -808 37 808
-use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_11
+use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_8
 timestamp 1620596431
-transform 1 0 12537 0 1 7408
+transform 1 0 11337 0 1 7408
 box -37 -808 37 808
 use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_12
 timestamp 1620596431
 transform 1 0 12937 0 1 7408
 box -37 -808 37 808
-use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_14
+use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_11
 timestamp 1620596431
-transform 1 0 13737 0 1 7408
+transform 1 0 12537 0 1 7408
 box -37 -808 37 808
-use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_15
+use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_10
 timestamp 1620596431
-transform 1 0 14137 0 1 7408
+transform 1 0 12137 0 1 7408
+box -37 -808 37 808
+use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_9
+timestamp 1620596431
+transform 1 0 11737 0 1 7408
+box -37 -808 37 808
+use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_13
+timestamp 1620596431
+transform 1 0 13337 0 1 7408
 box -37 -808 37 808
 use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_16
 timestamp 1620596431
 transform 1 0 14537 0 1 7408
 box -37 -808 37 808
-use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_13
+use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_15
 timestamp 1620596431
-transform 1 0 13337 0 1 7408
+transform 1 0 14137 0 1 7408
+box -37 -808 37 808
+use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_14
+timestamp 1620596431
+transform 1 0 13737 0 1 7408
 box -37 -808 37 808
 use sky130_fd_pr__pnp_05v5_W3p40L3p40  sky130_fd_pr__pnp_05v5_W3p40L3p40_0 $PDKPATH/libs.ref/sky130_fd_pr/mag
 array 0 4 1288 0 7 1288
@@ -199,9 +199,11 @@ box 26 26 1314 1314
 flabel space 11300 7300 11400 7700 1 FreeSans 1600 0 0 0 R3
 flabel space 8500 7000 8600 7600 1 FreeSans 1600 0 0 0 R1
 flabel metal1 11200 8300 11400 8500 1 FreeSans 1600 0 0 0 Vb
-port 1 n
+port 0 n
 flabel metal2 14900 6100 15400 6400 1 FreeSans 1600 0 0 0 GND!
-port 3 n
-flabel metal1 8700 5500 9000 5800 1 FreeSans 1600 0 0 0 Va
 port 2 n
+flabel metal1 8700 5500 9000 5800 1 FreeSans 1600 0 0 0 Va
+port 1 n
+flabel metal1 11240 5360 11440 5580 1 FreeSans 800 0 0 0 Vbneg
+flabel space 8100 7000 8188 7820 1 FreeSans 1600 0 0 0 R2
 << end >>

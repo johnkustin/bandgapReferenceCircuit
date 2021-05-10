@@ -12,10 +12,12 @@ if {[lindex $scalefac 1] < 2} {
 drc euclidean on
 
 # Allow override of PDK path from environment variable PDKPATH
-if {[catch {set PDKPATH $env(PDKPATH)}]} {
-    #set PDKPATH "/afs/ir.stanford.edu/class/ee272/PDKS/sky130A"
-    set PDKPATH "/tmp/kustinj/ee272bclone/open_pdks/sky130A"
-}
+#if {[catch {set PDKPATH $env(PDKPATH)}]} {
+#    #set PDKPATH "/afs/ir.stanford.edu/class/ee272/PDKS/sky130A"
+#}
+
+set PDKPATH $env(PDKPATH)
+puts stdout "Using PDKPATH: $PDKPATH"
 
 # loading technology
 tech load $PDKPATH/libs.tech/magic/sky130A.tech

@@ -4,4 +4,4 @@ K {}
 V {}
 S {}
 E {}
-C {/tmp/kustinj/ee272bclone/schematics/bandgapCore.sym} 10 -20 0 0 {name=x1}
+C {/tmp/kustinj/ee272bclone/schematics/bandgapCore.sym} 320 -180 0 0 {name=x1}
