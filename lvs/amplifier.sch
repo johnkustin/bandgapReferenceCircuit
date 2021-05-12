@@ -22,17 +22,21 @@ N 460 -130 460 -100 { lab=VDD}
 N 460 -70 460 -40 { lab=Vx}
 N 460 -190 460 -130 { lab=VDD}
 N 300 -190 460 -190 { lab=VDD}
-N -120 -110 -120 -80 {}
-N -120 -50 -80 -50 {}
-N -80 -80 -80 -50 {}
-N -80 -160 -80 -80 {}
-N -80 -190 -80 -160 {}
-N -80 -190 90 -190 {}
-N -120 -190 -80 -190 {}
-N -120 -190 -120 -160 {}
-N -120 -160 -120 -130 {}
-N -120 -130 -120 -110 {}
-N -120 -120 -80 -120 {}
+N -120 -110 -120 -80 { lab=VDD}
+N -120 -50 -80 -50 { lab=VDD}
+N -80 -80 -80 -50 { lab=VDD}
+N -80 -160 -80 -80 { lab=VDD}
+N -80 -190 -80 -160 { lab=VDD}
+N -80 -190 90 -190 { lab=VDD}
+N -120 -190 -80 -190 { lab=VDD}
+N -120 -190 -120 -160 { lab=VDD}
+N -120 -160 -120 -130 { lab=VDD}
+N -120 -130 -120 -110 { lab=VDD}
+N -120 -120 -80 -120 { lab=VDD}
+N 60 40 60 70 { lab=GND}
+N 60 40 100 40 { lab=GND}
+N 100 40 100 70 { lab=GND}
+N 100 70 100 100 { lab=GND}
 C {sky130_fd_pr/nfet_01v8_lvt.sym} 320 -30 0 1 {name=M5
 L='2'
 W='9'
@@ -139,3 +143,18 @@ sa=0 sb=0 sd=0
 model=pfet_01v8_lvt
 spiceprefix=X
 }
+C {sky130_fd_pr/nfet_01v8_lvt.sym} 80 70 0 0 {name=M8
+L='2'
+W='9'
+nf=1
+mult=2
+ad="'int((nf+1)/2) * W/nf * 0.29'" 
+pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
+as="'int((nf+2)/2) * W/nf * 0.29'" 
+ps="'2*int((nf+2)/2) * (W/nf + 0.29)'"
+nrd="'0.29 / W'" nrs="'0.29 / W'"
+sa=0 sb=0 sd=0
+model=nfet_01v8_lvt
+spiceprefix=X
+}
+C {devices/iopin.sym} 60 60 2 0 {name=p8 lab=GND}
