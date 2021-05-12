@@ -1,0 +1,81 @@
+v {xschem version=2.9.9 file_version=1.2 }
+G {}
+K {}
+V {}
+S {}
+E {}
+N 90 -130 90 -60 { lab=vg}
+N 90 -130 130 -130 { lab=vg}
+N 130 -160 130 -130 { lab=vg}
+N 130 -160 260 -160 { lab=vg}
+N 300 -130 300 -60 { lab=Vgate}
+N 90 -30 300 -30 { lab=GND}
+N 90 -0 300 -0 { lab=Vq}
+N -0 -30 50 -30 { lab=Vb}
+N 340 -30 390 -30 { lab=Va}
+N 90 -190 90 -160 { lab=VDD}
+N 300 -190 300 -160 { lab=VDD}
+N 90 -190 300 -190 { lab=VDD}
+C {sky130_fd_pr/nfet_01v8_lvt.sym} 320 -30 0 1 {name=M5
+L='2'
+W='9'
+nf=1
+mult=3
+ad="'int((nf+1)/2) * W/nf * 0.29'" 
+pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
+as="'int((nf+2)/2) * W/nf * 0.29'" 
+ps="'2*int((nf+2)/2) * (W/nf + 0.29)'"
+nrd="'0.29 / W'" nrs="'0.29 / W'"
+sa=0 sb=0 sd=0
+model=nfet_01v8_lvt
+spiceprefix=X
+}
+C {sky130_fd_pr/nfet_01v8_lvt.sym} 70 -30 0 0 {name=M2
+L='2'
+W='9'
+nf=1
+mult=3
+ad="'int((nf+1)/2) * W/nf * 0.29'" 
+pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
+as="'int((nf+2)/2) * W/nf * 0.29'" 
+ps="'2*int((nf+2)/2) * (W/nf + 0.29)'"
+nrd="'0.29 / W'" nrs="'0.29 / W'"
+sa=0 sb=0 sd=0
+model=nfet_01v8_lvt
+spiceprefix=X
+}
+C {sky130_fd_pr/pfet_01v8_lvt.sym} 110 -160 0 1 {name=M4
+L=2
+W=12.9
+nf=1
+mult=3
+ad="'int((nf+1)/2) * W/nf * 0.29'" 
+pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
+as="'int((nf+2)/2) * W/nf * 0.29'" 
+ps="'2*int((nf+2)/2) * (W/nf + 0.29)'"
+nrd="'0.29 / W'" nrs="'0.29 / W'"
+sa=0 sb=0 sd=0
+model=pfet_01v8_lvt
+spiceprefix=X
+}
+C {sky130_fd_pr/pfet_01v8_lvt.sym} 280 -160 0 0 {name=M1
+L=2
+W=12.9
+nf=1
+mult=3
+ad="'int((nf+1)/2) * W/nf * 0.29'" 
+pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
+as="'int((nf+2)/2) * W/nf * 0.29'" 
+ps="'2*int((nf+2)/2) * (W/nf + 0.29)'"
+nrd="'0.29 / W'" nrs="'0.29 / W'"
+sa=0 sb=0 sd=0
+model=pfet_01v8_lvt
+spiceprefix=X
+}
+C {devices/ipin.sym} 180 -190 1 0 {name=p1 lab=VDD}
+C {devices/ipin.sym} 0 -30 0 0 {name=p2 lab=Vb}
+C {devices/ipin.sym} 390 -30 0 1 {name=p3 lab=Va}
+C {devices/iopin.sym} 200 0 1 0 {name=p4 lab=Vq}
+C {devices/opin.sym} 300 -100 0 0 {name=p5 lab=Vgate}
+C {devices/iopin.sym} 200 -30 3 0 {name=p6 lab=GND}
+C {devices/lab_pin.sym} 180 -160 3 0 {name=l1 lab=vg}

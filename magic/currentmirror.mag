@@ -881,17 +881,17 @@ rect 13500 7980 14340 8060
 rect 14420 7980 15260 8060
 rect 15340 7980 16500 8060
 rect -700 7960 16500 7980
-use sky130_fd_pr__pfet_01v8_lvt_8QZ6MX  sky130_fd_pr__pfet_01v8_lvt_8QZ6MX_0
+use sky130_fd_pr__pfet_01v8_lvt_8QZ6MX  sky130_fd_pr__pfet_01v8_lvt_8QZ6MX_1
 timestamp 1620594042
-transform 1 0 2455 0 1 3768
+transform 1 0 7955 0 1 3768
 box -2355 -3968 2355 3934
 use sky130_fd_pr__pfet_01v8_lvt_8QZ6MX  sky130_fd_pr__pfet_01v8_lvt_8QZ6MX_2
 timestamp 1620594042
 transform 1 0 13455 0 1 3768
 box -2355 -3968 2355 3934
-use sky130_fd_pr__pfet_01v8_lvt_8QZ6MX  sky130_fd_pr__pfet_01v8_lvt_8QZ6MX_1
+use sky130_fd_pr__pfet_01v8_lvt_8QZ6MX  sky130_fd_pr__pfet_01v8_lvt_8QZ6MX_0
 timestamp 1620594042
-transform 1 0 7955 0 1 3768
+transform 1 0 2455 0 1 3768
 box -2355 -3968 2355 3934
 << labels >>
 rlabel via1 372 7840 418 7884 1 Vgate

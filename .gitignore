@@ -5,4 +5,6 @@
 *.dat
 *.raw
 *.ext
+*.nodes
+*.sim
 *.spice
