@@ -28,6 +28,14 @@ N 340 -320 350 -320 { lab=VDD}
 N 850 -300 860 -300 { lab=VDD}
 N 860 -330 860 -300 { lab=VDD}
 N 850 -330 860 -330 { lab=VDD}
+N -50 -230 -40 -230 { lab=VDD}
+N -50 -390 -50 -230 { lab=VDD}
+N -50 -390 120 -390 { lab=VDD}
+N -40 -200 0 -200 { lab=Va}
+N 0 -230 -0 -200 { lab=Va}
+N -0 -260 -0 -230 { lab=Va}
+N -40 -260 -0 -260 { lab=Va}
+N 0 -200 120 -200 { lab=Va}
 C {sky130_fd_pr/pfet_01v8_lvt.sym} 320 -290 0 0 {name=M2
 L=2
 W=38.7
@@ -75,3 +83,17 @@ C {devices/ipin.sym} 120 -200 0 0 {name=p1 lab=Va}
 C {devices/ipin.sym} 340 -190 0 0 {name=p2 lab=Vb}
 C {devices/opin.sym} 850 -240 0 0 {name=p3 lab=Vbg}
 C {devices/ipin.sym} 120 -390 0 0 {name=p5 lab=VDD}
+C {sky130_fd_pr/pfet_01v8_lvt.sym} -20 -230 0 1 {name=M1
+L=2
+W=38.7
+nf=1
+mult=2
+ad="'int((nf+1)/2) * W/nf * 0.29'" 
+pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
+as="'int((nf+2)/2) * W/nf * 0.29'" 
+ps="'2*int((nf+2)/2) * (W/nf + 0.29)'"
+nrd="'0.29 / W'" nrs="'0.29 / W'"
+sa=0 sb=0 sd=0
+model=pfet_01v8_lvt
+spiceprefix=X
+}
