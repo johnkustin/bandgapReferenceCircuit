@@ -1,7 +1,14 @@
 magic
 tech sky130A
 magscale 1 2
-timestamp 1620775510
+timestamp 1620883575
+<< psubdiff >>
+rect 7484 8216 7590 8232
+rect 7484 6600 7500 8216
+rect 7574 6600 7590 8216
+rect 7484 6584 7590 6600
+<< psubdiffcont >>
+rect 7500 6600 7574 8216
 << xpolycontact >>
 rect 10102 6600 10172 7032
 rect 10902 6600 10972 7032
@@ -10,27 +17,34 @@ rect 12902 6600 12972 7032
 rect 13702 6600 13772 7032
 rect 14502 6600 14572 7032
 << locali >>
+rect 7484 8216 7590 8232
+rect 7484 6600 7500 8216
+rect 7574 6600 7590 8216
+rect 7484 6584 7590 6600
 rect 8400 -5000 8600 5300
 rect 9500 -5000 9900 5200
 rect 10800 -5000 11200 5200
 rect 12100 -5000 12500 5200
 rect 13300 -5000 13800 5300
-rect 14600 5100 14800 5300
-rect 14600 4300 14700 5100
-rect 14600 -5000 14800 4300
+rect 14600 -5000 14800 5300
 << viali >>
+rect 7518 7801 7556 8198
+rect 7518 6618 7556 7015
 rect 10118 6618 10156 7015
 rect 10918 6618 10956 7015
 rect 12118 6618 12156 7015
 rect 12918 6618 12956 7015
 rect 13718 6618 13756 7015
 rect 14518 6618 14556 7015
-rect 14700 4300 14800 5100
 << metal1 >>
 rect 13288 8328 13388 8348
 rect 13288 8268 13308 8328
 rect 13368 8268 13388 8328
 rect 13288 8248 13388 8268
+rect 7512 8198 7772 8216
+rect 7512 7801 7518 8198
+rect 7556 7801 7772 8198
+rect 7512 7784 7772 7801
 rect 8102 8196 8172 8216
 rect 8102 8144 8108 8196
 rect 8160 8144 8172 8196
@@ -66,6 +80,10 @@ rect 10902 7784 10972 7812
 rect 8502 7448 8572 7468
 rect 8502 7396 8510 7448
 rect 8562 7396 8572 7448
+rect 7512 7015 7772 7032
+rect 7512 6618 7518 7015
+rect 7556 6618 7772 7015
+rect 7512 6600 7772 6618
 rect 8102 5900 8172 7032
 rect 8502 6492 8572 7396
 rect 11302 7448 11372 8216
@@ -191,15 +209,7 @@ rect 11000 5000 11700 6500
 rect 14088 6488 14108 6548
 rect 14168 6488 14188 6548
 rect 14088 6468 14188 6488
-rect 14800 5200 15400 5300
-rect 14600 5100 15400 5200
-rect 10000 3900 14500 5000
-rect 14600 4300 14700 5100
-rect 14800 4300 15000 5100
-rect 14600 4100 15000 4300
-rect 15300 4100 15400 5100
-rect 14800 3900 15400 4100
-rect 10000 3700 14600 3900
+rect 10000 3700 14600 5000
 rect 8700 -4700 14600 3700
 << via1 >>
 rect 13308 8268 13368 8328
@@ -245,13 +255,11 @@ rect 14556 6960 14560 7012
 rect 8450 6300 8624 6486
 rect 8450 5500 8624 5686
 rect 14108 6488 14168 6548
-rect 15000 4100 15300 5100
 << metal2 >>
-rect 14900 8348 15400 8790
-rect 13288 8328 15400 8348
+rect 13288 8328 14900 8348
 rect 13288 8268 13308 8328
-rect 13368 8268 15400 8328
-rect 13288 8248 15400 8268
+rect 13368 8268 14900 8328
+rect 13288 8248 14900 8268
 rect 8090 8196 8990 8216
 rect 8090 8144 8108 8196
 rect 8160 8144 8908 8196
@@ -268,7 +276,6 @@ rect 11760 8144 12508 8196
 rect 12560 8144 14108 8196
 rect 14160 8144 14190 8196
 rect 11690 8116 14190 8144
-rect 14900 7884 15400 8248
 rect 8490 7864 9390 7884
 rect 8490 7812 8508 7864
 rect 8560 7812 9308 7864
@@ -285,10 +292,10 @@ rect 12160 7812 12908 7864
 rect 12960 7812 13708 7864
 rect 13760 7812 13790 7864
 rect 12090 7784 13790 7812
-rect 14490 7864 15400 7884
+rect 14490 7864 14900 7884
 rect 14490 7812 14508 7864
-rect 14560 7812 15400 7864
-rect 14490 7784 15400 7812
+rect 14560 7812 14900 7864
+rect 14490 7784 14900 7812
 rect 8500 7448 11390 7468
 rect 8500 7396 8510 7448
 rect 8562 7396 11308 7448
@@ -324,99 +331,100 @@ rect 12490 6628 12508 6680
 rect 12560 6628 13308 6680
 rect 13360 6628 13390 6680
 rect 12490 6600 13390 6628
-rect 14900 6568 15400 7784
-rect 14088 6548 15400 6568
+rect 14088 6548 14900 6568
 rect 8444 6486 8630 6492
 rect 8444 6300 8450 6486
 rect 8624 6300 8630 6486
 rect 14088 6488 14108 6548
-rect 14168 6488 15400 6548
-rect 14088 6468 15400 6488
+rect 14168 6488 14900 6548
+rect 14088 6468 14900 6488
 rect 8444 6294 8630 6300
 rect 8444 5686 8630 5692
 rect 8444 5500 8450 5686
 rect 8624 5500 8630 5686
 rect 8444 5494 8630 5500
-rect 14900 5100 15400 6468
-rect 14900 4100 15000 5100
-rect 15300 4100 15400 5100
-rect 14900 4000 15400 4100
-use sky130_fd_pr__pnp_05v5_W3p40L3p40  sky130_fd_pr__pnp_05v5_W3p40L3p40_0 $PDKPATH/libs.ref/sky130_fd_pr/mag
-array 0 4 1288 0 7 1288
-timestamp 1620596431
-transform 1 0 8374 0 1 -5042
-box 26 26 1314 1314
-use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_7
-timestamp 1620683974
-transform 1 0 10937 0 1 7408
-box -37 -808 37 808
-use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_6
-timestamp 1620683974
-transform 1 0 10537 0 1 7408
-box -37 -808 37 808
-use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_5
-timestamp 1620683974
-transform 1 0 10137 0 1 7408
-box -37 -808 37 808
 use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_0
-timestamp 1620683974
+timestamp 1620883575
 transform 1 0 8137 0 1 7408
 box -37 -808 37 808
 use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_1
-timestamp 1620683974
+timestamp 1620883575
 transform 1 0 8537 0 1 7408
 box -37 -808 37 808
 use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_4
-timestamp 1620683974
+timestamp 1620883575
 transform 1 0 9737 0 1 7408
 box -37 -808 37 808
 use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_3
-timestamp 1620683974
+timestamp 1620883575
 transform 1 0 9337 0 1 7408
 box -37 -808 37 808
 use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_2
-timestamp 1620683974
+timestamp 1620883575
 transform 1 0 8937 0 1 7408
 box -37 -808 37 808
-use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_13
-timestamp 1620683974
-transform 1 0 13337 0 1 7408
+use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_7
+timestamp 1620883575
+transform 1 0 10937 0 1 7408
 box -37 -808 37 808
-use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_16
-timestamp 1620683974
-transform 1 0 14537 0 1 7408
+use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_6
+timestamp 1620883575
+transform 1 0 10537 0 1 7408
 box -37 -808 37 808
-use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_15
-timestamp 1620683974
-transform 1 0 14137 0 1 7408
+use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_5
+timestamp 1620883575
+transform 1 0 10137 0 1 7408
 box -37 -808 37 808
-use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_14
-timestamp 1620683974
-transform 1 0 13737 0 1 7408
+use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_8
+timestamp 1620883575
+transform 1 0 11337 0 1 7408
 box -37 -808 37 808
 use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_12
-timestamp 1620683974
+timestamp 1620883575
 transform 1 0 12937 0 1 7408
 box -37 -808 37 808
 use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_11
-timestamp 1620683974
+timestamp 1620883575
 transform 1 0 12537 0 1 7408
 box -37 -808 37 808
 use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_10
-timestamp 1620683974
+timestamp 1620883575
 transform 1 0 12137 0 1 7408
 box -37 -808 37 808
 use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_9
-timestamp 1620683974
+timestamp 1620883575
 transform 1 0 11737 0 1 7408
 box -37 -808 37 808
-use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_8
-timestamp 1620683974
-transform 1 0 11337 0 1 7408
+use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_13
+timestamp 1620883575
+transform 1 0 13337 0 1 7408
+box -37 -808 37 808
+use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_16
+timestamp 1620883575
+transform 1 0 14537 0 1 7408
+box -37 -808 37 808
+use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_15
+timestamp 1620883575
+transform 1 0 14137 0 1 7408
+box -37 -808 37 808
+use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_14
+timestamp 1620883575
+transform 1 0 13737 0 1 7408
+box -37 -808 37 808
+use sky130_fd_pr__pnp_05v5_W3p40L3p40  sky130_fd_pr__pnp_05v5_W3p40L3p40_0 $PDKPATH/libs.ref/sky130_fd_pr/mag
+array 0 4 1288 0 7 1288
+timestamp 1620883575
+transform 1 0 8374 0 1 -5042
+box 26 26 1314 1314
+use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_18
+timestamp 1620883575
+transform 1 0 14937 0 1 7408
+box -37 -808 37 808
+use sky130_fd_pr__res_xhigh_po_0p35_BNSLGU  sky130_fd_pr__res_xhigh_po_0p35_BNSLGU_17
+timestamp 1620883575
+transform 1 0 7737 0 1 7408
 box -37 -808 37 808
 << labels >>
-flabel metal2 14900 6100 15400 6400 1 FreeSans 1600 0 0 0 GND!
-port 2 n
 flabel metal1 11240 5360 11440 5580 1 FreeSans 800 0 0 0 Vbneg
 flabel metal1 8700 5500 9000 5800 1 FreeSans 1600 0 0 0 Va
 port 1 n
