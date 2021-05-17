@@ -1,7 +1,7 @@
 magic
 tech sky130A
 magscale 1 2
-timestamp 1621228141
+timestamp 1621270775
 << error_s >>
 rect 106 -1406 112 -1400
 rect 2088 -1406 2094 -1400
@@ -557,18 +557,18 @@ rect 14420 7980 15260 8060
 rect 15340 7980 16956 8060
 rect -1010 7962 16956 7980
 rect -1010 7960 16358 7962
-use sky130_fd_pr__pfet_01v8_lvt_8QZ6MX  sky130_fd_pr__pfet_01v8_lvt_8QZ6MX_1
-timestamp 1620858027
-transform 1 0 7955 0 1 3768
-box -2355 -3968 2355 3934
-use sky130_fd_pr__pfet_01v8_lvt_E8HSF7  sky130_fd_pr__pfet_01v8_lvt_E8HSF7_0
-timestamp 1620858027
-transform 1 0 2226 0 1 3768
-box -2584 -3968 2584 3934
 use sky130_fd_pr__pfet_01v8_lvt_E8HSF7  sky130_fd_pr__pfet_01v8_lvt_E8HSF7_1
-timestamp 1620858027
+timestamp 1621270775
 transform 1 0 13684 0 1 3768
 box -2584 -3968 2584 3934
+use sky130_fd_pr__pfet_01v8_lvt_E8HSF7  sky130_fd_pr__pfet_01v8_lvt_E8HSF7_0
+timestamp 1621270775
+transform 1 0 2226 0 1 3768
+box -2584 -3968 2584 3934
+use sky130_fd_pr__pfet_01v8_lvt_8QZ6MX  sky130_fd_pr__pfet_01v8_lvt_8QZ6MX_1
+timestamp 1621270775
+transform 1 0 7955 0 1 3768
+box -2355 -3968 2355 3934
 << labels >>
 rlabel via1 372 7840 418 7884 1 Vgate
 port 1 n
