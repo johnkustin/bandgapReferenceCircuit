@@ -80,4 +80,4 @@ catch {magic::query_mylib_ip}
 catch {magic::query_my_projects}
 
 # manual path adding
-addpath /tmp/kustinj/ee272bclone/open_pdks/sky130A/libs.ref/sky130_fd_pr/mag
+#addpath /tmp/kustinj/ee272bclone/open_pdks/sky130A/libs.ref/sky130_fd_pr/mag

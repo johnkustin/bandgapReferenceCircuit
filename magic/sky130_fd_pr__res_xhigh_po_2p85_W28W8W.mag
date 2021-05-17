@@ -1,0 +1,70 @@
+magic
+tech sky130A
+magscale 1 2
+timestamp 1621223045
+<< xpolycontact >>
+rect -1512 2150 -942 2582
+rect -1512 -2582 -942 -2150
+rect -694 2150 -124 2582
+rect -694 -2582 -124 -2150
+rect 124 2150 694 2582
+rect 124 -2582 694 -2150
+rect 942 2150 1512 2582
+rect 942 -2582 1512 -2150
+<< xpolyres >>
+rect -1512 -2150 -942 2150
+rect -694 -2150 -124 2150
+rect 124 -2150 694 2150
+rect 942 -2150 1512 2150
+<< viali >>
+rect -1496 2167 -958 2564
+rect -678 2167 -140 2564
+rect 140 2167 678 2564
+rect 958 2167 1496 2564
+rect -1496 -2564 -958 -2167
+rect -678 -2564 -140 -2167
+rect 140 -2564 678 -2167
+rect 958 -2564 1496 -2167
+<< metal1 >>
+rect -1508 2564 -946 2570
+rect -1508 2167 -1496 2564
+rect -958 2167 -946 2564
+rect -1508 2161 -946 2167
+rect -690 2564 -128 2570
+rect -690 2167 -678 2564
+rect -140 2167 -128 2564
+rect -690 2161 -128 2167
+rect 128 2564 690 2570
+rect 128 2167 140 2564
+rect 678 2167 690 2564
+rect 128 2161 690 2167
+rect 946 2564 1508 2570
+rect 946 2167 958 2564
+rect 1496 2167 1508 2564
+rect 946 2161 1508 2167
+rect -1508 -2167 -946 -2161
+rect -1508 -2564 -1496 -2167
+rect -958 -2564 -946 -2167
+rect -1508 -2570 -946 -2564
+rect -690 -2167 -128 -2161
+rect -690 -2564 -678 -2167
+rect -140 -2564 -128 -2167
+rect -690 -2570 -128 -2564
+rect 128 -2167 690 -2161
+rect 128 -2564 140 -2167
+rect 678 -2564 690 -2167
+rect 128 -2570 690 -2564
+rect 946 -2167 1508 -2161
+rect 946 -2564 958 -2167
+rect 1496 -2564 1508 -2167
+rect 946 -2570 1508 -2564
+<< res2p85 >>
+rect -1514 -2152 -940 2152
+rect -696 -2152 -122 2152
+rect 122 -2152 696 2152
+rect 940 -2152 1514 2152
+<< properties >>
+string gencell sky130_fd_pr__res_xhigh_po_2p85
+string parameters w 2.850 l 21.5 m 1 nx 4 wmin 2.850 lmin 0.50 rho 2000 val 15.101k dummy 0 dw 0.0 term 19.188 sterm 0.0 caplen 0 wmax 2.850 guard 0 glc 1 grc 1 gtc 1 gbc 1 compatible {sky130_fd_pr__res_xhigh_po_0p35  sky130_fd_pr__res_xhigh_po_0p69 sky130_fd_pr__res_xhigh_po_1p41  sky130_fd_pr__res_xhigh_po_2p85 sky130_fd_pr__res_xhigh_po_5p73} full_metal 1 n_guard 0 hv_guard 0 vias 1 viagb 0 viagt 0 viagl 0 viagr 0
+string library sky130
+<< end >>
