@@ -1,0 +1,25 @@
+.param VDD=1.8
+V1 VDD GND {VDD} pwl 0us 0 5us {VDD}
+V2 porst GND 0 pulse(0V 1.8V 10us 1us 1us 5us)
+
+X0 porst Vbg bandgaptop_hybrid_hier
+
+.option savecurrents
+.control
+save all
+option temp=27
+tran 0.1n 20u
+option temp=0
+tran 0.1n 20u
+option temp=70
+tran 0.1n 20u
+write tbtran_70degc_vbg.raw vbg
+setplot tran2
+write tbtran_0degc_vbg.raw vbg
+setplot tran1
+write tbtran_27degc_vbg.raw vbg
+.endc
+
+.GLOBAL VDD
+.GLOBAL GND
+.end

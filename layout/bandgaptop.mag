@@ -277,34 +277,34 @@ rect -21532 10808 -9246 11780
 rect 11064 10808 11238 11780
 rect -21532 10748 11238 10808
 rect -9246 10710 11238 10748
-use bandgapcorev3  bandgapcorev3_0
-timestamp 1621287318
-transform 0 1 30186 -1 0 28802
-box 5270 -39968 26884 -11302
-use amplifier  amplifier_0
-timestamp 1621270775
-transform 1 0 -16310 0 -1 6762
-box -3090 -244 6438 5762
-use currentmirror  currentmirror_0
-timestamp 1621270775
-transform 1 0 -8490 0 -1 9302
-box -1748 -4198 17156 8302
-use sky130_fd_pr__nfet_01v8_lvt_5FLLME  sky130_fd_pr__nfet_01v8_lvt_5FLLME_0
-timestamp 1621270775
-transform 0 1 -14507 -1 0 8606
-box -258 -2757 258 2757
-use sky130_fd_pr__cap_mim_m3_1_LZDD7Y  sky130_fd_pr__cap_mim_m3_1_LZDD7Y_0
-timestamp 1621270775
-transform 1 0 -14303 0 1 13216
-box -3585 -3450 3585 3450
-use sky130_fd_pr__cap_mim_m3_2_MZ9F78  sky130_fd_pr__cap_mim_m3_2_MZ9F78_0
-timestamp 1621277573
-transform 1 0 -15978 0 1 20456
-box -5600 -3500 5600 3500
 use ampcurrentsource  ampcurrentsource_0
 timestamp 1621278611
 transform 1 0 -21372 0 1 5166
 box -960 -438 2860 694
+use sky130_fd_pr__cap_mim_m3_2_MZ9F78  sky130_fd_pr__cap_mim_m3_2_MZ9F78_0
+timestamp 1621277573
+transform 1 0 -15978 0 1 20456
+box -5600 -3500 5600 3500
+use sky130_fd_pr__cap_mim_m3_1_LZDD7Y  sky130_fd_pr__cap_mim_m3_1_LZDD7Y_0
+timestamp 1621270775
+transform 1 0 -14303 0 1 13216
+box -3585 -3450 3585 3450
+use sky130_fd_pr__nfet_01v8_lvt_5FLLME  sky130_fd_pr__nfet_01v8_lvt_5FLLME_0
+timestamp 1621270775
+transform 0 1 -14507 -1 0 8606
+box -258 -2757 258 2757
+use currentmirror  currentmirror_0
+timestamp 1621270775
+transform 1 0 -8490 0 -1 9302
+box -1748 -4198 17156 8302
+use amplifier  amplifier_0
+timestamp 1621270775
+transform 1 0 -16310 0 -1 6762
+box -3090 -244 6438 5762
+use bandgapcorev3  bandgapcorev3_0
+timestamp 1621287318
+transform 0 1 30186 -1 0 28802
+box 5270 -39968 26884 -11302
 << labels >>
 flabel metal1 -19254 8502 -18792 8700 1 FreeSans 1600 0 0 0 porst
 port 2 n

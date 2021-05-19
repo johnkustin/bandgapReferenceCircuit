@@ -480,14 +480,14 @@ rect 890 -224 1890 -170
 rect 2034 -224 3034 -170
 rect 3178 -224 3198 -170
 rect 726 -244 3198 -224
-use sky130_fd_pr__nfet_01v8_lvt_VQR4RW  sky130_fd_pr__nfet_01v8_lvt_VQR4RW_0
-timestamp 1621270775
-transform 1 0 1676 0 1 977
-box -2260 -957 2260 957
 use sky130_fd_pr__pfet_01v8_lvt_654NJ6  sky130_fd_pr__pfet_01v8_lvt_654NJ6_0
 timestamp 1621270775
 transform 1 0 1666 0 1 3774
 box -4012 -1354 4012 1388
+use sky130_fd_pr__nfet_01v8_lvt_VQR4RW  sky130_fd_pr__nfet_01v8_lvt_VQR4RW_0
+timestamp 1621270775
+transform 1 0 1676 0 1 977
+box -2260 -957 2260 957
 << labels >>
 flabel metal2 1750 5200 1766 5324 1 FreeSans 800 0 0 0 VDD!
 port 0 n

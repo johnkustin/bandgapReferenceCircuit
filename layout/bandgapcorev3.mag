@@ -654,23 +654,23 @@ rect 6070 -35022 6076 -34464
 rect 6634 -35022 6814 -34464
 rect 7234 -35022 7240 -34464
 rect 6070 -35028 7240 -35022
+use sky130_fd_pr__res_xhigh_po_2p85_EDZVPS  sky130_fd_pr__res_xhigh_po_2p85_EDZVPS_0
+timestamp 1621270775
+transform 0 1 10454 1 0 -24109
+box -6831 -3584 6831 3584
+use sky130_fd_pr__res_xhigh_po_2p85_R3CJ3X  sky130_fd_pr__res_xhigh_po_2p85_R3CJ3X_0
+timestamp 1621270775
+transform 0 -1 10288 -1 0 -38015
+box -1105 -2094 1105 2094
+use sky130_fd_pr__res_xhigh_po_2p85_W28W8W  sky130_fd_pr__res_xhigh_po_2p85_W28W8W_0
+timestamp 1621270775
+transform 0 -1 9390 -1 0 -34334
+box -1514 -2582 1514 2582
 use sky130_fd_pr__pnp_05v5_W3p40L3p40  sky130_fd_pr__pnp_05v5_W3p40L3p40_0 $PDKPATH/libs.ref/sky130_fd_pr/mag
 array 0 4 1288 0 7 1288
 timestamp 1621270775
 transform 0 1 16542 -1 0 -11276
 box 26 26 1314 1314
-use sky130_fd_pr__res_xhigh_po_2p85_W28W8W  sky130_fd_pr__res_xhigh_po_2p85_W28W8W_0
-timestamp 1621270775
-transform 0 -1 9390 -1 0 -34334
-box -1514 -2582 1514 2582
-use sky130_fd_pr__res_xhigh_po_2p85_R3CJ3X  sky130_fd_pr__res_xhigh_po_2p85_R3CJ3X_0
-timestamp 1621270775
-transform 0 -1 10288 -1 0 -38015
-box -1105 -2094 1105 2094
-use sky130_fd_pr__res_xhigh_po_2p85_EDZVPS  sky130_fd_pr__res_xhigh_po_2p85_EDZVPS_0
-timestamp 1621270775
-transform 0 1 10454 1 0 -24109
-box -6831 -3584 6831 3584
 << labels >>
 flabel metal2 25634 -18580 26582 -17444 5 FreeSans 1600 0 0 0 Vbneg
 flabel metal2 6870 -29302 7302 -28732 7 FreeSans 800 90 0 0 VbEnd
