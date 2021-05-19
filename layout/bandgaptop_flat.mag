@@ -1,7 +1,7 @@
 magic
 tech sky130A
 magscale 1 2
-timestamp 1621356264
+timestamp 1621400249
 << nwell >>
 rect -9600 9500 7778 9502
 rect -19400 1000 -9872 4342
@@ -37221,6 +37221,7 @@ port 2 n
 flabel metal1 -2858 12824 1810 13500 1 FreeSans 1600 0 0 0 Vbg
 port 1 n
 flabel metal3 -20266 1000 -19556 1422 1 FreeSans 1600 0 0 0 VDD!
+port 3 n
 flabel metal2 11606 2220 12742 3168 7 FreeSans 1600 0 0 0 bandgapcorev3_0/Vbneg
 flabel metal2 884 21500 1454 21932 1 FreeSans 800 90 0 0 bandgapcorev3_0/VbEnd
 flabel metal2 1702 14764 2272 15196 1 FreeSans 800 90 0 0 bandgapcorev3_0/VbgEnd
@@ -37367,4 +37368,6 @@ flabel metal2 -590 10802 -390 10902 5 FreeSans 1600 0 0 0 currentmirror_0/Va
 flabel metal2 -21312 4728 -19530 4798 1 FreeSans 800 0 0 0 ampcurrentsource_0/Vq
 flabel metal2 -21312 4938 -19530 5008 1 FreeSans 800 0 0 0 ampcurrentsource_0/Vx
 flabel locali -20452 5698 -20370 5726 1 FreeSans 800 0 0 0 ampcurrentsource_0/GND!
+rlabel locali -20854 5656 -19990 5760 1 GND!
+port 4 n
 << end >>
