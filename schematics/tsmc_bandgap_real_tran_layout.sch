@@ -141,6 +141,34 @@ N 980 120 1020 120 { lab=GND}
 N 1000 90 1000 120 { lab=GND}
 N 1380 -310 1380 -20 { lab=GND}
 N 1400 -40 1400 -20 { lab=GND}
+N 370 -100 400 -100 { lab=Vx}
+N 400 -100 410 -100 { lab=Vx}
+N 410 -100 410 20 { lab=Vx}
+N 340 20 410 20 { lab=Vx}
+N 300 50 410 50 { lab=#net7}
+N 410 50 410 80 { lab=#net7}
+N 340 80 410 80 { lab=#net7}
+N 260 190 600 190 { lab=GND}
+N 260 190 260 220 { lab=GND}
+N 260 220 600 220 { lab=GND}
+N 600 220 600 250 { lab=GND}
+N 210 250 600 250 { lab=GND}
+N 210 -20 210 250 { lab=GND}
+N 530 -680 530 -550 { lab=VDD}
+N 490 -580 490 -550 { lab=VDD}
+N 490 -580 530 -580 { lab=VDD}
+N 530 -520 530 -500 { lab=Va}
+N -50 -550 -50 -520 { lab=VDD}
+N -90 -520 -50 -520 { lab=VDD}
+N -90 -680 -90 -520 { lab=VDD}
+N -90 -680 60 -680 { lab=VDD}
+N -50 -680 -50 -550 { lab=VDD}
+N -70 -370 -70 -340 { lab=GND}
+N -110 -360 -70 -370 { lab=GND}
+N -110 -360 -110 -310 { lab=GND}
+N -110 -310 -70 -310 { lab=GND}
+N -70 -310 -70 -0 { lab=GND}
+N -70 -0 210 0 { lab=GND}
 C {devices/code.sym} -750 -190 0 0 {name=TT_MODELS
 only_toplevel=true
 format="tcleval( @value )"
@@ -193,13 +221,13 @@ C {devices/gnd.sym} 700 -20 0 0 {name=l1 lab=GND}
 C {devices/lab_pin.sym} 740 -340 3 0 {name=l5 lab=Va}
 C {devices/lab_pin.sym} 780 -340 3 0 {name=l6 lab=Vb}
 C {devices/vdd.sym} 820 -680 0 0 {name=l7 lab=VDD}
-C {devices/ammeter.sym} 1020 -290 0 0 {name=Vr4 current=5.7238e-06}
-C {devices/ammeter.sym} 890 -290 0 0 {name=Vr2 current=4.3334e-06}
-C {devices/ammeter.sym} 670 -460 0 0 {name=Vm1 current=1.0057e-05}
-C {devices/ammeter.sym} 890 -450 0 0 {name=Vm2 current=1.0057e-05}
-C {devices/ammeter.sym} 1400 -500 0 0 {name=Vm3 current=1.0239e-05}
-C {devices/ammeter.sym} 540 -290 0 0 {name=Vr1 current=5.7228e-06}
-C {devices/ammeter.sym} 670 -290 0 0 {name=Vq2 current=4.3346e-06}
+C {devices/ammeter.sym} 1020 -290 0 0 {name=Vr4 current=3.0748e-06}
+C {devices/ammeter.sym} 890 -290 0 0 {name=Vr2 current=7.8721e-10}
+C {devices/ammeter.sym} 670 -460 0 0 {name=Vm1 current=3.0755e-06}
+C {devices/ammeter.sym} 890 -450 0 0 {name=Vm2 current=3.0755e-06}
+C {devices/ammeter.sym} 1400 -500 0 0 {name=Vm3 current=3.1149e-06}
+C {devices/ammeter.sym} 540 -290 0 0 {name=Vr1 current=3.0755e-06}
+C {devices/ammeter.sym} 670 -290 0 0 {name=Vq2 current=2.0265e-11}
 C {sky130_fd_pr/pnp_05v5.sym} 910 -80 0 1 {name=Q1
 model="pnp_05v5_W3p40L3p40 m=39"
 spiceprefix=X
@@ -208,10 +236,10 @@ C {devices/lab_pin.sym} 890 -150 0 0 {name=l4 lab=vbneg}
 C {devices/lab_pin.sym} 670 -230 2 0 {name=l10 lab=Veb}
 C {devices/lab_wire.sym} 820 -590 0 0 {name=l11 lab=vgate}
 C {sky130_fd_pr/nfet_01v8_lvt.sym} 290 -500 0 1 {name=M5
-L='2'
-W='1'
+L=2
+W=9
 nf=1
-mult=27
+mult=3
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
@@ -223,9 +251,9 @@ spiceprefix=X
 }
 C {sky130_fd_pr/nfet_01v8_lvt.sym} 180 -50 0 1 {name=M6
 L=2
-W=1
+W=2
 nf=1
-mult=4
+mult=2
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
@@ -236,10 +264,10 @@ model=nfet_01v8_lvt
 spiceprefix=X
 }
 C {sky130_fd_pr/nfet_01v8_lvt.sym} 40 -500 0 0 {name=M9
-L='2'
-W='1'
+L=2
+W=9
 nf=1
-mult=27
+mult=3
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
@@ -254,9 +282,9 @@ C {devices/lab_pin.sym} 370 -360 1 0 {name=l12 lab=Vx}
 C {devices/lab_pin.sym} 160 -110 0 0 {name=l18 lab=Vq}
 C {sky130_fd_pr/nfet_01v8_lvt.sym} 350 -50 0 0 {name=M7
 L=2
-W=1
+W=2
 nf=1
-mult=4
+mult=2
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
@@ -268,9 +296,9 @@ spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8_lvt.sym} 350 -580 0 0 {name=M13
 L=2
-W=1
+W=12.9
 nf=1
-mult=77.4
+mult=6
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
@@ -282,9 +310,9 @@ spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8_lvt.sym} 650 -580 0 0 {name=M1
 L=2
-W=1
+W=38.7
 nf=1
-mult=387
+mult=10
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
@@ -296,9 +324,9 @@ spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8_lvt.sym} 870 -580 0 0 {name=M2
 L=2
-W=1
+W=38.7
 nf=1
-mult=387
+mult=10
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
@@ -310,9 +338,9 @@ spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8_lvt.sym} 1380 -590 0 0 {name=M3
 L=2
-W=1
+W=38.7
 nf=1
-mult=387
+mult=10
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
@@ -329,13 +357,14 @@ spice_ignore=true
 
 value="
 .option savecurrents
+.param mc_mm_switch=0
 .param R3val='22.187k'
 .param alpha='1'
 .param R2R3ratio='5.6555038*alpha'
 .param R2val='R3val*R2R3ratio'
 .param R4R2ratio='0.79694273'
 .param R4val='R2val*R4R2ratio
-.nodeset v(vgate)=1.4
+.param VDD=1.8
 
 .control
 save all
@@ -351,7 +380,7 @@ save all
 + @m.xm13.msky130_fd_pr__pfet_01v8_lvt[gm]
 
 op
-write tsmc_bandgap_real.raw
+write tsmc_bandgap_real_op_layout.raw
 let id8=@m.xm8.msky130_fd_pr__pfet_01v8_lvt[id]
 let id1=@m.xm1.msky130_fd_pr__pfet_01v8_lvt[id]
 let vth5=@m.xm5.msky130_fd_pr__nfet_01v8_lvt[vth]
@@ -550,9 +579,9 @@ C {devices/ngspice_probe.sym} 270 -560 0 0 {name=r27}
 C {devices/gnd.sym} 160 -500 0 0 {name=l14 lab=GND}
 C {sky130_fd_pr/pfet_01v8_lvt.sym} 80 -630 0 1 {name=M4
 L=2
-W=1
+W=12.9
 nf=1
-mult=38.7
+mult=3
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
@@ -564,9 +593,9 @@ spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8_lvt.sym} 250 -630 0 0 {name=M8
 L=2
-W=1
+W=12.9
 nf=1
-mult=38.7
+mult=3
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
@@ -578,10 +607,10 @@ spiceprefix=X
 }
 C {devices/gnd.sym} 240 -20 0 0 {name=l17 lab=GND}
 C {sky130_fd_pr/nfet_01v8_lvt.sym} 1200 -510 0 0 {name=M10
-L='2'
-W='1'
+L=2
+W=27
 nf=1
-mult=27
+mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
@@ -592,7 +621,7 @@ model=nfet_01v8_lvt
 spiceprefix=X
 }
 C {devices/lab_pin.sym} 1180 -510 0 0 {name=l15 lab=porst}
-C {devices/vsource.sym} 1530 -500 0 0 {name=V2 net_name=true value="0 pulse(0V 1.8V 10us 1us 1us 5us)"}
+C {devices/vsource.sym} 1530 -500 0 0 {name=V2 net_name=true value="0 pulse(0V 1.8V 6us 1us 1us 1us)"}
 C {devices/gnd.sym} 1530 -470 0 0 {name=l16 lab=GND}
 C {devices/lab_pin.sym} 1530 -530 0 0 {name=l19 lab=porst}
 C {devices/code_shown.sym} 2350 -480 0 0 {name=s2 
@@ -600,15 +629,12 @@ only_toplevel=true
 spice_ignore=false
 
 value="
+.ic v(vgate)=0 v(vg)=0 v(vx)=0 v(vq)=0 v(vbg)=0 v(va)=0 v(vb)=0
+*.nodeset all=0
 .option savecurrents
 .param mc_mm_switch=0
-.param R3val='22.187k'
-.param alpha='1'
-.param R2R3ratio='5.6555038*alpha'
-.param R2val='R3val*R2R3ratio'
-.param R4R2ratio='0.79694273'
-.param R4val='R2val*R4R2ratio
 .param VDD=1.8
+.option RSHUNT=1e20
 .control
 save all
 + @m.xm1.msky130_fd_pr__pfet_01v8_lvt[gm]
@@ -623,16 +649,18 @@ save all
 + @m.xm13.msky130_fd_pr__pfet_01v8_lvt[gm]
 
 option temp=27
-tran 0.1n 20u
+tran 1n 11u 
 option temp=0
-tran 0.1n 20u
+tran 1n 11u 
 option temp=70
-tran 0.1n 20u
+tran 1n 11u 
 write ./sims/tsmc_bandgap_real_layout_70degc_vbg.raw vbg
 setplot tran2
 write ./sims/tsmc_bandgap_real_layout_0degc_vbg.raw vbg
 setplot tran1
 write ./sims/tsmc_bandgap_real_layout_27degc_vbg.raw vbg
+*unset askquit
+*quit
 .endc
 "}
 C {devices/code.sym} 680 170 0 0 {name=NGSPICE1
@@ -640,23 +668,24 @@ only_toplevel=true
 spice_ignore=true
 value=".option seed=13
 
+.param mc_mm_switch=0
 * this experimental option enables mos model bin 
 * selection based on W/NF instead of W
 .param ABSVAR=0.03
 .param VDDGAUSS=agauss(1.8, 'ABSVAR', 1)
 .param VDD=VCCGAUSS
 ** variation parameters:
-.param sky130_fd_pr__nfet_01v8_lvt__vth0_slope_spectre='agauss(0, ABSVAR, 3)/sky130_fd_pr__nfet_01v8_lvt__vth0_slope'
-.param sky130_fd_pr__pfet_01v8_lvt__vth0_slope_spectre='agauss(0, ABSVAR, 3)/sky130_fd_pr__pfet_01v8_lvt__vth0_slope'
-.param sky130_fd_pr__nfet_01v8__vth0_slope_spectre='agauss(0, ABSVAR, 3)/sky130_fd_pr__nfet_01v8__vth0_slope'
-.param sky130_fd_pr__pfet_01v8__vth0_slope_spectre='agauss(0, ABSVAR, 3)/sky130_fd_pr__pfet_01v8__vth0_slope'
+*.param sky130_fd_pr__nfet_01v8_lvt__vth0_slope_spectre='agauss(0, ABSVAR, 3)/sky130_fd_pr__nfet_01v8_lvt__vth0_slope'
+*.param sky130_fd_pr__pfet_01v8_lvt__vth0_slope_spectre='agauss(0, ABSVAR, 3)/sky130_fd_pr__pfet_01v8_lvt__vth0_slope'
+*.param sky130_fd_pr__nfet_01v8__vth0_slope_spectre='agauss(0, ABSVAR, 3)/sky130_fd_pr__nfet_01v8__vth0_slope'
+*.param sky130_fd_pr__pfet_01v8__vth0_slope_spectre='agauss(0, ABSVAR, 3)/sky130_fd_pr__pfet_01v8__vth0_slope'
 
-.param sky130_fd_pr__pfet_01v8__toxe_slope_spectre='agauss(0, ABSVAR*2, 3)/sky130_fd_pr__pfet_01v8__toxe_slope'
-.param sky130_fd_pr__nfet_01v8__toxe_slope_spectre='agauss(0, ABSVAR*2, 3)/sky130_fd_pr__nfet_01v8__toxe_slope'
-.param sky130_fd_pr__pfet_01v8_lvt__toxe_slope_spectre='agauss(0, ABSVAR*2, 3)/sky130_fd_pr__pfet_01v8_lvt__toxe_slope'
-.param sky130_fd_pr__nfet_01v8_lvt__toxe_slope_spectre='agauss(0, ABSVAR*2, 3)/sky130_fd_pr__nfet_01v8_lvt__toxe_slope'
+*.param sky130_fd_pr__pfet_01v8__toxe_slope_spectre='agauss(0, ABSVAR*2, 3)/sky130_fd_pr__pfet_01v8__toxe_slope'
+*.param sky130_fd_pr__nfet_01v8__toxe_slope_spectre='agauss(0, ABSVAR*2, 3)/sky130_fd_pr__nfet_01v8__toxe_slope'
+*.param sky130_fd_pr__pfet_01v8_lvt__toxe_slope_spectre='agauss(0, ABSVAR*2, 3)/sky130_fd_pr__pfet_01v8_lvt__toxe_slope'
+*.param sky130_fd_pr__nfet_01v8_lvt__toxe_slope_spectre='agauss(0, ABSVAR*2, 3)/sky130_fd_pr__nfet_01v8_lvt__toxe_slope'
 
-.param sky130_fd_pr__res_high_po__var_mult=agauss(0, 'ABSVAR*8', 1)
+*.param sky130_fd_pr__res_high_po__var_mult=agauss(0, 'ABSVAR*8', 1)
 
 * .options savecurrents
 .control
@@ -794,3 +823,91 @@ spiceprefix=X
 mult=1}
 C {sky130_fd_pr/cap_mim_m3_1.sym} 1130 -630 0 0 {name=C1 model=cap_mim_m3_1 W=2 L=2 MF=100 spiceprefix=X}
 C {sky130_fd_pr/cap_mim_m3_2.sym} 460 -280 0 0 {name=C2 model=cap_mim_m3_2 W=2 L=2 MF=100 spiceprefix=X}
+C {sky130_fd_pr/res_xhigh_po_0p35.sym} 290 220 0 0 {name=R14
+W=2.85
+L=31.52
+model=res_xhigh_po_2p85
+spiceprefix=X
+mult=2}
+C {sky130_fd_pr/res_xhigh_po_0p35.sym} 460 220 0 0 {name=R15
+W=2.85
+L=21.5
+model=res_xhigh_po_2p85
+spiceprefix=X
+mult=2}
+C {sky130_fd_pr/res_xhigh_po_0p35.sym} 600 220 0 0 {name=R16
+W=2.85
+L=16.62
+model=res_xhigh_po_2p85
+spiceprefix=X
+mult=2}
+C {sky130_fd_pr/nfet_01v8_lvt.sym} 320 50 0 0 {name=M11
+L=2
+W=2
+nf=1
+mult=1
+ad="'int((nf+1)/2) * W/nf * 0.29'" 
+pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
+as="'int((nf+2)/2) * W/nf * 0.29'" 
+ps="'2*int((nf+2)/2) * (W/nf + 0.29)'"
+nrd="'0.29 / W'" nrs="'0.29 / W'"
+sa=0 sb=0 sd=0
+model=nfet_01v8_lvt
+spiceprefix=X
+}
+C {sky130_fd_pr/nfet_01v8_lvt.sym} 390 50 0 0 {name=M12
+L=2
+W=2
+nf=1
+mult=1
+ad="'int((nf+1)/2) * W/nf * 0.29'" 
+pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
+as="'int((nf+2)/2) * W/nf * 0.29'" 
+ps="'2*int((nf+2)/2) * (W/nf + 0.29)'"
+nrd="'0.29 / W'" nrs="'0.29 / W'"
+sa=0 sb=0 sd=0
+model=nfet_01v8_lvt
+spiceprefix=X
+}
+C {sky130_fd_pr/pfet_01v8_lvt.sym} -70 -550 0 1 {name=M14
+L=2
+W=12.9
+nf=1
+mult=2
+ad="'int((nf+1)/2) * W/nf * 0.29'" 
+pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
+as="'int((nf+2)/2) * W/nf * 0.29'" 
+ps="'2*int((nf+2)/2) * (W/nf + 0.29)'"
+nrd="'0.29 / W'" nrs="'0.29 / W'"
+sa=0 sb=0 sd=0
+model=pfet_01v8_lvt
+spiceprefix=X
+}
+C {sky130_fd_pr/nfet_01v8_lvt.sym} -90 -340 0 0 {name=M16
+L='2'
+W='9'
+nf=1
+mult=2
+ad="'int((nf+1)/2) * W/nf * 0.29'" 
+pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
+as="'int((nf+2)/2) * W/nf * 0.29'" 
+ps="'2*int((nf+2)/2) * (W/nf + 0.29)'"
+nrd="'0.29 / W'" nrs="'0.29 / W'"
+sa=0 sb=0 sd=0
+model=nfet_01v8_lvt
+spiceprefix=X
+}
+C {sky130_fd_pr/pfet_01v8_lvt.sym} 510 -550 0 0 {name=M17
+L=2
+W=38.7
+nf=1
+mult=2
+ad="'int((nf+1)/2) * W/nf * 0.29'" 
+pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
+as="'int((nf+2)/2) * W/nf * 0.29'" 
+ps="'2*int((nf+2)/2) * (W/nf + 0.29)'"
+nrd="'0.29 / W'" nrs="'0.29 / W'"
+sa=0 sb=0 sd=0
+model=pfet_01v8_lvt
+spiceprefix=X
+}

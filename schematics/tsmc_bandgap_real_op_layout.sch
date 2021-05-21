@@ -221,13 +221,13 @@ C {devices/gnd.sym} 700 -20 0 0 {name=l1 lab=GND}
 C {devices/lab_pin.sym} 740 -340 3 0 {name=l5 lab=Va}
 C {devices/lab_pin.sym} 780 -340 3 0 {name=l6 lab=Vb}
 C {devices/vdd.sym} 820 -680 0 0 {name=l7 lab=VDD}
-C {devices/ammeter.sym} 1020 -290 0 0 {name=Vr4 current=5.6790e-06}
-C {devices/ammeter.sym} 890 -290 0 0 {name=Vr2 current=4.3218e-06}
-C {devices/ammeter.sym} 670 -460 0 0 {name=Vm1 current=1.0001e-05}
-C {devices/ammeter.sym} 890 -450 0 0 {name=Vm2 current=1.0001e-05}
-C {devices/ammeter.sym} 1400 -500 0 0 {name=Vm3 current=9.5707e-06}
-C {devices/ammeter.sym} 540 -290 0 0 {name=Vr1 current=5.6780e-06}
-C {devices/ammeter.sym} 670 -290 0 0 {name=Vq2 current=4.3231e-06}
+C {devices/ammeter.sym} 1020 -290 0 0 {name=Vr4 current=3.0748e-06}
+C {devices/ammeter.sym} 890 -290 0 0 {name=Vr2 current=7.8721e-10}
+C {devices/ammeter.sym} 670 -460 0 0 {name=Vm1 current=3.0755e-06}
+C {devices/ammeter.sym} 890 -450 0 0 {name=Vm2 current=3.0755e-06}
+C {devices/ammeter.sym} 1400 -500 0 0 {name=Vm3 current=3.1149e-06}
+C {devices/ammeter.sym} 540 -290 0 0 {name=Vr1 current=3.0755e-06}
+C {devices/ammeter.sym} 670 -290 0 0 {name=Vq2 current=2.0265e-11}
 C {sky130_fd_pr/pnp_05v5.sym} 910 -80 0 1 {name=Q1
 model="pnp_05v5_W3p40L3p40 m=39"
 spiceprefix=X
@@ -236,10 +236,10 @@ C {devices/lab_pin.sym} 890 -150 0 0 {name=l4 lab=vbneg}
 C {devices/lab_pin.sym} 670 -230 2 0 {name=l10 lab=Veb}
 C {devices/lab_wire.sym} 820 -590 0 0 {name=l11 lab=vgate}
 C {sky130_fd_pr/nfet_01v8_lvt.sym} 290 -500 0 1 {name=M5
-L='2'
-W='1'
+L=2
+W=9
 nf=1
-mult=27
+mult=3
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
@@ -251,9 +251,9 @@ spiceprefix=X
 }
 C {sky130_fd_pr/nfet_01v8_lvt.sym} 180 -50 0 1 {name=M6
 L=2
-W=1
+W=2
 nf=1
-mult=4
+mult=2
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
@@ -264,10 +264,10 @@ model=nfet_01v8_lvt
 spiceprefix=X
 }
 C {sky130_fd_pr/nfet_01v8_lvt.sym} 40 -500 0 0 {name=M9
-L='2'
-W='1'
+L=2
+W=9
 nf=1
-mult=27
+mult=3
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
@@ -282,9 +282,9 @@ C {devices/lab_pin.sym} 370 -360 1 0 {name=l12 lab=Vx}
 C {devices/lab_pin.sym} 160 -110 0 0 {name=l18 lab=Vq}
 C {sky130_fd_pr/nfet_01v8_lvt.sym} 350 -50 0 0 {name=M7
 L=2
-W=1
+W=2
 nf=1
-mult=4
+mult=2
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
@@ -296,9 +296,9 @@ spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8_lvt.sym} 350 -580 0 0 {name=M13
 L=2
-W=1
+W=12.9
 nf=1
-mult=77.4
+mult=6
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
@@ -310,9 +310,9 @@ spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8_lvt.sym} 650 -580 0 0 {name=M1
 L=2
-W=1
+W=38.7
 nf=1
-mult=387
+mult=10
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
@@ -324,9 +324,9 @@ spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8_lvt.sym} 870 -580 0 0 {name=M2
 L=2
-W=1
+W=38.7
 nf=1
-mult=387
+mult=10
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
@@ -338,9 +338,9 @@ spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8_lvt.sym} 1380 -590 0 0 {name=M3
 L=2
-W=1
+W=38.7
 nf=1
-mult=387
+mult=10
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
@@ -353,7 +353,7 @@ spiceprefix=X
 C {devices/lab_pin.sym} 1400 -390 0 1 {name=l3 lab=vbg}
 C {devices/code_shown.sym} 1810 -470 0 0 {name=s1 
 only_toplevel=true 
-spice_ignore=false
+spice_ignore=true
 
 value="
 .option savecurrents
@@ -365,7 +365,7 @@ value="
 .param R4R2ratio='0.79694273'
 .param R4val='R2val*R4R2ratio
 .param VDD=1.8
-.nodeset v(vgate)=1.4
+.nodeset v(vgate)=1.31
 
 .control
 save all
@@ -580,9 +580,9 @@ C {devices/ngspice_probe.sym} 270 -560 0 0 {name=r27}
 C {devices/gnd.sym} 160 -500 0 0 {name=l14 lab=GND}
 C {sky130_fd_pr/pfet_01v8_lvt.sym} 80 -630 0 1 {name=M4
 L=2
-W=1
+W=12.9
 nf=1
-mult=38.7
+mult=3
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
@@ -594,9 +594,9 @@ spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8_lvt.sym} 250 -630 0 0 {name=M8
 L=2
-W=1
+W=12.9
 nf=1
-mult=38.7
+mult=3
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
@@ -608,10 +608,10 @@ spiceprefix=X
 }
 C {devices/gnd.sym} 240 -20 0 0 {name=l17 lab=GND}
 C {sky130_fd_pr/nfet_01v8_lvt.sym} 1200 -510 0 0 {name=M10
-L='2'
-W='1'
+L=2
+W=27
 nf=1
-mult=27
+mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
@@ -622,15 +622,18 @@ model=nfet_01v8_lvt
 spiceprefix=X
 }
 C {devices/lab_pin.sym} 1180 -510 0 0 {name=l15 lab=porst}
-C {devices/vsource.sym} 1530 -500 0 0 {name=V2 net_name=true value="0 pulse(0V 1.8V 10us 1us 1us 5us)"}
+C {devices/vsource.sym} 1530 -500 0 0 {name=V2 net_name=true value="0 pulse(0V 1.8V 6us 1us 1us 1us)"}
 C {devices/gnd.sym} 1530 -470 0 0 {name=l16 lab=GND}
 C {devices/lab_pin.sym} 1530 -530 0 0 {name=l19 lab=porst}
 C {devices/code_shown.sym} 2350 -480 0 0 {name=s2 
 only_toplevel=true 
-spice_ignore=true
+spice_ignore=false
 
 value="
+.ic V(vgate)=0
+.ic V(vg)=0
 .option savecurrents
+.param mc_mm_switch=0
 .param R3val='22.187k'
 .param alpha='1'
 .param R2R3ratio='5.6555038*alpha'
@@ -652,18 +655,18 @@ save all
 + @m.xm13.msky130_fd_pr__pfet_01v8_lvt[gm]
 
 option temp=27
-tran 0.1n 20u
+tran 1n 11u 
 option temp=0
-tran 0.1n 20u
+tran 1n 11u 
 option temp=70
-tran 0.1n 20u
-write ./sims/tsmc_bandgap_real_layout_70degc_vbg.raw vbg
-setplot tran2
-write ./sims/tsmc_bandgap_real_layout_0degc_vbg.raw vbg
-setplot tran1
-write ./sims/tsmc_bandgap_real_layout_27degc_vbg.raw vbg
-unset askquit
-quit
+tran 1n 11u 
+*write ./sims/tsmc_bandgap_real_layout_70degc_vbg.raw vbg
+*setplot tran2
+*write ./sims/tsmc_bandgap_real_layout_0degc_vbg.raw vbg
+*setplot tran1
+*write ./sims/tsmc_bandgap_real_layout_27degc_vbg.raw vbg
+*unset askquit
+*quit
 .endc
 "}
 C {devices/code.sym} 680 170 0 0 {name=NGSPICE1
