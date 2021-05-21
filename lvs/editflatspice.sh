@@ -1,0 +1,1 @@
+sed -i 's/sky130_fd_pr__pnp_05v5 area=-nanp/sky130_fd_pr__pnp_05v5_W3p40L3p40/g' bandgaptop_flat.spice
