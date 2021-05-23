@@ -2,12 +2,13 @@ import struct
 import re
 import numpy as np
 import collections
+import pdb
 
 def split(plotDat):
     """ Converts each of the arrays in plotDat into 2-D arrays
     where the first index corresponds to the parameter being swept.
     """
-    sweep = plotDat[plotDat.keys()[0]]
+    sweep = plotDat[list(plotDat.keys())[0]]
     splitPos = np.argwhere(sweep == sweep[0])
     nSplits = len(splitPos)
     
@@ -16,9 +17,9 @@ def split(plotDat):
     
     splitPtr = 0;
     splitPos = np.append(splitPos, len(sweep))
-
+    # pdb.set_trace()
     for key in keys:
-        plotDatSplit[key] = np.zeros((nSplits, len(plotDat[key])/ nSplits))
+        plotDatSplit[key] = np.zeros((nSplits, len(plotDat[key])// nSplits))
         for splitPtr in range(nSplits):
             plotDatSplit[key][splitPtr] = plotDat[key][splitPos[splitPtr]:splitPos[splitPtr + 1]]
     
@@ -60,10 +61,12 @@ def read(fileName, simulator="ngspice"):
             tmpPos = dataBytes.find(b'Variables:')
             startPos = dataBytes.find(b'Variables:', tmpPos + len('Variables')) + len('Variables:')
             endPos = dataBytes.find(b'Binary:\n')
-            varData = str(dataBytes[startPos:endPos]).replace('\t', ' ').strip()
+            varData = (dataBytes[startPos:endPos]).decode("utf-8").replace('\t', ' ').strip()
             varLines = varData.split('\n')
+            # print(varData)
+            # print(varLines)
             varList = [line.strip().split()[1] for line in varLines]
-            
+            # pdb.set_trace()
             if (simulator == "ngspice"):
                 # Create arrays to store the points
                 for j in range(numVars):

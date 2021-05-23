@@ -1,51 +1,68 @@
+#!/usr/bin/env python
 import sys
 sys.path.append('../pyMOSChar')
 import spice3read as s3r
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import rc
+import matplotlib
+from glob import glob
 
 rc('text', usetex=True)
-rc('font', family='serif')
+font = {'family' : 'sans-serif',
+'weight' : 'bold',
+'size' : 18}
+rc('font', **font)
 
-from glob import glob
-runs = glob('../sims/tsmc_bandgap_real_tran_gauss[0-9]*.raw')
-simdata = []
-for run in runs:
-    simdata.append(s3r.read(run))
+allvbgs = np.empty((3,400))
+for i, temp in enumerate(['0', '27', '70']):
+    fig = plt.figure(i)
+    fig.tight_layout()
+    runs = glob('../sims/tbtran_tt_mm_1_mc_1_{}degc_run_[0-9]*.raw'.format(temp))
+    runs2 = [x for x in runs if 'randomseed' not in x] 
+    vbgs = [np.asarray(s3r.read(run)['v(vbg)']) for run in runs2]
+    vbgfinals = [vbg.flatten()[-1]*1.0e3 for vbg in vbgs] #in mV
+    allvbgs[i]=(vbgfinals)
+    mean = np.mean(vbgfinals)
+    stdev = np.std(vbgfinals)
+    hist = np.histogram(vbgfinals)
+    plt.hist(vbgfinals, bins='auto',ec='black')
+    plt.xticks(fontsize=18)
+    plt.yticks(fontsize=18)
+    plt.grid(True)
+    plt.xlabel(r"$V_{out}$ (mV)")
+    plt.ylabel(r"Sample Count")
+    plt.title("Monte Carlo Simulation on Reference Voltage"
+    "\n"
+    "temp = ${}^\circ$C"
+    "\n"
+    "$\mu = {}$ $\sigma = {}$ n $= {}$".format(temp, np.around(mean,3), np.around(stdev,3), len(vbgfinals)))
+    fig.set_size_inches((1920/fig.dpi,1080/fig.dpi),forward=False)
+    fname = "hist_{}degc.png".format(temp)
+    plt.savefig(fname, dpi=fig.dpi)
+    print("Wrote {}.".format(fname))
 
-print('read in {} simulations'.format(len(simdata)))
+ppms = np.empty((400))  
+for i in range(len(allvbgs[0])):
+    trips = allvbgs[:,i]
+    vbg0 = trips[0]
+    vbg27 = trips[1]
+    vbg70 = trips[2]
+    ppm = (vbg70-vbg0)/vbg27/70*1.0e6
+    ppms[i] = ppm
 
-times = [dat['time'][0] for dat in simdata]
-maxtime = times[np.asarray([len(x) for x in times]).argmax()]
-
-vdds = [dat['v(vdd)'][0][-1] for dat in simdata]
-vbgs = [dat['v(vbg)'][0] for dat in simdata]
-vbgs_interpd = [np.interp(maxtime, dat['time'][0], dat['v(vbg)'][0]) for dat in simdata]
-
-final_vbgs = [dat[-1] for dat in vbgs]
-mean_vbgs = np.mean(final_vbgs)
-std_vbgs = np.std(final_vbgs)
-
-print('Data from 40 Gaussian sims')
-print('mean Vout = {} V'.format(mean_vbgs))
-print('std dev Vout = {} V'.format(std_vbgs))
-
-fig, ax = plt.subplots()
-for i, vdd in enumerate(vdds):
-    ax.plot(maxtime*1e6, vbgs_interpd[i])
-
-vddvarplus = np.max(vdds)/1.8 - 1.0
-vddvarminus = 1.0 - np.min(vdds)/1.8
-ax.grid()
-label=np.around(vdd, 3)
-ax.set_title(r"Transient simulation (n = {})."
-"\n"  
-r"1.8 - {}\% $\leq$ Vdd $\leq$ 1.8 + {}\%"
+fig = plt.figure()
+fig.tight_layout()
+plt.hist(ppms, bins='auto',ec='black')
+plt.xticks(fontsize=18)
+plt.yticks(fontsize=18)
+plt.grid(True)
+plt.xlabel(r"ppm/$^\circ$C")
+plt.ylabel(r"Sample Count")
+plt.title("Monte Carlo Simulation on Temperature Coefficient"
 "\n"
-r"$\mu$ = {} mV. $\sigma$ = {} mV"
-"\n"
-"Temperature = 0, 27, 70 $^\circ$C".format(len(vdds), np.around(vddvarplus*100, 4), np.around(vddvarminus*100, 4), np.around(mean_vbgs*1e3,3), np.around(std_vbgs*1e3,3)))
-ax.set_xlabel(r"Time ($\mu$s)")
-ax.set_ylabel('Vout (V)')
-plt.show()
+"$\mu = {}$ $\sigma = {}$ n $= {}$".format(np.around(np.mean(ppms),3), np.around(np.std(ppms),3), len(ppms)))
+fig.set_size_inches((1920/fig.dpi,1080/fig.dpi),forward=False)
+fname = "hist_ppm.png"
+plt.savefig(fname, dpi=fig.dpi)
+print("Wrote {}.".format(fname))

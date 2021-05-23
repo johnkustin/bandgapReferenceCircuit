@@ -1,6 +1,6 @@
 * NGSPICE file created from bandgaptop_flat.ext - technology: sky130A
 
-.subckt bandgaptop_flat Vbg porst VDD GND
+.subckt bandgaptop_flat Vbg porst GND VDD
 X0 a_3338_14764# a_7428_21500# GND sky130_fd_pr__res_xhigh_po_2p85 l=3.152e+07u
 X1 amplifier_0/Vgate VDD sky130_fd_pr__cap_mim_m3_1 l=2e+06u w=2e+06u
 X2 amplifier_0/Va GND sky130_fd_pr__cap_mim_m3_2 l=2e+06u w=2e+06u
@@ -326,50 +326,80 @@ X321 amplifier_0/Va GND sky130_fd_pr__cap_mim_m3_2 l=2e+06u w=2e+06u
 X322 amplifier_0/Va GND sky130_fd_pr__cap_mim_m3_2 l=2e+06u w=2e+06u
 X323 VDD amplifier_0/vg amplifier_0/Vgate VDD sky130_fd_pr__pfet_01v8_lvt ad=2.23792e+12p pd=1.56048e+07u as=3.741e+12p ps=2.638e+07u w=1.29e+07u l=2e+06u
 X324 amplifier_0/Va GND sky130_fd_pr__cap_mim_m3_2 l=2e+06u w=2e+06u
+C0 amplifier_0/vg amplifier_0/Vgate 8.19fF
+C1 Vbg VDD 3.71fF
+C2 a_7428_21500# amplifier_0/Va 2.59fF
+C3 amplifier_0/Va bandgapcorev3_0/VbEnd 2.83fF
+C4 a_884_14764# bandgapcorev3_0/VbgEnd 2.57fF
+C5 a_7428_21500# a_8246_21500# 0.67fF
+C6 amplifier_0/Va bandgapcorev3_0/Vbneg 21.73fF
+C7 amplifier_0/vg VDD 20.47fF
+C8 amplifier_0/Va a_2520_21500# 2.04fF
+C9 amplifier_0/Vb amplifier_0/Va 29.28fF
+C10 a_884_14764# a_3338_14764# 2.57fF
+C11 a_66_14764# bandgapcorev3_0/VbgEnd 0.50fF
+C12 porst amplifier_0/Vgate 0.70fF
+C13 bandgapcorev3_0/Vbneg a_4974_14764# 2.95fF
+C14 a_6610_14764# a_3338_14764# 2.57fF
+C15 Vbg bandgapcorev3_0/Vbneg 2.69fF
+C16 a_66_14764# a_3338_14764# 0.28fF
+C17 a_884_14764# a_66_14764# 0.39fF
+C18 amplifier_0/Vb Vbg 12.88fF
+C19 VDD amplifier_0/Vgate 351.59fF
+C20 a_4156_21500# a_1702_21500# 0.44fF
+C21 porst VDD 1.17fF
+C22 a_9064_21500# amplifier_0/Va 1.26fF
+C23 bandgapcorev3_0/VaEnd bandgapcorev3_0/VbEnd 0.83fF
+C24 a_9064_21500# a_8246_21500# 0.78fF
+C25 VDD amplifier_0/Vx 41.79fF
+C26 amplifier_0/Va a_8246_21500# 2.51fF
+C27 amplifier_0/Va a_4974_14764# 2.15fF
+C28 bandgapcorev3_0/Vbneg a_3338_14764# 0.14fF
+C29 a_1702_21500# bandgapcorev3_0/VbEnd 0.43fF
+C30 amplifier_0/vg amplifier_0/Vq 4.91fF
+C31 amplifier_0/Va Vbg 35.17fF
+C32 a_7428_21500# a_4156_21500# 0.44fF
+C33 amplifier_0/Vb amplifier_0/Vgate 2.67fF
+C34 a_1702_21500# a_2520_21500# 0.68fF
+C35 bandgapcorev3_0/Vbneg a_6610_14764# 0.33fF
+C36 a_4156_21500# a_2520_21500# 0.50fF
+C37 amplifier_0/Vb a_4156_21500# 0.39fF
+C38 bandgapcorev3_0/VaEnd amplifier_0/Va 2.45fF
+C39 amplifier_0/Vb VDD 8.43fF
+C40 amplifier_0/Va bandgapcorev3_0/VbgEnd 3.48fF
+C41 amplifier_0/Vq amplifier_0/Vgate 21.35fF
+C42 amplifier_0/Va a_3338_14764# 2.30fF
+C43 a_884_14764# amplifier_0/Va 2.75fF
+C44 amplifier_0/Va amplifier_0/Vgate 72.22fF
+C45 amplifier_0/Vq amplifier_0/Vx 1.33fF
+C46 amplifier_0/Vq VDD 9.17fF
+C47 amplifier_0/Va a_1702_21500# 2.34fF
+C48 amplifier_0/Va a_6610_14764# 2.54fF
+C49 a_4974_14764# a_3338_14764# 0.50fF
+C50 amplifier_0/Va a_4156_21500# 2.07fF
+C51 amplifier_0/Vb bandgapcorev3_0/Vbneg 2.83fF
+C52 a_884_14764# a_4974_14764# 0.28fF
+C53 amplifier_0/Va a_66_14764# 2.04fF
+C54 amplifier_0/Va VDD 51.87fF
+C55 amplifier_0/Vb a_2520_21500# 0.44fF
+C56 Vbg amplifier_0/Vgate 0.04fF
+C57 a_4974_14764# a_6610_14764# 0.39fF
+C58 a_9064_21500# a_7428_21500# 2.59fF
+C59 Vbg a_6610_14764# 0.36fF
 .ends
 
-* sim_top
-.include /tmp/kustinj/ee272bclone/sky130_fd_pr_ngspice/latest/cells/nfet_01v8/sky130_fd_pr__nfet_01v8__tt.corner.spice
-.include /tmp/kustinj/ee272bclone/sky130_fd_pr_ngspice/latest/cells/nfet_01v8_lvt/sky130_fd_pr__nfet_01v8_lvt__tt.corner.spice
-.include /tmp/kustinj/ee272bclone/sky130_fd_pr_ngspice/latest/cells/pfet_01v8/sky130_fd_pr__pfet_01v8__tt.corner.spice
-.include /tmp/kustinj/ee272bclone/sky130_fd_pr_ngspice/latest/cells/nfet_03v3_nvt/sky130_fd_pr__nfet_03v3_nvt__tt.corner.spice
-.include /tmp/kustinj/ee272bclone/sky130_fd_pr_ngspice/latest/cells/nfet_05v0_nvt/sky130_fd_pr__nfet_05v0_nvt__tt.corner.spice
-.include /tmp/kustinj/ee272bclone/sky130_fd_pr_ngspice/latest/cells/esd_nfet_01v8/sky130_fd_pr__esd_nfet_01v8__tt.corner.spice
-.include /tmp/kustinj/ee272bclone/sky130_fd_pr_ngspice/latest/cells/pfet_01v8_lvt/sky130_fd_pr__pfet_01v8_lvt__tt.corner.spice
-.include /tmp/kustinj/ee272bclone/sky130_fd_pr_ngspice/latest/cells/pfet_01v8_hvt/sky130_fd_pr__pfet_01v8_hvt__tt.corner.spice
-.include /tmp/kustinj/ee272bclone/sky130_fd_pr_ngspice/latest/cells/esd_pfet_g5v0d10v5/sky130_fd_pr__esd_pfet_g5v0d10v5__tt.corner.spice
-.include /tmp/kustinj/ee272bclone/sky130_fd_pr_ngspice/latest/cells/pfet_g5v0d10v5/sky130_fd_pr__pfet_g5v0d10v5__tt.corner.spice
-.include /tmp/kustinj/ee272bclone/sky130_fd_pr_ngspice/latest/cells/pfet_g5v0d16v0/sky130_fd_pr__pfet_g5v0d16v0__tt.corner.spice
-.include /tmp/kustinj/ee272bclone/sky130_fd_pr_ngspice/latest/cells/nfet_g5v0d10v5/sky130_fd_pr__nfet_g5v0d10v5__tt.corner.spice
-.include /tmp/kustinj/ee272bclone/sky130_fd_pr_ngspice/latest/cells/nfet_g5v0d16v0/sky130_fd_pr__nfet_g5v0d16v0__tt_discrete.corner.spice
-.include /tmp/kustinj/ee272bclone/sky130_fd_pr_ngspice/latest/cells/esd_nfet_g5v0d10v5/sky130_fd_pr__esd_nfet_g5v0d10v5__tt.corner.spice
-.include /tmp/kustinj/ee272bclone/sky130_fd_pr_ngspice/latest/models/corners/tt/nonfet.spice
-* Mismatch parameters
-.include /tmp/kustinj/ee272bclone/sky130_fd_pr_ngspice/latest/cells/nfet_01v8/sky130_fd_pr__nfet_01v8__mismatch.corner.spice
-.include /tmp/kustinj/ee272bclone/sky130_fd_pr_ngspice/latest/cells/pfet_01v8/sky130_fd_pr__pfet_01v8__mismatch.corner.spice
-.include /tmp/kustinj/ee272bclone/sky130_fd_pr_ngspice/latest/cells/nfet_01v8_lvt/sky130_fd_pr__nfet_01v8_lvt__mismatch.corner.spice
-.include /tmp/kustinj/ee272bclone/sky130_fd_pr_ngspice/latest/cells/pfet_01v8_lvt/sky130_fd_pr__pfet_01v8_lvt__mismatch.corner.spice
-.include /tmp/kustinj/ee272bclone/sky130_fd_pr_ngspice/latest/cells/pfet_01v8_hvt/sky130_fd_pr__pfet_01v8_hvt__mismatch.corner.spice
-.include /tmp/kustinj/ee272bclone/sky130_fd_pr_ngspice/latest/cells/nfet_g5v0d10v5/sky130_fd_pr__nfet_g5v0d10v5__mismatch.corner.spice
-.include /tmp/kustinj/ee272bclone/sky130_fd_pr_ngspice/latest/cells/pfet_g5v0d10v5/sky130_fd_pr__pfet_g5v0d10v5__mismatch.corner.spice
-.include /tmp/kustinj/ee272bclone/sky130_fd_pr_ngspice/latest/cells/nfet_05v0_nvt/sky130_fd_pr__nfet_05v0_nvt__mismatch.corner.spice
-.include /tmp/kustinj/ee272bclone/sky130_fd_pr_ngspice/latest/cells/nfet_03v3_nvt/sky130_fd_pr__nfet_03v3_nvt__mismatch.corner.spice
-* Resistor/tmp/kustinj/ee272bclone/sky130_fd_pr_ngspice/latest/Capacitor
-.include /tmp/kustinj/ee272bclone/sky130_fd_pr_ngspice/latest/models/r+c/res_typical__cap_typical.spice
-.include /tmp/kustinj/ee272bclone/sky130_fd_pr_ngspice/latest/models/r+c/res_typical__cap_typical__lin.spice
-* Special cells
-.include /tmp/kustinj/ee272bclone/sky130_fd_pr_ngspice/latest/models/corners/tt/specialized_cells.spice
-* All models
-.include /tmp/kustinj/ee272bclone/sky130_fd_pr_ngspice/latest/models/all.spice
-.include /tmp/kustinj/ee272bclone/open_pdks/sky130A/libs.ref/sky130_fd_pr/spice/sky130_fd_pr__pnp_05v5_W3p40L3p40.model.spice
-*.include /tmp/kustinj/ee272bclone/open_pdks/sky130A/libs.ref/sky130_fd_pr/spice/sky130_fd_pr__pnp_05v5_W3p40L3p40.spice
-* Corner
-.include /tmp/kustinj/ee272bclone/sky130_fd_pr_ngspice/latest/models/corners/tt/rf.spice
 
+
+* sim_top
+
+.lib ../open_pdks/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.include /tmp/kustinj/ee272bclone/open_pdks/sky130A/libs.ref/sky130_fd_pr/spice/sky130_fd_pr__pnp_05v5_W3p40L3p40.model.spice
+
+.option SEED=random
 .ic v(x0.amplifier_0/Vgate)=0 v(x0.amplifier_0/vg)=0 
 + v(x0.amplifier_0/Vx)=0 v(x0.amplifier_0/vq)=0 v(Vbg)=0 
 + v(x0.amplifier_0/va)=0 v(x0.amplifier_0/vb)=0
-.param mc_mm_switch=0
+.param mc_mm_switch=1
 .param VDD=1.8
 
 V1 VDD GND {VDD} pwl 0us 0 5us {VDD}
@@ -382,6 +412,7 @@ X0 Vbg porst VDD GND bandgaptop_flat
 .option savecurrents
 .control
 save all
+let randomseed = $rndseed
 *op
 option temp=27
 tran 1n 11u
@@ -389,11 +420,12 @@ option temp=0
 tran 1n 12u
 option temp=70
 tran 1n 12u
-write tbtran_nopex_70degc_vbg.raw
+write tbtran_nopex_70degc_vbg.raw all 
 setplot tran2
-write tbtran_nopex_0degc_vbg.raw
+write tbtran_nopex_0degc_vbg.raw all 
 setplot tran1
-write tbtran_nopex_27degc_vbg.raw
+write tbtran_nopex_27degc_vbg.raw all 
+write tbtran_nopex_randomseed.raw randomseed
 .endc
 
 .GLOBAL VDD

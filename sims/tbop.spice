@@ -1,0 +1,16 @@
+.param mc_mm_switch=0
+.param VDD=1.8
+V1 VDD GND 'VDD'
+
+X0 porst Vbg bandgaptop_flat
+.option RSHUNT=1e20
+.option savecurrents
+.control
+save all
+op
+write tbop.raw
+.endc
+
+.GLOBAL VDD
+.GLOBAL GND
+.end

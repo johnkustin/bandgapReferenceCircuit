@@ -1,0 +1,2 @@
+.lib ../open_pdks/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.include /tmp/kustinj/ee272bclone/open_pdks/sky130A/libs.tech/ngspice/sky130_fd_pr__model__pnp.model.spice

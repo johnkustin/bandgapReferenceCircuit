@@ -1,7 +1,7 @@
-extract do local
+# extract do local
 extract all
-ext2sim labels on
-ext2sim
+# ext2sim labels on
+ext2sim 
 extresist tolerance 10
 extresist
 ext2spice lvs

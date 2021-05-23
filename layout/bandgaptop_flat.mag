@@ -1,7 +1,7 @@
 magic
 tech sky130A
 magscale 1 2
-timestamp 1621400249
+timestamp 1621626904
 << nwell >>
 rect -9600 9500 7778 9502
 rect -19400 1000 -9872 4342
@@ -5136,6 +5136,14 @@ rect 18312 2286 18346 2320
 rect 18402 2286 18436 2320
 rect 18492 2286 18526 2320
 << psubdiff >>
+rect -24404 27166 20956 27190
+rect -24404 26166 -24380 27166
+rect 20932 26166 20956 27166
+rect -24404 26142 20956 26166
+rect 19884 25142 20932 25166
+rect -24356 25118 -23308 25142
+rect -24356 966 -24332 25118
+rect -23332 966 -23308 25118
 rect -21540 25036 -10308 25060
 rect -21540 24270 -21516 25036
 rect -10332 24270 -10308 25036
@@ -8509,6 +8517,14 @@ rect 18754 1988 18816 1999
 rect 18850 1988 18884 2022
 rect 18754 1965 18884 1988
 rect 12444 1930 18884 1965
+rect -24356 942 -23308 966
+rect -24380 -58 18908 -34
+rect -24380 -1058 -24356 -58
+rect 18884 -1058 18908 -58
+rect -24380 -1082 18908 -1058
+rect 19884 -1082 19908 25142
+rect 20908 -1082 20932 25142
+rect 19884 -1106 20932 -1082
 << nsubdiff >>
 rect 12607 12052 13569 12071
 rect 12607 12018 12718 12052
@@ -11739,6 +11755,8 @@ rect -15768 1196 -15668 1296
 rect -13326 1196 -13226 1296
 rect -15768 1146 -13226 1196
 << psubdiffcont >>
+rect -24380 26166 20932 27166
+rect -24332 966 -23332 25118
 rect -21516 24270 -10332 25036
 rect -9756 15196 -9186 21500
 rect -6512 15196 -5942 21500
@@ -13750,6 +13768,8 @@ rect 18540 1965 18574 1999
 rect 18630 1965 18664 1999
 rect 18720 1965 18754 1999
 rect 18816 1988 18850 2022
+rect -24356 -1058 18884 -58
+rect 19908 -1082 20908 25142
 << nsubdiffcont >>
 rect 12718 12018 12752 12052
 rect 12808 12018 12842 12052
@@ -15641,6 +15661,18 @@ rect 10700 15196 11270 21500
 rect 11518 15196 12088 21500
 rect 12336 15196 12906 21500
 << locali >>
+rect -24404 27182 -23380 27190
+rect 19956 27182 20956 27190
+rect -24404 27166 20956 27182
+rect -24404 26166 -24380 27166
+rect 20932 26166 20956 27166
+rect -24404 26150 20956 26166
+rect -24404 25134 -23380 26150
+rect 19956 25158 20956 26150
+rect 19892 25142 20956 25158
+rect -24404 25118 -23316 25134
+rect -24404 966 -24332 25118
+rect -23332 966 -23316 25118
 rect -6534 21562 -5660 21994
 rect -2636 21932 -182 21994
 rect -2636 21562 -752 21932
@@ -28061,6 +28093,18 @@ rect 18684 1918 18884 1930
 rect 7866 1100 7966 1200
 rect 8366 1100 8466 1200
 rect 7866 1000 8466 1100
+rect -24404 950 -23316 966
+rect -24404 -42 -23380 950
+rect -24404 -58 18900 -42
+rect -24404 -1058 -24356 -58
+rect 18884 -82 18900 -58
+rect 19892 -82 19908 25142
+rect 18884 -1058 19908 -82
+rect -24404 -1074 19908 -1058
+rect -24404 -1106 -23380 -1074
+rect 17908 -1082 19908 -1074
+rect 20908 -1082 20956 25142
+rect 17908 -1106 20956 -1082
 << viali >>
 rect -21532 25036 -10316 25052
 rect -21532 24270 -21516 25036
@@ -37220,8 +37264,24 @@ flabel metal1 -19254 8502 -18792 8700 1 FreeSans 1600 0 0 0 porst
 port 2 n
 flabel metal1 -2858 12824 1810 13500 1 FreeSans 1600 0 0 0 Vbg
 port 1 n
-flabel metal3 -20266 1000 -19556 1422 1 FreeSans 1600 0 0 0 VDD!
-port 3 n
+flabel metal2 -21312 4728 -19530 4798 1 FreeSans 800 0 0 0 ampcurrentsource_0/Vq
+flabel metal2 -21312 4938 -19530 5008 1 FreeSans 800 0 0 0 ampcurrentsource_0/Vx
+flabel locali -20452 5698 -20370 5726 1 FreeSans 800 0 0 0 ampcurrentsource_0/GND!
+flabel metal2 -14560 1438 -14544 1562 5 FreeSans 800 0 0 0 amplifier_0/VDD!
+flabel metal2 -13906 4666 -13890 4790 5 FreeSans 800 0 0 0 amplifier_0/Vq
+flabel metal2 -13964 6926 -13948 7006 5 FreeSans 800 0 0 0 amplifier_0/Va
+flabel metal2 -14736 6786 -14720 6866 5 FreeSans 800 0 0 0 amplifier_0/Vb
+flabel metal2 -13230 4370 -13136 4636 5 FreeSans 800 0 0 0 amplifier_0/Vgate
+flabel metal2 -14954 4370 -14860 4636 5 FreeSans 800 0 0 0 amplifier_0/Vgate
+flabel metal1 -16312 4384 -16278 4476 5 FreeSans 800 0 0 0 amplifier_0/vg
+flabel metal2 -12212 1238 -12190 1362 5 FreeSans 800 0 0 0 amplifier_0/Vx
+flabel psubdiffcont -17434 5042 -17334 6642 5 FreeSans 800 0 0 0 amplifier_0/GND!
+flabel psubdiff -11984 6642 -11784 6742 5 FreeSans 800 180 0 0 amplifier_0/GND!
+rlabel via1 -8118 1418 -8072 1462 5 currentmirror_0/Vgate
+rlabel metal3 -7396 1062 -7262 1180 5 currentmirror_0/VDD!
+flabel metal1 -590 9602 -290 9702 5 FreeSans 1600 0 0 0 currentmirror_0/Vbg
+flabel metal2 -590 10202 -390 10302 5 FreeSans 1600 0 0 0 currentmirror_0/Vb
+flabel metal2 -590 10802 -390 10902 5 FreeSans 1600 0 0 0 currentmirror_0/Va
 flabel metal2 11606 2220 12742 3168 7 FreeSans 1600 0 0 0 bandgapcorev3_0/Vbneg
 flabel metal2 884 21500 1454 21932 1 FreeSans 800 90 0 0 bandgapcorev3_0/VbEnd
 flabel metal2 1702 14764 2272 15196 1 FreeSans 800 90 0 0 bandgapcorev3_0/VbgEnd
@@ -37229,7 +37289,7 @@ flabel metal2 66 20700 636 21932 1 FreeSans 800 90 0 0 bandgapcorev3_0/VaEnd
 flabel metal2 9810 14498 10502 15190 1 FreeSans 1600 90 0 0 bandgapcorev3_0/Vbg
 flabel metal2 11440 14492 12144 15196 1 FreeSans 1600 90 0 0 bandgapcorev3_0/Vb
 flabel metal1 10622 13926 11326 14498 3 FreeSans 1600 0 0 0 bandgapcorev3_0/Va
-flabel metal1 -4846 16332 -3380 16774 3 FreeSans 1600 0 0 0 bandgapcorev3_0/GND!
+flabel locali 18778 5656 18864 5876 3 FreeSans 1600 0 0 0 bandgapcorev3_0/GND!
 flabel locali 18108 11530 18356 11634 0 FreeSans 400 0 0 0 bandgapcorev3_0/sky130_fd_pr__pnp_05v5_W3p40L3p40_0[0,0]/Emitter
 flabel locali 18196 10959 18297 11008 0 FreeSans 400 0 0 0 bandgapcorev3_0/sky130_fd_pr__pnp_05v5_W3p40L3p40_0[0,0]/Collector
 flabel locali 18202 11118 18320 11158 0 FreeSans 400 0 0 0 bandgapcorev3_0/sky130_fd_pr__pnp_05v5_W3p40L3p40_0[0,0]/Base
@@ -37350,24 +37410,8 @@ flabel locali 14338 2102 14456 2142 0 FreeSans 400 0 0 0 bandgapcorev3_0/sky130_
 flabel locali 12956 2514 13204 2618 0 FreeSans 400 0 0 0 bandgapcorev3_0/sky130_fd_pr__pnp_05v5_W3p40L3p40_0[7,4]/Emitter
 flabel locali 13044 1943 13145 1992 0 FreeSans 400 0 0 0 bandgapcorev3_0/sky130_fd_pr__pnp_05v5_W3p40L3p40_0[7,4]/Collector
 flabel locali 13050 2102 13168 2142 0 FreeSans 400 0 0 0 bandgapcorev3_0/sky130_fd_pr__pnp_05v5_W3p40L3p40_0[7,4]/Base
-flabel metal2 -14560 1438 -14544 1562 5 FreeSans 800 0 0 0 amplifier_0/VDD!
-flabel metal2 -13906 4666 -13890 4790 5 FreeSans 800 0 0 0 amplifier_0/Vq
-flabel metal2 -13964 6926 -13948 7006 5 FreeSans 800 0 0 0 amplifier_0/Va
-flabel metal2 -14736 6786 -14720 6866 5 FreeSans 800 0 0 0 amplifier_0/Vb
-flabel metal2 -13230 4370 -13136 4636 5 FreeSans 800 0 0 0 amplifier_0/Vgate
-flabel metal2 -14954 4370 -14860 4636 5 FreeSans 800 0 0 0 amplifier_0/Vgate
-flabel metal1 -16312 4384 -16278 4476 5 FreeSans 800 0 0 0 amplifier_0/vg
-flabel metal2 -12212 1238 -12190 1362 5 FreeSans 800 0 0 0 amplifier_0/Vx
-flabel psubdiffcont -17434 5042 -17334 6642 5 FreeSans 800 0 0 0 amplifier_0/GND!
-flabel psubdiff -11984 6642 -11784 6742 5 FreeSans 800 180 0 0 amplifier_0/GND!
-rlabel via1 -8118 1418 -8072 1462 5 currentmirror_0/Vgate
-rlabel metal3 -7396 1062 -7262 1180 5 currentmirror_0/VDD!
-flabel metal1 -590 9602 -290 9702 5 FreeSans 1600 0 0 0 currentmirror_0/Vbg
-flabel metal2 -590 10202 -390 10302 5 FreeSans 1600 0 0 0 currentmirror_0/Vb
-flabel metal2 -590 10802 -390 10902 5 FreeSans 1600 0 0 0 currentmirror_0/Va
-flabel metal2 -21312 4728 -19530 4798 1 FreeSans 800 0 0 0 ampcurrentsource_0/Vq
-flabel metal2 -21312 4938 -19530 5008 1 FreeSans 800 0 0 0 ampcurrentsource_0/Vx
-flabel locali -20452 5698 -20370 5726 1 FreeSans 800 0 0 0 ampcurrentsource_0/GND!
-rlabel locali -20854 5656 -19990 5760 1 GND!
+rlabel psubdiffcont -24356 -1058 18884 -58 1 GND
 port 4 n
+rlabel metal3 -20266 1000 -19556 1422 1 VDD
+port 5 n
 << end >>

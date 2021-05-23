@@ -1,0 +1,37 @@
+.option SEED=random
+.ic v(x0.amplifier_0/Vgate)=0 v(x0.amplifier_0/vg)=0 
++ v(x0.amplifier_0/Vx)=0 v(x0.amplifier_0/vq)=0 v(Vbg)=0 
++ v(x0.amplifier_0/va)=0 v(x0.amplifier_0/vb)=0
+.param mc_mm_switch=0
+.param VDD=1.8
+
+V1 VDD GND {VDD} pwl 0us 0 1us {VDD}
+V2 porst GND 0 pulse(0V 1.8V 2us 1us 1us 1us)
+V3 VSUBS GND 0
+
+X0 Vbg porst VDD GND bandgaptop_flat
+
+.option RSHUNT=1e20
+.option savecurrents
+.control
+save all
+let randomseed = $rndseed
+*op
+option temp=27
+tran 1n 11u
+option temp=0
+tran 1n 12u
+option temp=70
+tran 1n 12u
+write TESTTYPENAMEHERE_70degc_vbg.raw all 
+setplot tran2
+write TESTTYPENAMEHERE_0degc_vbg.raw all 
+setplot tran1
+write TESTTYPENAMEHERE_27degc_vbg.raw all 
+write TESTTYPENAMEHERE_randomseed.raw randomseed
+.endc
+
+.GLOBAL VDD
+.GLOBAL GND
+.GLOBAL VSUBS
+.end
