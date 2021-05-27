@@ -1,0 +1,78 @@
+magic
+tech sky130A
+magscale 1 2
+timestamp 1622081478
+<< nwell >>
+rect -66 377 450 897
+<< pwell >>
+rect -26 -43 410 43
+<< mvpsubdiff >>
+rect 0 -17 31 17
+rect 65 -17 127 17
+rect 161 -17 223 17
+rect 257 -17 319 17
+rect 353 -17 384 17
+<< mvnsubdiff >>
+rect 0 797 31 831
+rect 65 797 127 831
+rect 161 797 223 831
+rect 257 797 319 831
+rect 353 797 384 831
+<< mvpsubdiffcont >>
+rect 31 -17 65 17
+rect 127 -17 161 17
+rect 223 -17 257 17
+rect 319 -17 353 17
+<< mvnsubdiffcont >>
+rect 31 797 65 831
+rect 127 797 161 831
+rect 223 797 257 831
+rect 319 797 353 831
+<< locali >>
+rect 0 797 31 831
+rect 65 797 127 831
+rect 161 797 223 831
+rect 257 797 319 831
+rect 353 797 384 831
+rect 0 -17 31 17
+rect 65 -17 127 17
+rect 161 -17 223 17
+rect 257 -17 319 17
+rect 353 -17 384 17
+<< viali >>
+rect 31 797 65 831
+rect 127 797 161 831
+rect 223 797 257 831
+rect 319 797 353 831
+rect 31 -17 65 17
+rect 127 -17 161 17
+rect 223 -17 257 17
+rect 319 -17 353 17
+<< metal1 >>
+rect 0 831 384 837
+rect 0 797 31 831
+rect 65 797 127 831
+rect 161 797 223 831
+rect 257 797 319 831
+rect 353 797 384 831
+rect 0 791 384 797
+rect 0 689 384 763
+rect 0 51 384 125
+rect 0 17 384 23
+rect 0 -17 31 17
+rect 65 -17 127 17
+rect 161 -17 223 17
+rect 257 -17 319 17
+rect 353 -17 384 17
+rect 0 -23 384 -17
+<< labels >>
+rlabel comment s 0 0 0 0 4 fill_4
+flabel metal1 s 0 0 384 23 0 FreeSans 340 0 0 0 VNB
+flabel metal1 s 0 51 384 125 0 FreeSans 340 0 0 0 VGND
+flabel metal1 s 192 11 192 11 0 FreeSans 340 0 0 0 VNB
+flabel metal1 s 0 689 384 763 0 FreeSans 340 0 0 0 VPWR
+flabel metal1 s 0 791 384 814 0 FreeSans 340 0 0 0 VPB
+flabel metal1 s 192 802 192 802 0 FreeSans 340 0 0 0 VPB
+<< properties >>
+string FIXED_BBOX 0 0 384 814
+<< end >>
