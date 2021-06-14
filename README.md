@@ -1,3 +1,5 @@
+⚠️ this README has not been updated to reflect the final state of the bandgap circuit submitted to efabless.
+
 # stanford ee272b project - bandgap voltage reference in SKY130 technology
 so you want to make a voltage reference. welcome.  
 this readme will first cover what a bandgap circuit is and how it's supposed to work. if you know this already, skip past it to the "prerequisites" section to ensure you have the tools to use this repo.
