@@ -92,19 +92,23 @@ a printout of relevant operating point voltages is available at `sims/tsmc_bandg
 if you want to play with simulations yourself, use `schematics/tsmc_bandgap_real.sch` as your sandbox. the difference between this schematic and the schematics in the test descriptions table is that the schematics in the table have specific simulation commands attached to them. `schematics/tsmc_bandgap_real.sch` has many ngspice commands in the schematic, **which are enabled and disabled by the "spice_ignore" variable in the command listing.** if you want a set of simulation commands to be ignore, set `spice_ignore = True`, but if you want to use a set of simulation commands, set `spice_ignore = False`.
 
 ### summary of design metrics
+#### VDD = 1.8 V, TT corner, no mismatch
 |   | intended specs | achieved specs |
 | - | -------------- | -------------- |
-| Vref | 1 V | 963.87 mV |
-| TC (ppm/degC) | <= 50 | 44 |
-| Area (mm^2) | <= 0.1 | 0.00330436735 |
-| Inaccuracy | <= 2 % | 3.07 % |
-| Start up Time (microseconds) | N/A | 2.129 |
-| Power (microwatts) | N/A | 61.013 |
-| Supply (V) | 1.8 | 1.8 (+ 4.6 %, - 4 %)|
+| Vref | 1 V | 970.312 mV |
+| TC (ppm/degC) | <= 50 | 3.6 |
+| Area (mm^2) | <= 0.1 | 0.03208766 |
+| Inaccuracy | <= 2 % | 1.545 % |
+| Start up Time (microseconds) | N/A | 3.12 :warning: |
+| Power (microwatts) | N/A | 60.484 |
+| Supply (V) | 1.8 | 1.8 |   
+
+⚠️ Reset pulse consists of 1 microsecond rise, pulse width, and fall time.
 
 
 
 ### test results
+#### ❗These test results have not been updated to reflect the performance of the final GDS.
 below are examples of what you should expect to see when running the tests.
 #### `ppm.py`
 ![result of running `ppm.py`, which processes the output of the transient test](plots/readme/tran.png) 
