@@ -97,8 +97,6 @@ if you want to play with simulations yourself, use `schematics/tsmc_bandgap_real
 
 
 ### test results
-#### ❗These test results have not been updated to reflect the performance of the final GDS.
-below are examples of what you should expect to see when running the tests.
 #### `ppm.py`
 ![result of running `ppm.py`, which processes the output of the transient test, tt](plots/readme/ee272b-end-quarter-presentation-12.png) 
 
