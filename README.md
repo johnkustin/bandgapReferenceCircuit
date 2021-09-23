@@ -14,6 +14,8 @@
 9. viewing unscripted results
 10. summary of design metrics
 11. test results
+12. layout pictures
+13. transient reset power
 
 ### what's a bandgap circuit?
 a circuit which provides a voltage that's (ideally) independent of temperature. the circuit in this repository is shown below.
@@ -91,62 +93,34 @@ if you want to play with simulations yourself, use `schematics/tsmc_bandgap_real
 
 ### summary of design metrics
 #### VDD = 1.8 V, TT corner, no mismatch
-|   | intended specs | achieved specs |
-| - | -------------- | -------------- |
-| Vref | 1 V | 970.312 mV |
-| TC (ppm/degC) | <= 50 | 3.6 |
-| Area (mm^2) | <= 0.1 | 0.03208766 |
-| Inaccuracy | <= 2 % | 1.545 % |
-| Start up Time (microseconds) | N/A | 3.12 :warning: |
-| Power (microwatts) | N/A | 60.484 |
-| Supply (V) | 1.8 | 1.8 |   
-
-⚠️ Reset pulse consists of 1 microsecond rise, pulse width, and fall time.
-
+![results](plots/readme/ee272b-end-quarter-presentation-5.png)  
 
 
 ### test results
 #### ❗These test results have not been updated to reflect the performance of the final GDS.
 below are examples of what you should expect to see when running the tests.
 #### `ppm.py`
-![result of running `ppm.py`, which processes the output of the transient test](plots/readme/tran.png) 
+![result of running `ppm.py`, which processes the output of the transient test, tt](plots/readme/ee272b-end-quarter-presentation-12.png) 
+
+![result of running `ppm.py`, which processes the output of the transient test, ss](plots/readme/ee272b-end-quarter-presentation-13.png) 
+
+![result of running `ppm.py`, which processes the output of the transient test, ff](plots/readme/ee272b-end-quarter-presentation-14.png) 
 
 #### `variation.py`
-![result of running `variation.py`, which processes the output of the transient test with normally distributed VDD and parameter variations](plots/readme/tran_gauss.png)  
-from this plot, we verify the supply voltage is 1.8 V and can withstand some variation:  
-`Vdd = 1.8 (+ 4.6 %, - 4 %)`  
-mean reference voltage of `964.729 mV`  
-standard deviation of reference voltage of `29.682 mV`  
-inaccuracy of `0.030767 = 3.0767 %`  
-`0 <= Temperature <= 70`  
-#### tempsweep.py
-![result of running `tempsweep.py`, which processes the output of the dc sweep of temperature from -10 to 80 degrees celsius](plots/readme/tempsweep.png)  
-from this plot, we verify the refernce voltage at 27 degrees celsius is nearly 1V (963.867 mV), the circuit works from 0 to 70 degrees celsius, and the ppm spec is less than 50 ppm/degC: `44.495 ppm/degC`.   
+![result of running `variation.py`, Monte Carlo mismatch, 0degC](plots/readme/ee272b-end-quarter-presentation-9.png)
 
-#### `vdsat.py`
-```
-vdsats
-vdsat1 = 0.119118534825
-vdsat13 = 0.119989426873
-vdsat2 = 0.119117901861
-vdsat3 = 0.117848616789
-vdsat4 = 0.116704938791
-vdsat5 = 0.0805043993246
-vdsat6 = 0.124497921656
-vdsat7 = 0.126205001268
-vdsat8 = 0.116669110799
-vdsat9 = 0.0805160282384
-vdsmargins
-vds1margin = 0.962670748553
-vds13margin = 1.13964936048
-vds2margin = 0.962545006157
-vds3margin = 0.718283119402
-vds4margin = 0.274703493756
-vds5margin = 1.058842579
-vds6margin = 0.144746667472
-vds7margin = 0.414156211377
-vds8margin = 0.281004171586
-vds9margin = 1.05256610025
-All Vds margins are positive
-The lowest Vds margin is 0.144746667472
-```  
+![result of running `variation.py`, Monte Carlo mismatch, 27degC](plots/readme/ee272b-end-quarter-presentation-10.png)  
+
+![result of running `variation.py`, Monte Carlo mismatch, 70degC](plots/readme/ee272b-end-quarter-presentation-11.png)  
+
+`0 <= Temperature <= 70`  
+
+### layout pictures
+![layout1](plots/readme/ee272b-end-quarter-presentation-6.png)  
+
+![layout2](plots/readme/ee272b-end-quarter-presentation-7.png)  
+
+![layout3](plots/readme/ee272b-end-quarter-presentation-8.png)  
+
+### transient wakeup power
+![wakeup](plots/readme/ee272b-end-quarter-presentation-15.png) 
