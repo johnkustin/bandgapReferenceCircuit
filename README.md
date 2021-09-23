@@ -3,19 +3,52 @@
 # stanford ee272b project - bandgap voltage reference in SKY130 technology
 
 ## table of contents
-1. what's a bandgap circuit?
-2. how's the bandgap circuit work?
-3. prerequisites
-4. steps to set up the repository
-5. design files
-6. running all tests
-7. test descriptions
-8. viewing results
-9. viewing unscripted results
-10. summary of design metrics
-11. test results
-12. layout pictures
-13. transient reset power
+1. summary of design metrics
+2. test results
+3. layout pictures
+4. transient reset power
+5. what's a bandgap circuit?
+6. how's the bandgap circuit work?
+7. prerequisites
+8. steps to set up the repository
+9. design files
+10. running all tests
+11. test descriptions
+12. viewing results
+13. viewing unscripted results
+
+
+### summary of design metrics
+#### VDD = 1.8 V, TT corner, no mismatch
+![results](plots/readme/ee272b-end-quarter-presentation-5.png)  
+
+
+### test results
+#### `ppm.py`
+![result of running `ppm.py`, which processes the output of the transient test, tt](plots/readme/ee272b-end-quarter-presentation-12.png) 
+
+![result of running `ppm.py`, which processes the output of the transient test, ss](plots/readme/ee272b-end-quarter-presentation-13.png) 
+
+![result of running `ppm.py`, which processes the output of the transient test, ff](plots/readme/ee272b-end-quarter-presentation-14.png) 
+
+#### `variation.py`
+![result of running `variation.py`, Monte Carlo mismatch, 0degC](plots/readme/ee272b-end-quarter-presentation-9.png)
+
+![result of running `variation.py`, Monte Carlo mismatch, 27degC](plots/readme/ee272b-end-quarter-presentation-10.png)  
+
+![result of running `variation.py`, Monte Carlo mismatch, 70degC](plots/readme/ee272b-end-quarter-presentation-11.png)  
+
+`0 <= Temperature <= 70`  
+
+### layout pictures
+![layout1](plots/readme/ee272b-end-quarter-presentation-6.png)  
+
+![layout2](plots/readme/ee272b-end-quarter-presentation-7.png)  
+
+![layout3](plots/readme/ee272b-end-quarter-presentation-8.png)  
+
+### transient wakeup power
+![wakeup](plots/readme/ee272b-end-quarter-presentation-15.png) 
 
 ### what's a bandgap circuit?
 a circuit which provides a voltage that's (ideally) independent of temperature. the circuit in this repository is shown below.
@@ -90,35 +123,3 @@ a printout of relevant operating point voltages is available at `sims/tsmc_bandg
 
 ## running your own simulations
 if you want to play with simulations yourself, use `schematics/tsmc_bandgap_real.sch` as your sandbox. the difference between this schematic and the schematics in the test descriptions table is that the schematics in the table have specific simulation commands attached to them. `schematics/tsmc_bandgap_real.sch` has many ngspice commands in the schematic, **which are enabled and disabled by the "spice_ignore" variable in the command listing.** if you want a set of simulation commands to be ignore, set `spice_ignore = True`, but if you want to use a set of simulation commands, set `spice_ignore = False`.
-
-### summary of design metrics
-#### VDD = 1.8 V, TT corner, no mismatch
-![results](plots/readme/ee272b-end-quarter-presentation-5.png)  
-
-
-### test results
-#### `ppm.py`
-![result of running `ppm.py`, which processes the output of the transient test, tt](plots/readme/ee272b-end-quarter-presentation-12.png) 
-
-![result of running `ppm.py`, which processes the output of the transient test, ss](plots/readme/ee272b-end-quarter-presentation-13.png) 
-
-![result of running `ppm.py`, which processes the output of the transient test, ff](plots/readme/ee272b-end-quarter-presentation-14.png) 
-
-#### `variation.py`
-![result of running `variation.py`, Monte Carlo mismatch, 0degC](plots/readme/ee272b-end-quarter-presentation-9.png)
-
-![result of running `variation.py`, Monte Carlo mismatch, 27degC](plots/readme/ee272b-end-quarter-presentation-10.png)  
-
-![result of running `variation.py`, Monte Carlo mismatch, 70degC](plots/readme/ee272b-end-quarter-presentation-11.png)  
-
-`0 <= Temperature <= 70`  
-
-### layout pictures
-![layout1](plots/readme/ee272b-end-quarter-presentation-6.png)  
-
-![layout2](plots/readme/ee272b-end-quarter-presentation-7.png)  
-
-![layout3](plots/readme/ee272b-end-quarter-presentation-8.png)  
-
-### transient wakeup power
-![wakeup](plots/readme/ee272b-end-quarter-presentation-15.png) 
