@@ -110,8 +110,7 @@ if you want to play with simulations yourself, use `schematics/tsmc_bandgap_real
 below are examples of what you should expect to see when running the tests.
 #### `ppm.py`
 ![result of running `ppm.py`, which processes the output of the transient test](plots/readme/tran.png) 
-from this plot, we verify the reference voltage at 27 degrees celsius is nearly 1V (963.877 mV), the circuit works from 0 to 70 degrees celsius, and the ppm spec is less than 50 ppm/degC: `44.262 ppm/degC`.  
-we can also verify taht the settling time is nearly 2 microseconds.
+
 #### `variation.py`
 ![result of running `variation.py`, which processes the output of the transient test with normally distributed VDD and parameter variations](plots/readme/tran_gauss.png)  
 from this plot, we verify the supply voltage is 1.8 V and can withstand some variation:  
