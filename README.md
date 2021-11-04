@@ -51,8 +51,8 @@
 ![wakeup](plots/readme/ee272b-end-quarter-presentation-15.png) 
 
 ### what's a bandgap circuit?
-a circuit which provides a voltage that's (ideally) independent of temperature. the circuit in this repository is shown below.
-![a screenshot of the circuit in this repository](schematics/tsmc-bandgap-real.png)
+a circuit which provides a voltage that's (ideally) independent of temperature. the final circuit in this repository is shown below.
+![a screenshot of the circuit in this repository](plots/readme/finalschm.png)
 ### how's the bandgap circuit work?
 A bandgap circuit consists of the following blocks  
 
