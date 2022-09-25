@@ -20,12 +20,19 @@
 
 ### measurement results of 1 sample
 ![meas setup](slides/bgrslides.004.jpeg)  
+measurement setup  
 ![tec closeup](slides/bgrslides.005.jpeg)  
+close up of the thermoelectric cooler  
 ![wiring diag](slides/bgrslides.006.jpeg)  
+wiring diagram for the test setup  
 ![vref vs load vs temp](slides/bgrslides.007.jpeg)  
+Output reference voltage vs. load and temperature  
 ![vref vs load](slides/bgrslides.008.jpeg)  
+Output reference voltage vs. load for fixed temperature  
 ![vref vs vdd](slides/bgrslides.009.jpeg)  
+Output reference voltage vs. VDD  
 ![psrr](slides/bgrslides.010.jpeg)  
+Power supply rejection ratio of output reference voltage at one frequency  
 
 ### summary of design metrics
 #### VDD = 1.8 V, TT corner, no mismatch
