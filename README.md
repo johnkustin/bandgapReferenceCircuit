@@ -34,6 +34,8 @@ Output reference voltage vs. VDD
 ![psrr](slides/bgrslides.010.jpeg)  
 Power supply rejection ratio of output reference voltage at one frequency  
 
+*Important disclaimer:* As you can see, there is a large discrepancy between the measured temperature coefficient and the one obtained from simulation. My guess as to why they are different is a difference between the BJT models and what was fabricated. This is only a guess now because I haven't done any investigation and I could only measure one sample. Either I or someone else needs to tweak the BJT size parameters in the schematic and investigate in simulation if the change of BJT parameters can induce a temperature coefficient that is on the same order as what was measured. In other words, there is more work to be done for this project and repository :), but read on with this disclaimer in mind.
+
 ### summary of design metrics
 #### VDD = 1.8 V, TT corner, no mismatch
 ![results](plots/readme/ee272b-end-quarter-presentation-5.png)  
