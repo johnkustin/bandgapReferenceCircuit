@@ -19,7 +19,14 @@
 13. viewing unscripted results
 
 ### measurement results of 1 sample
-todo. 
+![meas setup](slides/bgrslides.004.jpeg)  
+![tec closeup](slides/bgrslides.005.jpeg)  
+![wiring diag](slides/bgrslides.006.jpeg)  
+![vref vs load vs temp](slides/bgrslides.007.jpeg)  
+![vref vs load](slides/bgrslides.008.jpeg)  
+![vref vs vdd](slides/bgrslides.009.jpeg)  
+![psrr](slides/bgrslides.010.jpeg)  
+
 ### summary of design metrics
 #### VDD = 1.8 V, TT corner, no mismatch
 ![results](plots/readme/ee272b-end-quarter-presentation-5.png)  
