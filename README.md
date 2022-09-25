@@ -3,6 +3,7 @@
 # stanford ee272b project - bandgap voltage reference in SKY130 technology
 
 ## table of contents
+0. measurement results of 1 sample
 1. summary of design metrics
 2. test results
 3. layout pictures
@@ -17,7 +18,8 @@
 12. viewing results
 13. viewing unscripted results
 
-
+### measurement results of 1 sample
+todo. 
 ### summary of design metrics
 #### VDD = 1.8 V, TT corner, no mismatch
 ![results](plots/readme/ee272b-end-quarter-presentation-5.png)  
