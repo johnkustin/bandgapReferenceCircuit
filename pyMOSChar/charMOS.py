@@ -93,7 +93,7 @@ class charMOS:
         netlistN.write("vgs  nGate  0 dc 0\n")
         netlistN.write("vbs  nBulk  0 dc {-mosChar_sb}\n")
         netlistN.write("\n")
-        netlistN.write(f"xn nDrain nGate 0 nBulk {{self.mosDat['modelN']}}  L={{self.mosDat['length']}*1e-6} W={{self.mosDat['width']}*1e-6}\n")
+        netlistN.write(f"xn nDrain nGate 0 nBulk {{self.mosDat['modelN']}}  L={{{self.mosDat['length']}*1e-6}} W={{self.mosDat['width']}}*1e-6}\n")
         netlistN.write("\n")
         netlistN.write(".options dccap post brief accurate\n")
         netlistN.write(".control\n")
