@@ -1,5 +1,5 @@
 import sys
-import charMOS
+from charMOS import charMOS
 import numpy as np
 import argparse
 
