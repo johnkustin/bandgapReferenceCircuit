@@ -202,8 +202,8 @@ class charMOS:
         netlist.write('vgsp     (vgp 0)         vsource dc=-mosChar_gs \n')
         netlist.write('vbsp     (vbp 0)         vsource dc=mosChar_sb  \n')
         netlist.write('\n')
-        netlist.write(f'xn (vdn vgn 0 vbn) {self.mosDat['modelN']} l={self.mosDat['length']*1e-6} w={self.mosDat['width']}u multi=1 nf={numfing} _ccoflag=1\n'
-        netlist.write(f'xp (vdp vgp 0 vbp) {self.mosDat['modelN']} l={self.mosDat['length']*1e-6} w={self.mosDat['width']}u multi=1 nf={numfing} _ccoflag=1\n'
+        netlist.write(f'xn (vdn vgn 0 vbn) {self.mosDat["modelN"]} l={self.mosDat["length"]*1e-6} w={self.mosDat["width"]}u multi=1 nf={numfing} _ccoflag=1\n'
+        netlist.write(f'xp (vdp vgp 0 vbp) {self.mosDat["modelN"]} l={self.mosDat["length"]*1e-6} w={self.mosDat["width"]}u multi=1 nf={numfing} _ccoflag=1\n'
         netlist.write('\n')
         netlist.write('options1 options gmin=1e-13 dc_pivot_check=yes reltol=1e-4 vabstol=1e-6 iabstol=1e-10 temp=27 tnom=27 rawfmt=nutbin rawfile="./charMOS.raw" save=none\n')
         netlist.write('sweepvds sweep param=mosChar_ds start=0 stop={0} step={1} {{ \n'.format(vdsMax, vdsStep))
