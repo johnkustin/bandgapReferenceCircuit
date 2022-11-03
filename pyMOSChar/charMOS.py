@@ -57,30 +57,11 @@ class charMOS:
         assert(len(self.mosDat['nfet']['length']) == len(self.mosDat['pfet']['length']))
 
         # 4D arrays to store MOS data-->f(L,               VSB,      VDS,      VGS      )
-        self.mosDat.keys()
-        self.mosDat['nfet']['id']  = np.zeros((len(mosLengthsNfet), len(vsb), len(vds), len(vgs)))
-        self.mosDat['nfet']['vt']  = np.zeros((len(mosLengthsNfet), len(vsb), len(vds), len(vgs)))
-        self.mosDat['nfet']['gm']  = np.zeros((len(mosLengthsNfet), len(vsb), len(vds), len(vgs)))
-        self.mosDat['nfet']['gmb'] = np.zeros((len(mosLengthsNfet), len(vsb), len(vds), len(vgs)))
-        self.mosDat['nfet']['gds'] = np.zeros((len(mosLengthsNfet), len(vsb), len(vds), len(vgs)))
-        self.mosDat['nfet']['cgg'] = np.zeros((len(mosLengthsNfet), len(vsb), len(vds), len(vgs)))
-        self.mosDat['nfet']['cgs'] = np.zeros((len(mosLengthsNfet), len(vsb), len(vds), len(vgs)))
-        self.mosDat['nfet']['cgd'] = np.zeros((len(mosLengthsNfet), len(vsb), len(vds), len(vgs)))
-        self.mosDat['nfet']['cgb'] = np.zeros((len(mosLengthsNfet), len(vsb), len(vds), len(vgs)))
-        self.mosDat['nfet']['cdd'] = np.zeros((len(mosLengthsNfet), len(vsb), len(vds), len(vgs)))
-        self.mosDat['nfet']['css'] = np.zeros((len(mosLengthsNfet), len(vsb), len(vds), len(vgs)))
+        ssParams = ['id', 'vt', 'gm', 'gmb', 'gds', 'cgg', 'cgs', 'cgd', 'cgb', 'cdd', 'css'];
+        for x in ssParams:
+            self.mosDat['nfet'][x]  = np.zeros((len(self.mosDat['nfet']['length']), len(vsb), len(vds), len(vgs)))
+            self.mosDat['pfet'][x]  = np.zeros((len(self.mosDat['pfet']['length']), len(vsb), len(vds), len(vgs)))
 
-        self.mosDat['pfet']['id']  = np.zeros((len(mosLengthsPfet), len(vsb), len(vds), len(vgs)))
-        self.mosDat['pfet']['vt']  = np.zeros((len(mosLengthsPfet), len(vsb), len(vds), len(vgs)))
-        self.mosDat['pfet']['gm']  = np.zeros((len(mosLengthsPfet), len(vsb), len(vds), len(vgs)))
-        self.mosDat['pfet']['gmb'] = np.zeros((len(mosLengthsPfet), len(vsb), len(vds), len(vgs)))
-        self.mosDat['pfet']['gds'] = np.zeros((len(mosLengthsPfet), len(vsb), len(vds), len(vgs)))
-        self.mosDat['pfet']['cgg'] = np.zeros((len(mosLengthsPfet), len(vsb), len(vds), len(vgs)))
-        self.mosDat['pfet']['cgs'] = np.zeros((len(mosLengthsPfet), len(vsb), len(vds), len(vgs)))
-        self.mosDat['pfet']['cgd'] = np.zeros((len(mosLengthsPfet), len(vsb), len(vds), len(vgs)))
-        self.mosDat['pfet']['cgb'] = np.zeros((len(mosLengthsPfet), len(vsb), len(vds), len(vgs)))
-        self.mosDat['pfet']['cdd'] = np.zeros((len(mosLengthsPfet), len(vsb), len(vds), len(vgs)))
-        self.mosDat['pfet']['css'] = np.zeros((len(mosLengthsPfet), len(vsb), len(vds), len(vgs)))
 
     def genNetlistNngspice(self, fName='charNMOS.net'):
         netlistN = open(fName, 'w')
@@ -234,15 +215,15 @@ class charMOS:
             sys.exit(0)
 
         #  TODO: make sure the prog total is right. e.g. if num of nmos widths != num of pmos widths 
-        progTotal = len(mosLengthsNfet)*len(vsb)*len(mosWidthsNfet)
+        progTotal = len(self.mosDat['nfet']['length'])*len(vsb)*len(mosWidthsNfet)
         progCurr  = 0
         print("Data generation in progress. Go have a coffee...")
-        for idxL in range(len(mosLengthsNfet)):
+        for idxL in range(len(self.mosDat['nfet']['length'])):
             for idxVSB in range(len(vsb)):
                 
                 if (self.settings['simulator'] == "ngspice"):
                     myfile = open("charMOSpy.log", "a")
-                    myfile.write(f'charMOS: Simulating for NMOS L={mosLengthsNfet[idxL]} PMOS L={mosLengthsPfet[idxL]}, VSB={vsb[idxVSB]}\n')
+                    myfile.write(f'charMOS: Simulating for NMOS L={self.mosDat['nfet']['length'][idxL]} PMOS L={self.mosDat['pfet']['length'][idxL]}, VSB={vsb[idxVSB]}\n')
                     myfile.close()
 
                     runSim("charNMOS.net", "ngspice")
