@@ -59,8 +59,8 @@ class charMOS:
         # 4D arrays to store MOS data-->f(L,               VSB,      VDS,      VGS      )
         ssParams = ['id', 'vt', 'gm', 'gmb', 'gds', 'cgg', 'cgs', 'cgd', 'cgb', 'cdd', 'css'];
         for x in ssParams:
-            self.mosDat['nfet'][x]  = np.zeros((len(self.mosDat['nfet']['length']), len(vsb), len(vds), len(vgs)))
-            self.mosDat['pfet'][x]  = np.zeros((len(self.mosDat['pfet']['length']), len(vsb), len(vds), len(vgs)))
+            self.mosDat['nfet'][x]  = np.zeros((len(self.mosDat['nfet']['length']), len(self.vsb), len(self.vds), len(self.vgs)))
+            self.mosDat['pfet'][x]  = np.zeros((len(self.mosDat['pfet']['length']), len(self.vsb), len(self.vds), len(self.vgs)))
 
 
     def genNetlistNngspice(self, fName='charNMOS.net'):
