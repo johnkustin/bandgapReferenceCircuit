@@ -69,7 +69,7 @@ class charMOS:
         netlistN.write("Characterize N Channel MOSFET\n")
         netlistN.write("\n")
         devName = '@m.xn.m'+self.settings['modelN']
-        for modelFile, corner in zip(modelFiles, self.mosDat['nfet']['corners']):
+        for modelFile, corner in zip(self.settings['modelFiles'], self.mosDat['nfet']['corners']):
             netlistN.write(".lib \"{0}\" {1}\n".format(modelFile, corner))
         netlistN.write("\n")
         netlistN.write("vds  nDrain 0 dc 0\n")
@@ -116,7 +116,7 @@ class charMOS:
         netlistP.write("Characterize P Channel MOSFET\n")
         netlistP.write("\n")
         devName = '@m.xp.m'+self.settings['modelP']
-        for modelFile, corner in zip(modelFiles, self.mosDat['pfet']['corners']):
+        for modelFile, corner in zip(self.settings['modelFiles'], self.mosDat['pfet']['corners']):
             netlistP.write(".lib \"{0}\" {1}\n".format(modelFile, corner))
         netlistP.write("\n")
         netlistP.write("vds  nDrain 0 dc 0\n")
