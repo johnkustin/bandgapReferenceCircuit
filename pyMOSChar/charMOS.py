@@ -223,7 +223,7 @@ class charMOS:
                 
                 if (self.settings['simulator'] == "ngspice"):
                     myfile = open("charMOSpy.log", "a")
-                    myfile.write(f'charMOS: Simulating for NMOS L={self.mosDat['nfet']['length'][idxL]} PMOS L={self.mosDat['pfet']['length'][idxL]}, VSB={vsb[idxVSB]}\n')
+                    myfile.write(f"charMOS: Simulating for NMOS L={self.mosDat['nfet']['length'][idxL]} PMOS L={self.mosDat['pfet']['length'][idxL]}, VSB={vsb[idxVSB]}\n")
                     myfile.close()
 
                     runSim("charNMOS.net", "ngspice")
