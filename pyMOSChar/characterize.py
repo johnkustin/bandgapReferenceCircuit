@@ -49,7 +49,7 @@ def main():
     # Beware,
     # More steps => More RAM usage.
 
-    charMOS.init(
+    c = charMOS(
     simulator=simulator,
     mosWidthsNfet=mosWidthsN,
     mosLengthsNfet=mosLengthsN,
