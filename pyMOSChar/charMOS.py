@@ -201,7 +201,7 @@ class charMOS:
         paramFile.close()
         
     def runSim(self, fileName='charMOS.net', simulator='ngspice'):
-        os.system("{0} {1} {2}  &>> charMOSPy.log".format(simulator, fileName, simOptions))
+        os.system("{0} {1} &>> charMOSPy.log".format(simulator, fileName))
 
 
     def genDB(self):
