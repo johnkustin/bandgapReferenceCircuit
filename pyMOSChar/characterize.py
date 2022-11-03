@@ -54,11 +54,11 @@ def main():
         'mosLengthsNfet':   mosLengthsN,
         'mosWidthsPfet':    mosWidthsP,
         'mosLengthsPfet':   mosLengthsP,
-        'modelFiles':   tuple(modelFilePath),
+        'modelFiles':   [modelFilePath],
         'modelN':   nmos,
         'modelP':   pmos,
         'simOptions':   "",
-        'corners':  tuple(corners),
+        'corners':  [corners],
         'subcktPath':   "",
         'datFileName':  "sky130.mos.dataNameFormat.dat",
         'vgsMax':   1.95, #  
