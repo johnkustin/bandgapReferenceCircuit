@@ -21,13 +21,11 @@ def parseArgs():
 
     return parser
 
-if __name__ == "__main__":
-    main()
-
 
 def main():
 
     args = parseArgs()    
+    print(args)
     nmos = args.nmosModelName #  "sky130_fd_pr__nfet_01v8"
     pmos = args.pmosModelName #  "sky130_fd_pr__pfet_01v8_hvt"
     modelFilePath = args.modelFilePath
@@ -79,4 +77,7 @@ def main():
     # This function call finally generates the required database.
     charMOS.genDB()
 
+
+if __name__ == "__main__":
+    main()
 
