@@ -227,7 +227,7 @@ class charMOS:
                     myfile.write(f"charMOS: Simulating for NMOS L={self.mosDat['nfet']['length'][idxL]} PMOS L={self.mosDat['pfet']['length'][idxL]}, VSB={vsb[idxVSB]}\n")
                     myfile.close()
 
-                    runSim("charNMOS.net", "ngspice")
+                    self.runSim("charNMOS.net", "ngspice")
                     simDat = spice3read.read('outN.raw')
                     
                     self.mosDat['nfet']['id'][idxL][idxVSB]  = simDat['i(id)']
@@ -242,7 +242,7 @@ class charMOS:
                     self.mosDat['nfet']['cdd'][idxL][idxVSB] = simDat['cdd']
                     self.mosDat['nfet']['css'][idxL][idxVSB] = simDat['css']
 
-                    runSim("charPMOS.net", "ngspice")
+                    self.runSim("charPMOS.net", "ngspice")
                     simDat = spice3read.read('outP.raw')
                     
                     self.mosDat['pfet']['id'][idxL][idxVSB]  = simDat['i(id)']
@@ -260,7 +260,7 @@ class charMOS:
                 elif (self.settings['simulator'] == "spectre"): #  TODO: Fix this part
                     genSimParamsSpectre(mosLengths[idxL], vsb[idxVSB])
                     
-                    runSim("charMOS.scs", "spectre")
+                    self.runSim("charMOS.scs", "spectre")
                     simDat = spice3read.read('charMOS.raw', 'spectre')
                     
                     if (subcktPath == ""):
