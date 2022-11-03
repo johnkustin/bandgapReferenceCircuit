@@ -200,7 +200,8 @@ class charMOS:
         paramFile.write("parameters mosChar_sb={0}\n".format(VSB))
         paramFile.close()
         
-    def runSim(self, fileName='charMOS.net', simulator='ngspice'):
+    #  TODO: check that ngspice is installed on the machine
+    def runSim(self, fileName='charMOS.net', simulator='ngspice'): 
         os.system("{0} {1} &>> charMOSPy.log".format(simulator, fileName))
 
 
