@@ -8,39 +8,6 @@ import numpy as np
 import signal
 import sys
 
-mosDat = {}
-
-modelFiles  = ("mosfet.mod",)
-mosLengthsNfet  = np.arange(1, 10, 1)
-mosLengthsPfet  = np.arange(1, 10, 1)
-simulator   = "ngspice"
-modelN      = "cmosn"
-modelP      = "cmosp"
-simOptions  = ""
-corners      = ('section=tt',)
-subcktPath  = ""
-datFileName = "MOS.dat"
-vgsStep     =  25e-3 
-vdsStep     =  25e-3 
-vsbStep     =  25e-3 
-vgsMax      =  1.8 
-vdsMax      =  1.8 
-vsbMax      =  1.8 
-numfing     = 1
-temp        = 300
-width       = 1
-
-vgs = None
-vds = None
-vsb = None
-
-# def handleKill(signal, frame):
-#     print('Data generation halted. Cleaning up...')
-#     os.system('rm -fr {0} charNMOS.net charPMOS.net simParams.net outN.raw outP.raw b3v33check.log, charMOS.scs, charMOS.raw charMOS.psf.raw'.format(datFileName))
-#     sys.exit(0)
-
-# signal.signal(signal.SIGINT, handleKill)
-
 def init(**settings):
 
     global vgs
@@ -48,6 +15,7 @@ def init(**settings):
     global vds
     global mosDat
 
+    #  TODO: dont make it global. use the settings dict
     for key in settings.keys():
         globals()[key] = settings[key]
     
@@ -69,7 +37,7 @@ def init(**settings):
     mosDat['nfet']['corners'] = corners
     mosDat['nfet']['temp'] = temp
     mosDat['nfet']['length'] = mosLengthsNfet
-    mosDat['nfet']['width'] = width
+    mosDat['nfet']['width'] = mosWidthsNfet
     mosDat['nfet']['numfing'] = numfing
     mosDat['nfet']['vgs'] = vgs
     mosDat['nfet']['vds'] = vds
@@ -78,7 +46,7 @@ def init(**settings):
     mosDat['pfet']['corners'] = corners
     mosDat['pfet']['temp'] = temp
     mosDat['pfet']['length'] = mosLengthsPfet
-    mosDat['pfet']['width'] = width
+    mosDat['pfet']['width'] = mosWidthsPfet
     mosDat['pfet']['numfing'] = numfing
     mosDat['pfet']['vgs'] = -vgs
     mosDat['pfet']['vds'] = -vds
@@ -233,8 +201,8 @@ def genNetlistSpectre(fName='charMOS.scs'):
     netlist.write('vgsp     (vgp 0)         vsource dc=-mosChar_gs \n')
     netlist.write('vbsp     (vbp 0)         vsource dc=mosChar_sb  \n')
     netlist.write('\n')
-    netlist.write('xn (vdn vgn 0 vbn) {0} l=length*1e-6 w={1}e-6 multi=1 nf={2} _ccoflag=1\n'.format(modelN, width, numfing))
-    netlist.write('xp (vdp vgp 0 vbp) {0} l=length*1e-6 w={1}e-6 multi=1 nf={2} _ccoflag=1\n'.format(modelP, width, numfing))
+    netlist.write('xn (vdn vgn 0 vbn) {0} l=length*1e-6 w={1}u multi=1 nf={2} _ccoflag=1\n'.format(modelN, width, numfing)) # TODO: make the width and length writing better
+    netlist.write('xp (vdp vgp 0 vbp) {0} l=length*1e-6 w={1}u multi=1 nf={2} _ccoflag=1\n'.format(modelP, width, numfing))
     netlist.write('\n')
     netlist.write('options1 options gmin=1e-13 dc_pivot_check=yes reltol=1e-4 vabstol=1e-6 iabstol=1e-10 temp=27 tnom=27 rawfmt=nutbin rawfile="./charMOS.raw" save=none\n')
     netlist.write('sweepvds sweep param=mosChar_ds start=0 stop={0} step={1} {{ \n'.format(vdsMax, vdsStep))
@@ -269,7 +237,8 @@ def genDB():
         print("ERROR: Invalid/Unsupported simulator specified")
         sys.exit(0)
 
-    progTotal = len(mosLengthsNfet)*len(vsb)
+    #  TODO: make sure the prog total is right. e.g. if num of nmos widths != num of pmos widths 
+    progTotal = len(mosLengthsNfet)*len(vsb)*len(mosWidthsNfet)
     progCurr  = 0
     print("Data generation in progress. Go have a coffee...")
     for idxL in range(len(mosLengthsNfet)):
@@ -278,7 +247,7 @@ def genDB():
             if (simulator == "ngspice"):
                 genSimParams((mosLengthsNfet[idxL], mosLengthsPfet[idxL]), vsb[idxVSB])
                 myfile = open("charMOSpy.log", "a")
-                myfile.write("charMOS: Simulating for NMOS L={0} PMOS L={2}, VSB={1}\n".format(mosLengthsNfet[idxL], vsb[idxVSB], mosLengthsPfet[idxL]))
+                myfile.write(f'charMOS: Simulating for NMOS L={mosLengthsNfet[idxL]} PMOS L={mosLengthsPfet[idxL]}, VSB={vsb[idxVSB]}\n')
                 myfile.close()
 
                 runSim("charNMOS.net", "ngspice")
@@ -311,7 +280,7 @@ def genDB():
                 mosDat['pfet']['cdd'][idxL][idxVSB] = simDat['cdd']
                 mosDat['pfet']['css'][idxL][idxVSB] = simDat['css']
 
-            elif (simulator == "spectre"):
+            elif (simulator == "spectre"): #  TODO: Fix this part
                 genSimParamsSpectre(mosLengths[idxL], vsb[idxVSB])
                 
                 runSim("charMOS.scs", "spectre")

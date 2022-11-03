@@ -1,79 +1,82 @@
 #!/usr/bin/env python
 import sys
-# ==================================================
-# EDIT THE FOLLOWING PATH TO POINT TO YOUR DIRECTORY
-# ==================================================
-sys.path.append('/home/users/kustinj/ee272b/pyMOSChar/width650nmlengths4.1umto99.5um')
-# ==================================================
-
 import charMOS
 import numpy as np
 import argparse
 
+def parseArgs():
+    parser = argparse.ArgumentParser(
+        description='Characterize a 4-terminal MOSFET',
+        fromfile_prefix_chars='@')
+    parser.add_argument('nmosModelName',
+                        help='name of the nmos model to characterize')
+    parser.add_argument('pmosModelName', 
+                        help='name of the nmos model to characterize')
+    parser.add_argument('simulator', 
+                        help='ngspice or spectre')
+    parser.add_argument('--modelFilePath', dest='modelFilePath',
+                        help='full path to sky130.lib.spice')
+    parser.add_argument('corners', nargs='+',
+                        help='corner(s) to simulate')
+
+    return parser
+
 if __name__ == "__main__":
-    demo()
+    main()
+
 
 def main():
-    parser = parser = argparse.ArgumentParser(
-                    prog = 'characterize',
-                    description = 'What the program does',
-                    epilog = 'Text at the bottom of help')
 
-def demo():
-    # Specify the name of the MOSFET model. Simple way to do so
-    # is to create a schematic in Virtuoso that contains both
-    # nmos and pmos transistors. Then generate the netlist in
-    # ADE. You'll then be able to view the netlist and see what
-    # the name of the model is.
-    nmos = "sky130_fd_pr__nfet_01v8"
-    pmos = "sky130_fd_pr__pfet_01v8_hvt"
+    args = parseArgs()    
+    nmos = args.nmosModelName #  "sky130_fd_pr__nfet_01v8"
+    pmos = args.pmosModelName #  "sky130_fd_pr__pfet_01v8_hvt"
+    modelFilePath = args.modelFilePath
+    simulator = args.simulator
+    corners = args.corners
 
-    # Specify the MOSFET width in microns.
-    width = 0.65*1e6
+    if simulator == "ngspice":
+        pass
+    elif simulator == "spectre":
+        pass
+    else:
+        AssertionError()
 
+    assert type(corners) == list
+    assert type(modelFilePath) == str
 
-    # Specify the MOSFET lengths you're interested
-    # in. The following code creates an array of
-    # values from 0.1 to 5.1 in steps of 0.1. Note
-    # that the arange() function omits the last value
-    # so if you call np.arange(0.1, 5.1, 0.1), the
-    # last value in the array will be 0.5.
-    # MOS lengths are in microns. Don't keep the
-    # step size too small. Fine steps will use a 
-    # LOT of RAM can cause the machine to hang!
-    #                     start, stop, step
-    mosLengths = np.arange(4.1, 100, 0.5)*1e6
+    # scale by 1e6 because the netlister scales the w by 1e-6
+    mosWidthsN = [2 * 1e6]
+    mosWidthsP = [2 * 1e6]
+    mosLengthsN = [1 * 1e6]
+    mosLengthsN = [1 * 1e6]
 
-    ## Example 2 for lenghs
-    #mosLengths = np.concatenate(
-    #np.arange(0.1, 1, 0.1),
-    #np.arange(1, 10, 0.5),
-    #np.arange(10, 100, 10))
+    # Beware,
+    # More steps => More RAM usage.
 
-    # Initialize the characterization process. Modify
-    # the values below as per your requirements. Ensure
-    # that the step values aren't too small. Otherwise
-    # your RAM will get used up.
     charMOS.init(
-    simulator='ngspice',
-    mosLengths=mosLengths,
-    modelFiles=("/afs/ir.stanford.edu/class/ee272/skywater-pdk/libraries/sky130_fd_pr/latest/models/sky130.lib.spice",),
+    simulator=simulator,
+    mosWidthsNfet=mosWidthsN,
+    mosLengthsNfet=mosLengthsN,
+    mosWidthsPfet=mosWidthsP,
+    mosLengthsPfet=mosLengthsP,
+    modelFiles=tuple(modelFilePath),
+    #("/afs/ir.stanford.edu/class/ee272/skywater-pdk/libraries/sky130_fd_pr/latest/models/sky130.lib.spice",),
     modelN=nmos,
     modelP=pmos,
     simOptions="",
-    corners=("tt",),
+    corners=tuple(corners),
     subcktPath="",
-    datFileName="mosSKY130__W{0}uL{1}_{2}.dat".format(width, mosLengths[0],mosLengths[-1]),
-    vgsMax=1.95,
+    datFileName="sky130.mos.dataNameFormat.dat",
+    vgsMax=1.95, #  TODO: these all need to be changed to variables
     vgsStep=20e-3,
     vdsMax=1.95,
     vdsStep=20e-3,
     vsbMax=1.95,
     vsbStep=550e-3,
     numfing=1,
-    temp=300,
-    width=width)
+    temp=300)
 
     # This function call finally generates the required database.
     charMOS.genDB()
+
 
