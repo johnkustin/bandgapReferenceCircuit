@@ -27,9 +27,9 @@ class charMOS:
         vdsStep = settings['vdsStep']
         vsbStep = settings['vsbStep']
 
-        self.vgs = np.linspace(0, vgsMax, vgsMax/vgsStep + 1)
-        self.vds = np.linspace(0, vdsMax, vdsMax/vdsStep + 1)
-        self.vsb = np.linspace(0, vsbMax, vsbMax/vsbStep + 1)
+        self.vgs = np.linspace(0, vgsMax, int(vgsMax/vgsStep + 1))
+        self.vds = np.linspace(0, vdsMax, int(vdsMax/vdsStep + 1))
+        self.vsb = np.linspace(0, vsbMax, int(vsbMax/vsbStep + 1))
 
         self.mosDat['pfet'] = {}
         self.mosDat['nfet'] = {}
