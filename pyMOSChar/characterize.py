@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!python3
 import sys
 import charMOS
 import numpy as np
