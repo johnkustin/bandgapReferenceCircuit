@@ -206,10 +206,10 @@ class charMOS:
     def genDB(self):
         pdb.set_trace();
         if (self['simulator'] == "ngspice"):
-            genNetlistNngspice(self.mosDat)
-            genNetlistPngspice(self.mosDat)
+            self.genNetlistNngspice(self.mosDat)
+            self.genNetlistPngspice(self.mosDat)
         elif (self['simulator'] == "spectre"):
-            genNetlistSpectre()
+            self.genNetlistSpectre()
         else:
             print("ERROR: Invalid/Unsupported simulator specified")
             sys.exit(0)
