@@ -74,7 +74,7 @@ def main():
     c = charMOS(settings)
 
     # This function call finally generates the required database.
-    charMOS.genDB(charMos)
+    charMOS.genDB(c.mosDat)
 
 if __name__ == "__main__":
     main()
