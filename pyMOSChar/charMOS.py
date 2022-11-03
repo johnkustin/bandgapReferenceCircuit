@@ -85,6 +85,7 @@ def init(**settings):
     mosDat['pfet']['vsb'] = vsb
     assert(len(mosDat['nfet']['length']) == len(mosDat['pfet']['length']))
     # 4D arrays to store MOS data-->f(L,               VSB,      VDS,      VGS      )
+    mosDat.keys()
     mosDat['nfet']['id']  = np.zeros((len(mosLengthsNfet), len(vsb), len(vds), len(vgs)))
     mosDat['nfet']['vt']  = np.zeros((len(mosLengthsNfet), len(vsb), len(vds), len(vgs)))
     mosDat['nfet']['gm']  = np.zeros((len(mosLengthsNfet), len(vsb), len(vds), len(vgs)))
@@ -265,7 +266,7 @@ def genDB():
     elif (simulator == "spectre"):
         genNetlistSpectre()
     else:
-        print "ERROR: Invalid/Unsupported simulator specified"
+        print("ERROR: Invalid/Unsupported simulator specified")
         sys.exit(0)
 
     progTotal = len(mosLengthsNfet)*len(vsb)
