@@ -11,7 +11,7 @@ import sys
 class charMOS:
     def __init__(self, settings: dict):
 
-        self.self.mosDat = {}
+        self.mosDat = {}
         
         for modelFile in settings['modelFiles']: 
             if (not os.path.isfile(modelFile)):
