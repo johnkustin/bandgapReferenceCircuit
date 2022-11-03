@@ -4,7 +4,7 @@ import sys
 import pickle
 import spice3read
 import numpy as np
-
+import pdb
 import signal
 import sys
 
@@ -223,7 +223,7 @@ class charMOS:
 
 
     def genDB(self):
-
+        pdb.set_trace();
         if (self.settings['simulator'] == "ngspice"):
             genNetlistNngspice(self.mosDat)
             genNetlistPngspice()
