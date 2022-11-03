@@ -205,7 +205,6 @@ class charMOS:
 
 
     def genDB(self):
-        pdb.set_trace();
         if (self.mosDat['simulator'] == "ngspice"):
             self.genNetlistNngspice()
             self.genNetlistPngspice()
@@ -219,6 +218,7 @@ class charMOS:
         progTotal = len(self.mosDat['nfet']['length'])*len(self.mosDat['nfet']['vsb'])*len(self.mosDat['nfet']['width'])
         progCurr  = 0
         print("Data generation in progress. Go have a coffee...")
+        vsb = self.mosDat['nfet']['vsb']
         for idxL in range(len(self.mosDat['nfet']['length'])):
             for idxVSB in range(len(vsb)):
                 
