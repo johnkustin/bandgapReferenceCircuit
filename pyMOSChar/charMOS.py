@@ -206,8 +206,8 @@ class charMOS:
     def genDB(self):
         pdb.set_trace();
         if (self.mosDat['simulator'] == "ngspice"):
-            self.genNetlistNngspice(self.mosDat)
-            self.genNetlistPngspice(self.mosDat)
+            self.genNetlistNngspice()
+            self.genNetlistPngspice()
         elif (self['simulator'] == "spectre"):
             self.genNetlistSpectre()
         else:
