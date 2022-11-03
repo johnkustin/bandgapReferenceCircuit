@@ -178,37 +178,38 @@ class charMOS:
     def genNetlistNEldo(self, fName='charNMOS.net'):
         netlistN = open(fName, 'w')
 
+    # TODO: TEMPORARY BYPASS
 
-    def genNetlistSpectre(self, fName='charMOS.scs'):
+    # def genNetlistSpectre(self, fName='charMOS.scs'):
 
-        if (subcktPath == ""):
-            nmos = "xn"
-            pmos = "xp"
-        else:
-            nmos = "xn." + subcktPath
-            pmos = "xp." + subcktPath
+    #     if (subcktPath == ""):
+    #         nmos = "xn"
+    #         pmos = "xp"
+    #     else:
+    #         nmos = "xn." + subcktPath
+    #         pmos = "xp." + subcktPath
 
-        netlist = open(fName, 'w')
-        netlist.write('//charMOS.scs \n')
-        for modelFile, corner in zip(modelFiles, corners):
-            netlist.write('include  "{0}" {1}\n'.format(modelFile, corner))
-        netlist.write('include "simParams.scs" \n')
-        netlist.write('save {0}:ids {0}:vth {0}:igd {0}:igs {0}:gm {0}:gmbs {0}:gds {0}:cgg {0}:cgs {0}:cgd {0}:cgb {0}:cdd {0}:cdg {0}:css {0}:csg {0}:cjd {0}:cjs {1}:ids {1}:vth {1}:igd {1}:igs {1}:gm {1}:gmbs {1}:gds {1}:cgg {1}:cgs {1}:cgd {1}:cgb {1}:cdd {1}:cdg {1}:css {1}:csg {1}:cjd {1}:cjs\n'.format(nmos, pmos))
-        netlist.write('parameters mosChar_gs=0 mosChar_ds=0 \n')
-        netlist.write('vdsn     (vdn 0)         vsource dc=mosChar_ds  \n')
-        netlist.write('vgsn     (vgn 0)         vsource dc=mosChar_gs  \n')
-        netlist.write('vbsn     (vbn 0)         vsource dc=-mosChar_sb \n')
-        netlist.write('vdsp     (vdp 0)         vsource dc=-mosChar_ds \n')
-        netlist.write('vgsp     (vgp 0)         vsource dc=-mosChar_gs \n')
-        netlist.write('vbsp     (vbp 0)         vsource dc=mosChar_sb  \n')
-        netlist.write('\n')
-        netlist.write(f'xn (vdn vgn 0 vbn) {self.mosDat["modelN"]} l={self.mosDat["length"]*1e-6} w={self.mosDat["width"]}u multi=1 nf={numfing} _ccoflag=1\n'
-        netlist.write(f'xp (vdp vgp 0 vbp) {self.mosDat["modelN"]} l={self.mosDat["length"]*1e-6} w={self.mosDat["width"]}u multi=1 nf={numfing} _ccoflag=1\n'
-        netlist.write('\n')
-        netlist.write('options1 options gmin=1e-13 dc_pivot_check=yes reltol=1e-4 vabstol=1e-6 iabstol=1e-10 temp=27 tnom=27 rawfmt=nutbin rawfile="./charMOS.raw" save=none\n')
-        netlist.write('sweepvds sweep param=mosChar_ds start=0 stop={0} step={1} {{ \n'.format(vdsMax, vdsStep))
-        netlist.write('sweepvgs dc param=mosChar_gs start=0 stop={0} step={1} \n'.format(vgsMax, vgsStep))
-        netlist.write('}\n')
+    #     netlist = open(fName, 'w')
+    #     netlist.write('//charMOS.scs \n')
+    #     for modelFile, corner in zip(modelFiles, corners):
+    #         netlist.write('include  "{0}" {1}\n'.format(modelFile, corner))
+    #     netlist.write('include "simParams.scs" \n')
+    #     netlist.write('save {0}:ids {0}:vth {0}:igd {0}:igs {0}:gm {0}:gmbs {0}:gds {0}:cgg {0}:cgs {0}:cgd {0}:cgb {0}:cdd {0}:cdg {0}:css {0}:csg {0}:cjd {0}:cjs {1}:ids {1}:vth {1}:igd {1}:igs {1}:gm {1}:gmbs {1}:gds {1}:cgg {1}:cgs {1}:cgd {1}:cgb {1}:cdd {1}:cdg {1}:css {1}:csg {1}:cjd {1}:cjs\n'.format(nmos, pmos))
+    #     netlist.write('parameters mosChar_gs=0 mosChar_ds=0 \n')
+    #     netlist.write('vdsn     (vdn 0)         vsource dc=mosChar_ds  \n')
+    #     netlist.write('vgsn     (vgn 0)         vsource dc=mosChar_gs  \n')
+    #     netlist.write('vbsn     (vbn 0)         vsource dc=-mosChar_sb \n')
+    #     netlist.write('vdsp     (vdp 0)         vsource dc=-mosChar_ds \n')
+    #     netlist.write('vgsp     (vgp 0)         vsource dc=-mosChar_gs \n')
+    #     netlist.write('vbsp     (vbp 0)         vsource dc=mosChar_sb  \n')
+    #     netlist.write('\n')
+    #     netlist.write(f"xn (vdn vgn 0 vbn) {self.mosDat["modelN"]} l={self.mosDat["length"]*1e-6} w={self.mosDat["width"]}u multi=1 nf={numfing} _ccoflag=1\n"
+    #     netlist.write(f"xp (vdp vgp 0 vbp) {self.mosDat["modelN"]} l={self.mosDat["length"]*1e-6} w={self.mosDat["width"]}u multi=1 nf={numfing} _ccoflag=1\n"
+    #     netlist.write('\n')
+    #     netlist.write('options1 options gmin=1e-13 dc_pivot_check=yes reltol=1e-4 vabstol=1e-6 iabstol=1e-10 temp=27 tnom=27 rawfmt=nutbin rawfile="./charMOS.raw" save=none\n')
+    #     netlist.write('sweepvds sweep param=mosChar_ds start=0 stop={0} step={1} {{ \n'.format(vdsMax, vdsStep))
+    #     netlist.write('sweepvgs dc param=mosChar_gs start=0 stop={0} step={1} \n'.format(vgsMax, vgsStep))
+    #     netlist.write('}\n')
 
     def genSimParamsSpectre(self, L, VSB):
         paramFile = open("simParams.scs", 'w')
