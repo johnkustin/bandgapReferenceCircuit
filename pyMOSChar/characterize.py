@@ -1,4 +1,3 @@
-#!python3
 import sys
 import charMOS
 import numpy as np
@@ -24,10 +23,11 @@ def parseArgs():
 if __name__ == "__main__":
     main()
 
-
 def main():
 
-    args = parseArgs()    
+    argsParser = parseArgs()
+    args = argsParser.parse_args()
+    print(args)
     nmos = args.nmosModelName #  "sky130_fd_pr__nfet_01v8"
     pmos = args.pmosModelName #  "sky130_fd_pr__pfet_01v8_hvt"
     modelFilePath = args.modelFilePath
