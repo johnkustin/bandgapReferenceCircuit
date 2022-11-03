@@ -9,7 +9,7 @@ import signal
 import sys
 
 class charMOS:
-    def __init__(self, **settings):
+    def __init__(self, settings: dict):
 
         mosDat = {}
         
@@ -54,7 +54,7 @@ class charMOS:
         mosDat['pfet']['vsb'] = settings['vsb']
 
         assert(len(mosDat['nfet']['length']) == len(mosDat['pfet']['length']))
-        
+
         # 4D arrays to store MOS data-->f(L,               VSB,      VDS,      VGS      )
         mosDat.keys()
         mosDat['nfet']['id']  = np.zeros((len(mosLengthsNfet), len(vsb), len(vds), len(vgs)))

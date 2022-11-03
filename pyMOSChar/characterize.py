@@ -48,29 +48,30 @@ def main():
 
     # Beware,
     # More steps => More RAM usage.
+    settings = {
+        'simulator'=simulator,
+        'mosWidthsNfet'=mosWidthsN,
+        'mosLengthsNfet'=mosLengthsN,
+        'mosWidthsPfet'=mosWidthsP,
+        'mosLengthsPfet'=mosLengthsP,
+        'modelFiles'=tuple(modelFilePath),
+        'modelN'=nmos,
+        'modelP'=pmos,
+        'simOptions'="",
+        'corners'=tuple(corners),
+        'subcktPath'="",
+        'datFileName'="sky130.mos.dataNameFormat.dat",
+        'vgsMax'=1.95, #  
+        'vgsStep'=20e-3,
+        'vdsMax'=1.95,
+        'vdsStep'=20e-3,
+        'vsbMax'=1.95,
+        'vsbStep'=550e-3,
+        'numfing'=1,
+        'temp'=300
+    }
 
-    c = charMOS(
-    simulator=simulator,
-    mosWidthsNfet=mosWidthsN,
-    mosLengthsNfet=mosLengthsN,
-    mosWidthsPfet=mosWidthsP,
-    mosLengthsPfet=mosLengthsP,
-    modelFiles=tuple(modelFilePath),
-    #("/afs/ir.stanford.edu/class/ee272/skywater-pdk/libraries/sky130_fd_pr/latest/models/sky130.lib.spice",),
-    modelN=nmos,
-    modelP=pmos,
-    simOptions="",
-    corners=tuple(corners),
-    subcktPath="",
-    datFileName="sky130.mos.dataNameFormat.dat",
-    vgsMax=1.95, #  TODO: these all need to be changed to variables
-    vgsStep=20e-3,
-    vdsMax=1.95,
-    vdsStep=20e-3,
-    vsbMax=1.95,
-    vsbStep=550e-3,
-    numfing=1,
-    temp=300)
+    c = charMOS(settings)
 
     # This function call finally generates the required database.
     charMOS.genDB(charMos)
