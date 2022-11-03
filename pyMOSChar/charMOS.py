@@ -12,6 +12,7 @@ class charMOS:
     def __init__(self, settings: dict):
 
         self.mosDat = {}
+        self.settings = settings
         
         for modelFile in settings['modelFiles']: 
             if (not os.path.isfile(modelFile)):
@@ -223,10 +224,10 @@ class charMOS:
 
     def genDB(self):
 
-        if (simulator == "ngspice"):
+        if (self.settings['simulator'] == "ngspice"):
             genNetlistNngspice(self.mosDat)
             genNetlistPngspice()
-        elif (simulator == "spectre"):
+        elif (self.settings['simulator'] == "spectre"):
             genNetlistSpectre()
         else:
             print("ERROR: Invalid/Unsupported simulator specified")
@@ -239,7 +240,7 @@ class charMOS:
         for idxL in range(len(mosLengthsNfet)):
             for idxVSB in range(len(vsb)):
                 
-                if (simulator == "ngspice"):
+                if (self.settings['simulator'] == "ngspice"):
                     myfile = open("charMOSpy.log", "a")
                     myfile.write(f'charMOS: Simulating for NMOS L={mosLengthsNfet[idxL]} PMOS L={mosLengthsPfet[idxL]}, VSB={vsb[idxVSB]}\n')
                     myfile.close()
@@ -274,7 +275,7 @@ class charMOS:
                     self.mosDat['pfet']['cdd'][idxL][idxVSB] = simDat['cdd']
                     self.mosDat['pfet']['css'][idxL][idxVSB] = simDat['css']
 
-                elif (simulator == "spectre"): #  TODO: Fix this part
+                elif (self.settings['simulator'] == "spectre"): #  TODO: Fix this part
                     genSimParamsSpectre(mosLengths[idxL], vsb[idxVSB])
                     
                     runSim("charMOS.scs", "spectre")
