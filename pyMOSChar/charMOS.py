@@ -216,7 +216,7 @@ class charMOS:
             sys.exit(0)
 
         #  TODO: make sure the prog total is right. e.g. if num of nmos widths != num of pmos widths 
-        progTotal = len(self.mosDat['nfet']['length'])*len(vsb)*len(mosWidthsNfet)
+        progTotal = len(self.mosDat['nfet']['length'])*len(self.mosDat['nfet']['vsb'])*len(self.mosDat['nfet']['width'])
         progCurr  = 0
         print("Data generation in progress. Go have a coffee...")
         for idxL in range(len(self.mosDat['nfet']['length'])):
