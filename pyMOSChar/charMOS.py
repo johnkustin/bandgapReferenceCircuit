@@ -12,6 +12,7 @@ class charMOS:
     def __init__(self, settings: dict):
 
         self.mosDat = {}
+        self.settings = {} 
         self.settings = settings
         
         for modelFile in settings['modelFiles']: 
@@ -67,7 +68,7 @@ class charMOS:
         netlistN = open(fName, 'w')
         netlistN.write("Characterize N Channel MOSFET\n")
         netlistN.write("\n")
-        devName = '@m.xn.m'+self.mosDat['modelN']
+        devName = '@m.xn.m'+self.settings['modelN']
         for modelFile, corner in zip(modelFiles, self.mosDat['nfet']['corners']):
             netlistN.write(".lib \"{0}\" {1}\n".format(modelFile, corner))
         netlistN.write("\n")
@@ -75,7 +76,7 @@ class charMOS:
         netlistN.write("vgs  nGate  0 dc 0\n")
         netlistN.write("vbs  nBulk  0 dc {-mosChar_sb}\n")
         netlistN.write("\n")
-        netlistN.write(f"xn nDrain nGate 0 nBulk {{self.mosDat['modelN']}}  L={{self.mosDat['length']*1e-6}} W={{self.mosDat['width']*1e-6}}\n")
+        netlistN.write(f"xn nDrain nGate 0 nBulk {{self.settings['modelN']}}  L={{self.mosDat['length']*1e-6}} W={{self.mosDat['width']*1e-6}}\n")
         netlistN.write("\n")
         netlistN.write(".options dccap post brief accurate\n")
         netlistN.write(".control\n")
@@ -114,7 +115,7 @@ class charMOS:
         netlistP = open(fName, 'w')
         netlistP.write("Characterize P Channel MOSFET\n")
         netlistP.write("\n")
-        devName = '@m.xp.m'+self.mosDat['modelP']
+        devName = '@m.xp.m'+self.settings['modelP']
         for modelFile, corner in zip(modelFiles, self.mosDat['pfet']['corners']):
             netlistP.write(".lib \"{0}\" {1}\n".format(modelFile, corner))
         netlistP.write("\n")
@@ -122,7 +123,7 @@ class charMOS:
         netlistP.write("vgs  nGate  0 dc 0\n")
         netlistP.write("vbs  nBulk  0 dc mosChar_sb\n")
         netlistP.write("\n")
-        netlistP.write("xp nDrain nGate 0 nBulk {0}  L={{self.mosDat['length']*1e-6}} W={{{1}*1e-6}}\n".format(self.mosDat['modelP'], self.mosDat['width']))
+        netlistP.write("xp nDrain nGate 0 nBulk {0}  L={{self.mosDat['length']*1e-6}} W={{{1}*1e-6}}\n".format(self.settings['modelP'], self.mosDat['width']))
         netlistP.write("\n")
         netlistP.write(".options dccap post brief accurate\n")
         netlistP.write(".control\n")
