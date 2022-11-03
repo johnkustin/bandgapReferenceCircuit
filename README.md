@@ -1,5 +1,3 @@
-⚠️ this README has not been updated to reflect the final state of the bandgap circuit submitted to efabless.
-
 # stanford ee272b project - bandgap voltage reference in SKY130 technology
 
 ## table of contents
@@ -12,7 +10,7 @@
 6. how's the bandgap circuit work?
 7. prerequisites
 8. steps to set up the repository
-9. design files
+9. design files <- look here to get the lvs-passing final schematic file
 10. running all tests
 11. test descriptions
 12. viewing results
@@ -34,7 +32,7 @@ Output reference voltage vs. VDD
 ![psrr](slides/bgrslides.010.jpeg)  
 Power supply rejection ratio of output reference voltage at one frequency  
 
-*Important disclaimer:* As you can see, there is a large discrepancy between the measured temperature coefficient and the one obtained from simulation. My guess as to why they are different is a difference between the BJT models and what was fabricated. This is only a guess now because I haven't done any investigation and I could only measure one sample. Either I or someone else needs to tweak the BJT size parameters in the schematic and investigate in simulation if the change of BJT parameters can induce a temperature coefficient that is on the same order as what was measured. In other words, there is more work to be done for this project and repository :), but read on with this disclaimer in mind.
+⚠️**Important disclaimer:** As you can see, there is a large discrepancy between the measured temperature coefficient and the one obtained from simulation. My guess as to why they are different is a difference between the BJT models and what was fabricated. This is only a guess now because I haven't done any investigation and I could only measure one sample. Either I or someone else needs to tweak the BJT size parameters in the schematic and investigate in simulation if the change of BJT parameters can induce a temperature coefficient that is on the same order as what was measured. In other words, there is more work to be done for this project and repository :), but read on with this disclaimer in mind.
 
 ### summary of design metrics
 #### VDD = 1.8 V, TT corner, no mismatch
