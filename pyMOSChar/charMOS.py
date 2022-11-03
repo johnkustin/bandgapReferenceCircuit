@@ -81,20 +81,19 @@ class charMOS:
         self.mosDat['pfet']['cdd'] = np.zeros((len(mosLengthsPfet), len(vsb), len(vds), len(vgs)))
         self.mosDat['pfet']['css'] = np.zeros((len(mosLengthsPfet), len(vsb), len(vds), len(vgs)))
 
-    def genNetlistNngspice(self.mosDat, fName='charNMOS.net'):
+    def genNetlistNngspice(self, fName='charNMOS.net'):
         netlistN = open(fName, 'w')
         netlistN.write("Characterize N Channel MOSFET\n")
         netlistN.write("\n")
-        devName = '@m.xn.m'+modelN
+        devName = '@m.xn.m'+self.mosDat['modelN']
         for modelFile, corner in zip(modelFiles, self.mosDat['nfet']['corners']):
             netlistN.write(".lib \"{0}\" {1}\n".format(modelFile, corner))
-        netlistN.write(".include \"simParams.net\"\n")
         netlistN.write("\n")
         netlistN.write("vds  nDrain 0 dc 0\n")
         netlistN.write("vgs  nGate  0 dc 0\n")
         netlistN.write("vbs  nBulk  0 dc {-mosChar_sb}\n")
         netlistN.write("\n")
-        netlistN.write("xn nDrain nGate 0 nBulk {0}  L={{lengthn*1e-6}} W={{{1}*1e-6}}\n".format(modelN, width))
+        netlistN.write(f"xn nDrain nGate 0 nBulk {{self.mosDat['modelN']}}  L={{self.mosDat['length']}*1e-6} W={{self.mosDat['width']}*1e-6}\n")
         netlistN.write("\n")
         netlistN.write(".options dccap post brief accurate\n")
         netlistN.write(".control\n")
@@ -129,20 +128,19 @@ class charMOS:
         netlistN.write(".end\n")
         netlistN.close();
         
-    def genNetlistPngspice(fName='charPMOS.net'):
+    def genNetlistPngspice(self, fName='charPMOS.net'):
         netlistP = open(fName, 'w')
         netlistP.write("Characterize P Channel MOSFET\n")
         netlistP.write("\n")
-        devName = '@m.xp.m'+modelP
+        devName = '@m.xp.m'+self.mosDat['modelP']
         for modelFile, corner in zip(modelFiles, self.mosDat['pfet']['corners']):
             netlistP.write(".lib \"{0}\" {1}\n".format(modelFile, corner))
-        netlistP.write(".include \"simParams.net\"\n")
         netlistP.write("\n")
         netlistP.write("vds  nDrain 0 dc 0\n")
         netlistP.write("vgs  nGate  0 dc 0\n")
         netlistP.write("vbs  nBulk  0 dc mosChar_sb\n")
         netlistP.write("\n")
-        netlistP.write("xp nDrain nGate 0 nBulk {0}  L={{lengthp*1e-6}} W={{{1}*1e-6}}\n".format(modelP, width))
+        netlistP.write("xp nDrain nGate 0 nBulk {0}  L={{self.mosDat['length']p*1e-6}} W={{{1}*1e-6}}\n".format(self.mosDat['modelP'], self.mosDat['width']))
         netlistP.write("\n")
         netlistP.write(".options dccap post brief accurate\n")
         netlistP.write(".control\n")
@@ -177,11 +175,11 @@ class charMOS:
         netlistP.write(".end\n")
         netlistP.close();
 
-    def genNetlistNEldo(fName='charNMOS.net'):
+    def genNetlistNEldo(self, fName='charNMOS.net'):
         netlistN = open(fName, 'w')
 
 
-    def genNetlistSpectre(fName='charMOS.scs'):
+    def genNetlistSpectre(self, fName='charMOS.scs'):
 
         if (subcktPath == ""):
             nmos = "xn"
@@ -204,32 +202,25 @@ class charMOS:
         netlist.write('vgsp     (vgp 0)         vsource dc=-mosChar_gs \n')
         netlist.write('vbsp     (vbp 0)         vsource dc=mosChar_sb  \n')
         netlist.write('\n')
-        netlist.write('xn (vdn vgn 0 vbn) {0} l=length*1e-6 w={1}u multi=1 nf={2} _ccoflag=1\n'.format(modelN, width, numfing)) # TODO: make the width and length writing better
-        netlist.write('xp (vdp vgp 0 vbp) {0} l=length*1e-6 w={1}u multi=1 nf={2} _ccoflag=1\n'.format(modelP, width, numfing))
+        netlist.write(f'xn (vdn vgn 0 vbn) {self.mosDat['modelN']} l={self.mosDat['length']*1e-6} w={self.mosDat['width']}u multi=1 nf={numfing} _ccoflag=1\n'
+        netlist.write(f'xp (vdp vgp 0 vbp) {self.mosDat['modelN']} l={self.mosDat['length']*1e-6} w={self.mosDat['width']}u multi=1 nf={numfing} _ccoflag=1\n'
         netlist.write('\n')
         netlist.write('options1 options gmin=1e-13 dc_pivot_check=yes reltol=1e-4 vabstol=1e-6 iabstol=1e-10 temp=27 tnom=27 rawfmt=nutbin rawfile="./charMOS.raw" save=none\n')
         netlist.write('sweepvds sweep param=mosChar_ds start=0 stop={0} step={1} {{ \n'.format(vdsMax, vdsStep))
         netlist.write('sweepvgs dc param=mosChar_gs start=0 stop={0} step={1} \n'.format(vgsMax, vgsStep))
         netlist.write('}\n')
 
-    def genSimParams(L, VSB):
-        paramFile = open("simParams.net", 'w')
-        for i, t in enumerate(['n', 'p']):
-            paramFile.write(".param length"+t+"={0}\n".format(L[i]))
-        paramFile.write(".param mosChar_sb={0}\n".format(VSB))
-        paramFile.close()
-
-    def genSimParamsSpectre(L, VSB):
+    def genSimParamsSpectre(self, L, VSB):
         paramFile = open("simParams.scs", 'w')
         paramFile.write("parameters length={0}\n".format(L))
         paramFile.write("parameters mosChar_sb={0}\n".format(VSB))
         paramFile.close()
         
-    def runSim(fileName='charMOS.net', simulator='ngspice'):
+    def runSim(self, fileName='charMOS.net', simulator='ngspice'):
         os.system("{0} {1} {2}  &>> charMOSPy.log".format(simulator, fileName, simOptions))
 
 
-    def genDB(self.mosDat):
+    def genDB(self):
 
         if (simulator == "ngspice"):
             genNetlistNngspice(self.mosDat)
@@ -248,7 +239,6 @@ class charMOS:
             for idxVSB in range(len(vsb)):
                 
                 if (simulator == "ngspice"):
-                    genSimParams((mosLengthsNfet[idxL], mosLengthsPfet[idxL]), vsb[idxVSB])
                     myfile = open("charMOSpy.log", "a")
                     myfile.write(f'charMOS: Simulating for NMOS L={mosLengthsNfet[idxL]} PMOS L={mosLengthsPfet[idxL]}, VSB={vsb[idxVSB]}\n')
                     myfile.close()
@@ -329,7 +319,7 @@ class charMOS:
                 sys.stdout.write("\r[{0}{1}] {2}%".format("#"*progLen, " "*(columns-progLen), progPercent))
                 sys.stdout.flush()
 
-        os.system('rm -fr charNMOS.net charPMOS.net simParams.net outN.raw outP.raw b3v33check.log charMOS.scs simParams.scs charMOS.raw charMOS.raw.psf charMOS.ahdlSimDB charMOS.log')
+        os.system('rm -fr charNMOS.net charPMOS.net outN.raw outP.raw b3v33check.log charMOS.scs simParams.scs charMOS.raw charMOS.raw.psf charMOS.ahdlSimDB charMOS.log')
         print
         print("Data generated. Saving...")
         pickle.dump(self.mosDat, open(datFileName, "wb"), pickle.HIGHEST_PROTOCOL)
