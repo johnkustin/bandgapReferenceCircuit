@@ -41,18 +41,18 @@ class charMOS:
         self.mosDat['nfet']['length'] = settings['mosLengthsNfet']
         self.mosDat['nfet']['width'] = settings['mosWidthsNfet']
         self.mosDat['nfet']['numfing'] = settings['numfing']
-        self.mosDat['nfet']['vgs'] = settings['vgs']
-        self.mosDat['nfet']['vds'] = settings['vds']
-        self.mosDat['nfet']['vsb'] = -settings['vsb']
+        self.mosDat['nfet']['vgs'] = self.vgs
+        self.mosDat['nfet']['vds'] = self.vds
+        self.mosDat['nfet']['vsb'] = -self.vsb
         
         self.mosDat['pfet']['corners'] = settings['corners']
         self.mosDat['pfet']['temp'] = settings['temp']
         self.mosDat['pfet']['length'] = settings['mosLengthsPfet']
         self.mosDat['pfet']['width'] = settings['mosWidthsPfet']
         self.mosDat['pfet']['numfing'] = settings['numfing']
-        self.mosDat['pfet']['vgs'] = -settings['vgs']
-        self.mosDat['pfet']['vds'] = -settings['vds']
-        self.mosDat['pfet']['vsb'] = settings['vsb']
+        self.mosDat['pfet']['vgs'] = self.vgs
+        self.mosDat['pfet']['vds'] = self.vds
+        self.mosDat['pfet']['vsb'] = -self.vsb
 
         assert(len(self.mosDat['nfet']['length']) == len(self.mosDat['pfet']['length']))
 
