@@ -44,7 +44,7 @@ def main():
     mosWidthsN = [2 * 1e6]
     mosWidthsP = [2 * 1e6]
     mosLengthsN = [1 * 1e6]
-    mosLengthsN = [1 * 1e6]
+    mosLengthsP = [1 * 1e6]
 
     # Beware,
     # More steps => More RAM usage.
