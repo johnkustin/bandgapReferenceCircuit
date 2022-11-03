@@ -9,9 +9,13 @@ import signal
 import sys
 
 class charMOS:
+
+    self.mosDat = {}
+    self.settings = {}
+    
     def __init__(self, settings: dict):
 
-        self.mosDat = {}
+        
         self.settings = settings
         
         for modelFile in settings['modelFiles']: 
