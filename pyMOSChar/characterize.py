@@ -73,7 +73,7 @@ def main():
     temp=300)
 
     # This function call finally generates the required database.
-    charMOS.genDB()
+    charMOS.genDB(charMos)
 
 if __name__ == "__main__":
     main()
