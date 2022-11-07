@@ -80,14 +80,16 @@ class charMOS:
         
         devNames = []
         idxs = []
+        netlistHandler.write(f'vds vds 0 dc 0\n')
+        netlistHandler.write(f'vgs vgs  0 dc 0\n')
         for i in range(len(sizes[0])):
                     for ivsb, vsb in enumerate(data["vsb"]):
                         idx = f'{i}d{ivsb}d{tab1[type]}'
                         idxs.append(idx)
                         devName = f'@m.x{tab1[type]}d{idx}.m'+self.settings[tab[type]]
                         devNames.append(devName)
-                        netlistHandler.write(f'vds vdsd{idx} 0 dc 0\n')
-                        netlistHandler.write(f'vgs vgsd{idx}  0 dc 0\n')
+                        netlistHandler.write(f'vds vdsd{idx} dc 0\n')
+                        netlistHandler.write(f'vgs vgsd{idx} dc 0\n')
                         netlistHandler.write(f'vvdsd{idx} vdsd{idx}  {tab1[type]}Draind{idx} dc 0\n')
                         netlistHandler.write(f'vvgsd{idx} vgsd{idx}  {tab1[type]}Gated{idx}  dc 0\n')
                         netlistHandler.write(f'vvbsd{idx} vbsd{idx}  {tab1[type]}Bulkd{idx}  dc {-vsb}\n')
