@@ -290,9 +290,9 @@ class charMOS:
                     self.mosDat[devTypes[0]]['cgg'][idxL][idxVSB] = simDat[f'{devName}[cgg]']
                     self.mosDat[devTypes[0]]['cgs'][idxL][idxVSB] = simDat[f'{devName}[cgs]']
                     self.mosDat[devTypes[0]]['cgd'][idxL][idxVSB] = simDat[f'{devName}[cgd]']
-                    self.mosDat[devTypes[0]]['cgb'][idxL][idxVSB] = simDat[f'{devName}[cgb]']
+                    self.mosDat[devTypes[0]]['cgb'][idxL][idxVSB] = self.mosDat[devTypes[0]]['cgg'][idxL][idxVSB] - self.mosDat[devTypes[0]]['cgs'][idxL][idxVSB] - self.mosDat[devTypes[0]]['cgd'][idxL][idxVSB]
                     self.mosDat[devTypes[0]]['cdd'][idxL][idxVSB] = simDat[f'{devName}[cdd]']
-                    self.mosDat[devTypes[0]]['css'][idxL][idxVSB] = simDat[f'{devName}[css]']
+                    self.mosDat[devTypes[0]]['css'][idxL][idxVSB] = simDat[f'{devName}[cgs]'] - simDat[f'{devName}[cbs]']
 
                     self.runSim("charPMOS.net", "ngspice")
                     simDat = spice3read.read('outP.raw')
@@ -306,9 +306,9 @@ class charMOS:
                     self.mosDat[devTypes[1]]['cgg'][idxL][idxVSB] = simDat[f'{devName}[cgg]']
                     self.mosDat[devTypes[1]]['cgs'][idxL][idxVSB] = simDat[f'{devName}[cgs]']
                     self.mosDat[devTypes[1]]['cgd'][idxL][idxVSB] = simDat[f'{devName}[cgd]']
-                    self.mosDat[devTypes[1]]['cgb'][idxL][idxVSB] = simDat[f'{devName}[cgb]']
+                    self.mosDat[devTypes[1]]['cgb'][idxL][idxVSB] = self.mosDat[devTypes[1]]['cgg'][idxL][idxVSB] - self.mosDat[devTypes[1]]['cgs'][idxL][idxVSB] - self.mosDat[devTypes[1]]['cgd'][idxL][idxVSB]
                     self.mosDat[devTypes[1]]['cdd'][idxL][idxVSB] = simDat[f'{devName}[cdd]']
-                    self.mosDat[devTypes[1]]['css'][idxL][idxVSB] = simDat[f'{devName}[css]']
+                    self.mosDat[devTypes[1]]['css'][idxL][idxVSB] = simDat[f'{devName}[cgs]'] - simDat[f'{devName}[cbs]']
 
                 elif (self.settings['simulator'] == "spectre"): #  TODO: Fix this part
                     genSimParamsSpectre(mosLengths[idxL], vsb[idxVSB])
