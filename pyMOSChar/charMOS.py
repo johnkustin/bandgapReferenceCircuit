@@ -256,6 +256,16 @@ class charMOS:
         progCurr  = 0
         print("Data generation in progress. Go have a coffee...")
         vsb = self.mosDat['nfet']['vsb']
+
+        tab = {
+            "nfet": "modelN",
+            "pfet": "modelP"
+        }
+        tab1 = {
+            "nfet": "n",
+            "pfet": "p"
+        }
+
         for idxL in range(len(self.mosDat['nfet']['length'])):
             for idxVSB in range(len(vsb)):
                 
@@ -268,32 +278,37 @@ class charMOS:
                     # pdb.set_trace()
                     simDat = spice3read.read('outN.raw')
                     
-                    self.mosDat['nfet']['id'][idxL][idxVSB]  = simDat['i(id)']
-                    self.mosDat['nfet']['vt'][idxL][idxVSB]  = simDat['v(vt)']
-                    self.mosDat['nfet']['gm'][idxL][idxVSB]  = simDat['gm']
-                    self.mosDat['nfet']['gmb'][idxL][idxVSB] = simDat['gmb']
-                    self.mosDat['nfet']['gds'][idxL][idxVSB] = simDat['gds']
-                    self.mosDat['nfet']['cgg'][idxL][idxVSB] = simDat['cgg']
-                    self.mosDat['nfet']['cgs'][idxL][idxVSB] = simDat['cgs']
-                    self.mosDat['nfet']['cgd'][idxL][idxVSB] = simDat['cgd']
-                    self.mosDat['nfet']['cgb'][idxL][idxVSB] = simDat['cgb']
-                    self.mosDat['nfet']['cdd'][idxL][idxVSB] = simDat['cdd']
-                    self.mosDat['nfet']['css'][idxL][idxVSB] = simDat['css']
+                    idx = f'{idxL}d{idxVSB}d{tab1["nfet"]}'
+                    devTypes = ['nfet', 'pfet']
+                    
+                    devName = f'@m.x{tab1[devTypes[0]]}d{idx}.m'+self.settings[tab[devTypes[0]]]
+                    self.mosDat[devTypes[0]]['id'][idxL][idxVSB]  = simDat[f'i({devName})']
+                    self.mosDat[devTypes[0]]['vt'][idxL][idxVSB]  = simDat['v({devName}[vth])']
+                    self.mosDat[devTypes[0]]['gm'][idxL][idxVSB]  = simDat[f'{devName}[gm]']
+                    self.mosDat[devTypes[0]]['gmb'][idxL][idxVSB] = simDat[f'{devName}[gmb]']
+                    self.mosDat[devTypes[0]]['gds'][idxL][idxVSB] = simDat[f'{devName}[gds]']
+                    self.mosDat[devTypes[0]]['cgg'][idxL][idxVSB] = simDat[f'{devName}[cgg]']
+                    self.mosDat[devTypes[0]]['cgs'][idxL][idxVSB] = simDat[f'{devName}[cgs]']
+                    self.mosDat[devTypes[0]]['cgd'][idxL][idxVSB] = simDat[f'{devName}[cgd]']
+                    self.mosDat[devTypes[0]]['cgb'][idxL][idxVSB] = simDat[f'{devName}[cgb]']
+                    self.mosDat[devTypes[0]]['cdd'][idxL][idxVSB] = simDat[f'{devName}[cdd]']
+                    self.mosDat[devTypes[0]]['css'][idxL][idxVSB] = simDat[f'{devName}[css]']
 
                     self.runSim("charPMOS.net", "ngspice")
                     simDat = spice3read.read('outP.raw')
                     
-                    self.mosDat['pfet']['id'][idxL][idxVSB]  = simDat['i(id)']
-                    self.mosDat['pfet']['vt'][idxL][idxVSB]  = simDat['v(vt)']
-                    self.mosDat['pfet']['gm'][idxL][idxVSB]  = simDat['gm']
-                    self.mosDat['pfet']['gmb'][idxL][idxVSB] = simDat['gmb']
-                    self.mosDat['pfet']['gds'][idxL][idxVSB] = simDat['gds']
-                    self.mosDat['pfet']['cgg'][idxL][idxVSB] = simDat['cgg']
-                    self.mosDat['pfet']['cgs'][idxL][idxVSB] = simDat['cgs']
-                    self.mosDat['pfet']['cgd'][idxL][idxVSB] = simDat['cgd']
-                    self.mosDat['pfet']['cgb'][idxL][idxVSB] = simDat['cgb']
-                    self.mosDat['pfet']['cdd'][idxL][idxVSB] = simDat['cdd']
-                    self.mosDat['pfet']['css'][idxL][idxVSB] = simDat['css']
+                    devName = f'@m.x{tab1[devTypes[1]]}d{idx}.m'+self.settings[tab[devTypes[1]]]
+                    self.mosDat[devTypes[1]]['id'][idxL][idxVSB]  = simDat[f'i({devName})']
+                    self.mosDat[devTypes[1]]['vt'][idxL][idxVSB]  = simDat['v({devName}[vth])']
+                    self.mosDat[devTypes[1]]['gm'][idxL][idxVSB]  = simDat[f'{devName}[gm]']
+                    self.mosDat[devTypes[1]]['gmb'][idxL][idxVSB] = simDat[f'{devName}[gmb]']
+                    self.mosDat[devTypes[1]]['gds'][idxL][idxVSB] = simDat[f'{devName}[gds]']
+                    self.mosDat[devTypes[1]]['cgg'][idxL][idxVSB] = simDat[f'{devName}[cgg]']
+                    self.mosDat[devTypes[1]]['cgs'][idxL][idxVSB] = simDat[f'{devName}[cgs]']
+                    self.mosDat[devTypes[1]]['cgd'][idxL][idxVSB] = simDat[f'{devName}[cgd]']
+                    self.mosDat[devTypes[1]]['cgb'][idxL][idxVSB] = simDat[f'{devName}[cgb]']
+                    self.mosDat[devTypes[1]]['cdd'][idxL][idxVSB] = simDat[f'{devName}[cdd]']
+                    self.mosDat[devTypes[1]]['css'][idxL][idxVSB] = simDat[f'{devName}[css]']
 
                 elif (self.settings['simulator'] == "spectre"): #  TODO: Fix this part
                     genSimParamsSpectre(mosLengths[idxL], vsb[idxVSB])
