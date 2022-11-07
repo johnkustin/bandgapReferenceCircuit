@@ -261,7 +261,7 @@ class charMOS:
                     myfile.close()
 
                     self.runSim("charNMOS.net", "ngspice")
-                    pdb.set_trace()
+                    # pdb.set_trace()
                     simDat, _ = spice3read.read('outN.raw')
                     
                     self.mosDat['nfet']['id'][idxL][idxVSB]  = simDat['i(id)']
