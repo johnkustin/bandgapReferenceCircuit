@@ -81,7 +81,7 @@ class charMOS:
             model = self.settings['modelN']
             length = sizePair[0]
             width = sizePair[1]
-            netlistN.write(f"xn{idx} nDrain nGate 0 nBulk {model} L={length*1e-6} W={*1e-6}\n")
+            netlistN.write(f"xn{idx} nDrain nGate 0 nBulk {model} L={length*1e-6} W={width*1e-6}\n")
         netlistN.write("\n")
         netlistN.write(".options dccap post brief accurate\n")
         netlistN.write(".control\n")
