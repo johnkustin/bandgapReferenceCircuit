@@ -72,6 +72,7 @@ class charMOS:
         for modelFile, corner in zip(self.settings['modelFiles'], self.mosDat['nfet']['corners']):
             netlistN.write(".lib \"{0}\" {1}\n".format(modelFile, corner))
         netlistN.write("\n")
+        pdb.set_trace()
         for idx, sizePair in enumerate(zip(netlistN["nfet"]["length"], netlistN["nfet"]["width"])):
 
             netlistN.write(f'vds{idx}  nDrain{idx} 0 dc 0\n')
