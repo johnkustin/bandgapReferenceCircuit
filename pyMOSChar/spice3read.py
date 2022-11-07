@@ -1,9 +1,19 @@
+# MIT license: https://opensource.org/licenses/MIT
+# See https://github.com/Isotel/mixedsim/blob/master/python/ngspice_read.py
+# for a more complete library. Isotel's version is GPL licensed
+from __future__ import division
 import struct
 import re
 import numpy as np
 import collections
 import pdb
 
+BSIZE_SP = 512 # Max size of a line of data; we don't want to read the
+               # whole file to find a line, in case file does not have
+               # expected structure.
+MDATA_LIST = [b'title', b'date', b'plotname', b'flags', b'no. variables',
+              b'no. points', b'dimensions', b'command', b'option']
+              
 def split(plotDat):
     """ Converts each of the arrays in plotDat into 2-D arrays
     where the first index corresponds to the parameter being swept.
@@ -25,17 +35,6 @@ def split(plotDat):
             plotDatSplit[key][splitPtr] = plotDat[key][splitPos[splitPtr]:splitPos[splitPtr + 1]]
     
     return plotDatSplit
-
-# MIT license: https://opensource.org/licenses/MIT
-# See https://github.com/Isotel/mixedsim/blob/master/python/ngspice_read.py
-# for a more complete library. Isotel's version is GPL licensed
-from __future__ import division
-import numpy as np
-BSIZE_SP = 512 # Max size of a line of data; we don't want to read the
-               # whole file to find a line, in case file does not have
-               # expected structure.
-MDATA_LIST = [b'title', b'date', b'plotname', b'flags', b'no. variables',
-              b'no. points', b'dimensions', b'command', b'option']
 
 def rawread(fname: str):
     """Read ngspice binary raw files. Return tuple of the data, and the
