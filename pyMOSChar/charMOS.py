@@ -97,7 +97,7 @@ class charMOS:
         netlistN.write("\n")
         devName = '@m.xn.m'+self.settings['modelN']
         for modelFile, corner in zip(self.settings['modelFiles'], self.mosDat['nfet']['corners']):
-            netlistN.write(".lib \"{0}\" {1}\n".format(modelFile, corner))
+            netlistN.write(".lib \"{0}\" {1}\n".format(modelFile, corner[0]))
         netlistN.write("\n")
         pdb.set_trace()
         self.writeSources(netlistN, "nfet")
@@ -138,7 +138,7 @@ class charMOS:
         netlistP.write("\n")
         devName = '@m.xp.m'+self.settings['modelP']
         for modelFile, corner in zip(self.settings['modelFiles'], self.mosDat['pfet']['corners']):
-            netlistP.write(".lib \"{0}\" {1}\n".format(modelFile, corner))
+            netlistP.write(".lib \"{0}\" {1}\n".format(modelFile, corner[0]))
         netlistP.write("\n")
         self.writeSources(netlistP, "pfet")
         netlistP.write(".options dccap post brief accurate\n")
