@@ -41,10 +41,10 @@ def main():
     assert type(corners) == list
     print(modelFilePath)
 
-    
+    # in microns
     mosWidthsN = [1, 2, 5]
     mosWidthsP = mosWidthsN * 2
-    mosLengthsN = 1
+    mosLengthsN = [1]
     mosLengthsP = mosLengthsN
 
     # Beware,
