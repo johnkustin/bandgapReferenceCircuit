@@ -67,7 +67,7 @@ def main():
         'vdsMax':   1.95,
         'vdsStep':  20e-3,
         'vsbMax':   1.95,
-        'vsbStep':  550e-3,
+        'vsbStep':  1,
         'numfing':  1,
         'temp': 300
     }
