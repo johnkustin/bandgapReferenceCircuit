@@ -88,8 +88,8 @@ class charMOS:
                         idxs.append(idx)
                         devName = f'@m.x{tab1[type]}d{idx}.m'+self.settings[tab[type]]
                         devNames.append(devName)
-                        netlistHandler.write(f'vds vdsd{idx} dc 0\n')
-                        netlistHandler.write(f'vgs vgsd{idx} dc 0\n')
+                        netlistHandler.write(f'vvds{idx} vds vdsd{idx} dc 0\n')
+                        netlistHandler.write(f'vvgs{idx} vgs vgsd{idx} dc 0\n')
                         netlistHandler.write(f'vvdsd{idx} vdsd{idx}  {tab1[type]}Draind{idx} dc 0\n')
                         netlistHandler.write(f'vvgsd{idx} vgsd{idx}  {tab1[type]}Gated{idx}  dc 0\n')
                         netlistHandler.write(f'vvbsd{idx} vbsd{idx}  {tab1[type]}Bulkd{idx}  dc {-vsb}\n')
