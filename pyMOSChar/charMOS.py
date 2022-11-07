@@ -78,7 +78,10 @@ class charMOS:
             netlistN.write(f'vgs{idx}  nGate{idx}  0 dc 0\n')
             netlistN.write(f'vbs{idx}  nBulk{idx}  0 dc {-mosChar_sb}\n')
             netlistN.write("\n")
-            netlistN.write(f"xn{idx} nDrain nGate 0 nBulk {self.settings['modelN']} L={sizePair[0]*1e-6} W={sizePair[1]*1e-6}\n")
+            model = self.settings['modelN']
+            length = sizePair[0]
+            width = sizePair[1]
+            netlistN.write(f"xn{idx} nDrain nGate 0 nBulk {model} L={length*1e-6} W={*1e-6}\n")
         netlistN.write("\n")
         netlistN.write(".options dccap post brief accurate\n")
         netlistN.write(".control\n")
@@ -131,7 +134,10 @@ class charMOS:
             netlistP.write(f'vgs{idx}  nGate{idx}  0 dc 0\n')
             netlistP.write(f'vbs{idx}  nBulk{idx}  0 dc {-mosChar_sb}\n')
             netlistP.write("\n")
-            netlistP.write(f"xp{idx} nDrain nGate 0 nBulk {self.settings['modelP']} L={sizePair[0]*1e-6} W={sizePair[1]*1e-6}\n")
+            width = sizePair[1]
+            length = sizePair[0]
+            model = self.settings['modelP']
+            netlistP.write(f"xp{idx} nDrain nGate 0 nBulk {model} L={length*1e-6} W={width*1e-6}\n")
         netlistP.write("\n")
         netlistP.write(".options dccap post brief accurate\n")
         netlistP.write(".control\n")
