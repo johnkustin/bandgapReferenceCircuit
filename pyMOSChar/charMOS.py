@@ -109,11 +109,9 @@ class charMOS:
         netlistN = open(fName, 'w')
         netlistN.write("**Characterize N Channel MOSFET\n")
         netlistN.write("\n")
-        pdb.set_trace()
         for modelFile, corner in zip(self.settings['modelFiles'], self.mosDat['nfet']['corners']):
             netlistN.write(".lib \"{0}\" {1}\n".format(modelFile, corner[0]))
         netlistN.write("\n")
-        pdb.set_trace()
         idxs, devNames = self.writeSources(netlistN, "nfet")
         netlistN.write(".options dccap post brief accurate\n")
         netlistN.write(".control\n")
@@ -247,7 +245,6 @@ class charMOS:
         else:
             print("ERROR: Invalid/Unsupported simulator specified")
             sys.exit(0)
-        pdb.set_trace()
         #  TODO: make sure the prog total is right. e.g. if num of nmos widths != num of pmos widths 
         progTotal = len(self.mosDat['nfet']['length'])*len(self.mosDat['nfet']['vsb'])*len(self.mosDat['nfet']['width'])
         progCurr  = 0

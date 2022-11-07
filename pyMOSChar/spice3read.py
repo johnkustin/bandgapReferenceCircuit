@@ -8,6 +8,7 @@ def split(plotDat):
     """ Converts each of the arrays in plotDat into 2-D arrays
     where the first index corresponds to the parameter being swept.
     """
+    pdb.set_trace()
     sweep = plotDat[list(plotDat.keys())[0]]
     splitPos = np.argwhere(sweep == sweep[0])
     nSplits = len(splitPos)
