@@ -77,7 +77,7 @@ class charMOS:
         sizes = [data["length"], data["width"]]
         assert len(sizes[0]) == len(sizes[1])
         # the driving voltage sources of the 1 analysis
-        netlistHandler.write(f"dc vgs 0 {0} {1} vdsd 0 {2} {3}\n".format(self.settings['vgsMax'], self.settings['vgsStep'], self.settings['vdsMax'], self.settings['vdsStep']))
+        
         devNames = []
         idxs = []
         for i in range(len(sizes[0])):
@@ -97,13 +97,16 @@ class charMOS:
                         width = sizes[1][i]
                         netlistHandler.write(f"x{tab1[type]}d{idx} {tab1[type]}Draind{idx} {tab1[type]}Gated{idx} 0 {tab1[type]}Bulkd{idx} {model} L={length*1e-6} W={width*1e-6}\n")
                         netlistHandler.write("\n")
-        return idx, devNames
+
+        netlistHandler.write(f"dc vgs 0 {0} {1} vdsd 0 {2} {3}\n".format(self.settings['vgsMax'], self.settings['vgsStep'], self.settings['vdsMax'], self.settings['vdsStep']))
+        
+        return idxs, devNames
                     
     def genNetlistNngspice(self, fName='charNMOS.net'):
         netlistN = open(fName, 'w')
         netlistN.write("Characterize N Channel MOSFET\n")
         netlistN.write("\n")
-        
+        pdb.set_trace()
         for modelFile, corner in zip(self.settings['modelFiles'], self.mosDat['nfet']['corners']):
             netlistN.write(".lib \"{0}\" {1}\n".format(modelFile, corner[0]))
         netlistN.write("\n")
@@ -131,8 +134,8 @@ class charMOS:
             strList2.append(f'let cgs{idx}  = - {devName}[cgs]')
             strList2.append(f'let cgd{idx}  = - {devName}[cgd]')
             strList2.append(f'let cgb{idx}  = {devName}[cgg] - (-{devName}[cgs])-(-devName[cgd])\n')
-            strList2.append('let cdd{idx}  = {devName}[cdd]')
-            strList2.append('let css{idx}  = -{devName}[cgs]-{devName}[cbs]')
+            strList2.append(f'let cdd{idx}  = {devName}[cdd]')
+            strList2.append(f'let css{idx}  = -{devName}[cgs]-{devName}[cbs]')
         netlistN.write('\n'.join(strList2))
         
         netlistN.write("write outN.raw all\n")
@@ -172,8 +175,8 @@ class charMOS:
             strList2.append(f'let cgs{idx}  = - {devName}[cgs]')
             strList2.append(f'let cgd{idx}  = - {devName}[cgd]')
             strList2.append(f'let cgb{idx}  = {devName}[cgg] - (-{devName}[cgs])-(-devName[cgd])\n')
-            strList2.append('let cdd{idx}  = {devName}[cdd]')
-            strList2.append('let css{idx}  = -{devName}[cgs]-{devName}[cbs]')
+            strList2.append(f'let cdd{idx}  = {devName}[cdd]')
+            strList2.append(f'let css{idx}  = -{devName}[cgs]-{devName}[cbs]')
         netlistP.write('\n'.join(strList2))
         
         netlistP.write("write outN.raw all\n")
@@ -230,7 +233,7 @@ class charMOS:
 
 
     def genDB(self):
-        if (self.mosDat['simulator'] == "ngspice"):
+        if (self.settings['simulator'] == "ngspice"):
             self.genNetlistNngspice()
             self.genNetlistPngspice()
         elif (self['simulator'] == "spectre"):
