@@ -81,7 +81,7 @@ class charMOS:
                         idx = f'{i}.{ivsb}{tab1[type]}'
                         netlistHandler.write(f'vds.{idx}  nDrain.{idx} 0 dc 0\n')
                         netlistHandler.write(f'vgs.{idx}  nGate.{idx}  0 dc 0\n')
-                        netlistHandler.write(f'vbs.{idx}  nBulk.{idx}  0 dc {-val}\n')
+                        netlistHandler.write(f'vbs.{idx}  nBulk.{idx}  0 dc {-vsb}\n')
                         netlistHandler.write("\n")
                         model = self.settings[tab[type]]
                         length = sizes[0][i]
