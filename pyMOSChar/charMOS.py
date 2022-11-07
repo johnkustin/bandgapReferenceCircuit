@@ -278,9 +278,9 @@ class charMOS:
                     # pdb.set_trace()
                     simDat = spice3read.read('outN.raw')
                     
-                    idx = f'{idxL}d{idxVSB}d{tab1["nfet"]}'
-                    devTypes = ['nfet', 'pfet']
                     
+                    devTypes = ['nfet', 'pfet']
+                    idx = f'{idxL}d{idxVSB}d{tab1[devTypes[0]]}'
                     devName = f'@m.x{tab1[devTypes[0]]}d{idx}.m'+self.settings[tab[devTypes[0]]]
                     self.mosDat[devTypes[0]]['id'][idxL][idxVSB]  = simDat[f'i({devName}[id])']
                     self.mosDat[devTypes[0]]['vt'][idxL][idxVSB]  = simDat[f'v({devName}[vth])']
@@ -297,6 +297,7 @@ class charMOS:
                     self.runSim("charPMOS.net", "ngspice")
                     simDat = spice3read.read('outP.raw')
                     
+                    idx = f'{idxL}d{idxVSB}d{tab1[devTypes[1]]}'
                     devName = f'@m.x{tab1[devTypes[1]]}d{idx}.m'+self.settings[tab[devTypes[1]]]
                     self.mosDat[devTypes[1]]['id'][idxL][idxVSB]  = simDat[f'i({devName}[id])']
                     self.mosDat[devTypes[1]]['vt'][idxL][idxVSB]  = simDat[f'v({devName}[vth])']

@@ -109,7 +109,7 @@ def read(fileName, simulator="ngspice"):
     #    return plotDat
     rawFile.close()
     #return plotDat
-    pdb.set_trace()
+    # pdb.set_trace()
     return split(plotDat)
 
 def getVars(plotDat):
