@@ -72,11 +72,13 @@ class charMOS:
         for modelFile, corner in zip(self.settings['modelFiles'], self.mosDat['nfet']['corners']):
             netlistN.write(".lib \"{0}\" {1}\n".format(modelFile, corner))
         netlistN.write("\n")
-        netlistN.write("vds  nDrain 0 dc 0\n")
-        netlistN.write("vgs  nGate  0 dc 0\n")
-        netlistN.write("vbs  nBulk  0 dc {-mosChar_sb}\n")
-        netlistN.write("\n")
-        netlistN.write(f"xn nDrain nGate 0 nBulk {{self.settings['modelN']}}  L={{self.mosDat['nfet']['length']*1e-6}} W={{self.mosDat['nfet']['width']*1e-6}}\n")
+        for idx, sizePair in enumerate(zip(netlistN["nfet"]["length"], netlistN["nfet"]["width"])):
+
+            netlistN.write(f'vds{idx}  nDrain{idx} 0 dc 0\n')
+            netlistN.write(f'vgs{idx}  nGate{idx}  0 dc 0\n')
+            netlistN.write(f'vbs{idx}  nBulk{idx}  0 dc {-mosChar_sb}\n')
+            netlistN.write("\n")
+            netlistN.write(f"xn{idx} nDrain nGate 0 nBulk {{self.settings['modelN']}}  L={sizePair[0]*1e-6}} W={sizePair[1]*1e-6}}\n")
         netlistN.write("\n")
         netlistN.write(".options dccap post brief accurate\n")
         netlistN.write(".control\n")
@@ -91,7 +93,8 @@ class charMOS:
         netlistN.write("+ " + devName + "[cdd] \n")
         netlistN.write("+ " + devName + "[cbs] \n")
         netlistN.write("\n")
-        netlistN.write("dc vgs 0 {0} {1} vds 0 {2} {3}\n".format(self.settings['vgsMax'], self.settings['vgsStep'], self.settings['vdsMax'], self.settings['vdsStep']))
+        for idx in range(len(netlistN["nfet"]["length"])):
+            netlistN.write(f"dc vgs{idx} 0 {0} {1} vds 0 {2} {3}\n".format(self.settings['vgsMax'], self.settings['vgsStep'], self.settings['vdsMax'], self.settings['vdsStep']))
         netlistN.write("\n")
         netlistN.write("let id   = " + devName + "[id]\n")
         netlistN.write("let vt   = " + devName + "[vth]\n")

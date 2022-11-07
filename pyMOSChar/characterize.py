@@ -39,7 +39,7 @@ def main():
         AssertionError()
 
     assert type(corners) == list
-    assert type(modelFilePath) == str
+    print(modelFilePath)
 
     # scale by 1e6 because the netlister scales the w by 1e-6
     mosWidthsN = [2 * 1e6]
