@@ -78,15 +78,15 @@ class charMOS:
         assert len(sizes[0]) == len(sizes[1])
         for i in range(len(sizes[0])):
                     for ivsb, vsb in enumerate(data["vsb"]):
-                        idx = f'{i}.{ivsb}{tab1[type]}'
-                        netlistHandler.write(f'vds.{idx}  nDrain.{idx} 0 dc 0\n')
-                        netlistHandler.write(f'vgs.{idx}  nGate.{idx}  0 dc 0\n')
-                        netlistHandler.write(f'vbs.{idx}  nBulk.{idx}  0 dc {-vsb}\n')
+                        idx = f'{i}d{ivsb}d{tab1[type]}'
+                        netlistHandler.write(f'vdsd{idx}  nDraind{idx} 0 dc 0\n')
+                        netlistHandler.write(f'vgsd{idx}  nGated{idx}  0 dc 0\n')
+                        netlistHandler.write(f'vbsd{idx}  nBulkd{idx}  0 dc {-vsb}\n')
                         netlistHandler.write("\n")
                         model = self.settings[tab[type]]
                         length = sizes[0][i]
                         width = sizes[1][i]
-                        netlistHandler.write(f"xn{idx} nDrain.{idx} nGate.{idx} 0 nBulk {model} L={length*1e-6} W={width*1e-6}\n")
+                        netlistHandler.write(f"x{tab1[type]}d{idx} {tab1[type]}Draind{idx} {tab1[type]}Gated{idx} 0 {tab1[type]}Bulkd{idx} {model} L={length*1e-6} W={width*1e-6}\n")
                         netlistHandler.write("\n")
                         netlistHandler.write(f"dc vgs{idx} 0 {0} {1} vds 0 {2} {3}\n".format(self.settings['vgsMax'], self.settings['vgsStep'], self.settings['vdsMax'], self.settings['vdsStep']))
                         netlistHandler.write("\n")
