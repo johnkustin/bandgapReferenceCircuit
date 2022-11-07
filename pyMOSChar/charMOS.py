@@ -158,7 +158,7 @@ class charMOS:
         for modelFile, corner in zip(self.settings['modelFiles'], self.mosDat['pfet']['corners']):
             netlistP.write(".lib \"{0}\" {1}\n".format(modelFile, corner[0]))
         netlistP.write("\n")
-        idxs, devNames = self.writeSources(netlistP, "nfet")
+        idxs, devNames = self.writeSources(netlistP, "pfet")
         netlistP.write(".options dccap post brief accurate\n")
         netlistP.write(".control\n")
         strList = ["save all"]
