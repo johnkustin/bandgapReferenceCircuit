@@ -73,7 +73,8 @@ class charMOS:
             "nfet": "n",
             "pfet": "p"
         }
-        sizes = [self.mosDat[type]["length"], self.mosDat[type]["width"]]
+        data = self.mosDat[type]
+        sizes = [data["length"], data["width"]]
         assert length(self.mosDat[type]["length"]) == length(self.mosDat[type]["width"])
         for i in length(self.mosDat[type]["length"]):
                     for ivsb, vsb in enumerate(self.mosDat[type]["vsb"]):
