@@ -42,9 +42,9 @@ def main():
     print(modelFilePath)
 
     
-    mosWidthsN = np.linspace(1, 10, 10, endpoint=True)
+    mosWidthsN = [1, 2, 5]
     mosWidthsP = mosWidthsN * 2
-    mosLengthsN = np.linspace(0.2, 1, 10, endpoint=True)
+    mosLengthsN = 1
     mosLengthsP = mosLengthsN
 
     # Beware,
