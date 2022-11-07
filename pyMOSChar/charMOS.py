@@ -178,7 +178,7 @@ class charMOS:
             strList2.append(f'let cdd{idx}  = {devName}[cdd]')
             strList2.append(f'let css{idx}  = -{devName}[cgs]-{devName}[cbs]')
         netlistP.write('\n'.join(strList2))
-        netlistHandler.write(f"dc vgs 0 {0} {1} vdsd 0 {2} {3}\n".format(self.settings['vgsMax'], self.settings['vgsStep'], self.settings['vdsMax'], self.settings['vdsStep']))
+
         netlistP.write("write outN.raw all\n")
         netlistP.write("exit\n")
         netlistP.write(".endc\n")
