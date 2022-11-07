@@ -78,10 +78,12 @@ class charMOS:
         assert len(sizes[0]) == len(sizes[1])
         # the driving voltage sources of the 1 analysis
         netlistHandler.write(f"dc vgs 0 {0} {1} vdsd 0 {2} {3}\n".format(self.settings['vgsMax'], self.settings['vgsStep'], self.settings['vdsMax'], self.settings['vdsStep']))
-
+        devNames = []
         for i in range(len(sizes[0])):
                     for ivsb, vsb in enumerate(data["vsb"]):
                         idx = f'{i}d{ivsb}d{tab1[type]}'
+                        devName = f'@m.x{tab1[type]}d{idx}.m'+self.settings[tab[type]]
+                        devNames.append(devName)
                         netlistHandler.write(f'vds vdsd{idx} 0 dc 0\n')
                         netlistHandler.write(f'vgs vgsd{idx}  0 dc 0\n')
                         netlistHandler.write(f'vdsd{idx}  {tab1[type]}Draind{idx} 0 dc 0\n')
@@ -93,43 +95,45 @@ class charMOS:
                         width = sizes[1][i]
                         netlistHandler.write(f"x{tab1[type]}d{idx} {tab1[type]}Draind{idx} {tab1[type]}Gated{idx} 0 {tab1[type]}Bulkd{idx} {model} L={length*1e-6} W={width*1e-6}\n")
                         netlistHandler.write("\n")
+        return idx, devNames
                     
     def genNetlistNngspice(self, fName='charNMOS.net'):
         netlistN = open(fName, 'w')
         netlistN.write("Characterize N Channel MOSFET\n")
         netlistN.write("\n")
-        devName = '@m.xn.m'+self.settings['modelN']
+        
         for modelFile, corner in zip(self.settings['modelFiles'], self.mosDat['nfet']['corners']):
             netlistN.write(".lib \"{0}\" {1}\n".format(modelFile, corner[0]))
         netlistN.write("\n")
         pdb.set_trace()
-        self.writeSources(netlistN, "nfet")
+        idxs, devNames = self.writeSources(netlistN, "nfet")
         netlistN.write(".options dccap post brief accurate\n")
         netlistN.write(".control\n")
-        netlistN.write("save all " + devName + "[id] \n")
-        netlistN.write("+ " + devName + "[vth]\n")
-        netlistN.write("+ " + devName + "[gm]\n")
-        netlistN.write("+ " + devName + "[gmbs] \n")
-        netlistN.write("+ " + devName + "[gds] \n")
-        netlistN.write("+ " + devName + "[cgg] \n")
-        netlistN.write("+ " + devName + "[cgs] \n")
-        netlistN.write("+ " + devName + "[cgd] \n")
-        netlistN.write("+ " + devName + "[cdd] \n")
-        netlistN.write("+ " + devName + "[cbs] \n")
+        strList = ["save all"]
+        ssParams = ["[id]", "[vth]", "[gm]", "[gmbs]", "[gds]", "[cgg]", "[cgs]", "[cgd]", "[cdd]", "[cbs]"]
+        for devName in devNames:
+            for ssp in ssParams:
+                strList.append(devName + ssp)
+        
+        netlistN.write(' '.join(strList))
         netlistN.write("\n")
-        netlistN.write("let id   = " + devName + "[id]\n")
-        netlistN.write("let vt   = " + devName + "[vth]\n")
-        netlistN.write("let gm   = " + devName + "[gm]\n")
-        netlistN.write("let gmb  = " + devName + "[gmbs]\n")
-        netlistN.write("let gds  = " + devName + "[gds]\n")
-        netlistN.write("let cgg  = " + devName + "[cgg]\n")
-        netlistN.write("let cgs  = -" + devName + "[cgs]\n")
-        netlistN.write("let cgd  = -" + devName + "[cgd]\n")
-        netlistN.write("let cgb  = " + devName + "[cgg] - (-" + devName + "[cgs])-(-" + devName + "[cgd])\n")
-        netlistN.write("let cdd  = " + devName + "[cdd]\n")
-        netlistN.write("let css  = -" + devName + "[cgs]-" + devName + "[cbs]\n")
 
-        netlistN.write("write outN.raw id vt gm gmb gds cgg cgs cgd cgb cdd css\n")
+        strList2 = []
+        for idx, devName in zip(idxs, devNames):
+            strList2.append(f'let id{idx}   =  {devName}[id]')
+            strList2.append(f'let vt{idx}   =  {devName}[vth]')
+            strList2.append(f'let gm{idx}   =  {devName}[gm]')
+            strList2.append(f'let gmb{idx}  =  {devName}[gmbs]')
+            strList2.append(f'let gds{idx}  =  {devName}[gds]')
+            strList2.append(f'let cgg{idx}  =  {devName}[cgg]')
+            strList2.append(f'let cgs{idx}  = - {devName}[cgs]')
+            strList2.append(f'let cgd{idx}  = - {devName}[cgd]')
+            strList2.append(f'let cgb{idx}  = {devName}[cgg] - (-{devName}[cgs])-(-devName[cgd])\n')
+            strList2.append('let cdd{idx}  = {devName}[cdd]')
+            strList2.append('let css{idx}  = -{devName}[cgs]-{devName}[cbs]')
+        netlistN.write('\n'.join(strList2))
+        
+        netlistN.write("write outN.raw all\n")
         netlistN.write("exit\n")
         netlistN.write(".endc\n")
         netlistN.write(".end\n")
@@ -143,33 +147,34 @@ class charMOS:
         for modelFile, corner in zip(self.settings['modelFiles'], self.mosDat['pfet']['corners']):
             netlistP.write(".lib \"{0}\" {1}\n".format(modelFile, corner[0]))
         netlistP.write("\n")
-        self.writeSources(netlistP, "pfet")
+        idxs, devNames = self.writeSources(netlistP, "nfet")
         netlistP.write(".options dccap post brief accurate\n")
         netlistP.write(".control\n")
-        netlistP.write("save all " + devName + "[id] \n")
-        netlistP.write("+ " + devName + "[vth]\n")
-        netlistP.write("+ " + devName + "[gm]\n")
-        netlistP.write("+ " + devName + "[gmbs] \n")
-        netlistP.write("+ " + devName + "[gds] \n")
-        netlistP.write("+ " + devName + "[cgg] \n")
-        netlistP.write("+ " + devName + "[cgs] \n")
-        netlistP.write("+ " + devName + "[cgd] \n")
-        netlistP.write("+ " + devName + "[cdd] \n")
-        netlistP.write("+ " + devName + "[cbs] \n")
+        strList = ["save all"]
+        ssParams = ["[id]", "[vth]", "[gm]", "[gmbs]", "[gds]", "[cgg]", "[cgs]", "[cgd]", "[cdd]", "[cbs]"]
+        for devName in devNames:
+            for ssp in ssParams:
+                strList.append(devName + ssp)
+        
+        netlistP.write(' '.join(strList))
         netlistP.write("\n")
-        netlistP.write("let id   = " + devName + "[id]\n")
-        netlistP.write("let vt   = " + devName + "[vth]\n")
-        netlistP.write("let gm   = " + devName + "[gm]\n")
-        netlistP.write("let gmb  = " + devName + "[gmbs]\n")
-        netlistP.write("let gds  = " + devName + "[gds]\n")
-        netlistP.write("let cgg  = " + devName + "[cgg]\n")
-        netlistP.write("let cgs  = -" + devName + "[cgs]\n")
-        netlistP.write("let cgd  = -" + devName + "[cgd]\n")
-        netlistP.write("let cgb  = " + devName + "[cgg] - (-" + devName + "[cgs])-(-" + devName + "[cgd])\n")
-        netlistP.write("let cdd  = " + devName + "[cdd]\n")
-        netlistP.write("let css  = -" + devName + "[cgs]-" + devName + "[cbs]\n")
-        netlistP.write("\n")
-        netlistP.write("write outP.raw id vt gm gmb gds cgg cgs cgd cgb cdd css\n")
+
+        strList2 = []
+        for idx, devName in zip(idxs, devNames):
+            strList2.append(f'let id{idx}   =  {devName}[id]')
+            strList2.append(f'let vt{idx}   =  {devName}[vth]')
+            strList2.append(f'let gm{idx}   =  {devName}[gm]')
+            strList2.append(f'let gmb{idx}  =  {devName}[gmbs]')
+            strList2.append(f'let gds{idx}  =  {devName}[gds]')
+            strList2.append(f'let cgg{idx}  =  {devName}[cgg]')
+            strList2.append(f'let cgs{idx}  = - {devName}[cgs]')
+            strList2.append(f'let cgd{idx}  = - {devName}[cgd]')
+            strList2.append(f'let cgb{idx}  = {devName}[cgg] - (-{devName}[cgs])-(-devName[cgd])\n')
+            strList2.append('let cdd{idx}  = {devName}[cdd]')
+            strList2.append('let css{idx}  = -{devName}[cgs]-{devName}[cbs]')
+        netlistP.write('\n'.join(strList2))
+        
+        netlistP.write("write outN.raw all\n")
         netlistP.write("exit\n")
         netlistP.write(".endc\n")
         netlistP.write(".end\n")
