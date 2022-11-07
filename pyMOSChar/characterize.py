@@ -42,9 +42,9 @@ def main():
     print(modelFilePath)
 
     # scale by 1e6 because the netlister scales the w by 1e-6
-    mosWidthsN = np.linspace(1, 10, 10) * 1e6
+    mosWidthsN = np.linspace(1, 10, 10, endpoint=True) * 1e6
     mosWidthsP = mosWidthsN * 2
-    mosLengthsN = np.linspace(0.2, 0.6, 1) * 1e6
+    mosLengthsN = np.linspace(0.2, 1, 10, endpoint=True) * 1e6
     mosLengthsP = mosLengthsN
 
     # Beware,
