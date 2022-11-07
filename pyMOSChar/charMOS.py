@@ -186,7 +186,7 @@ class charMOS:
         netlistP.write('\n'.join(strList2))
         netlistP.write('\n')
         netlistP.write('run\n')
-        netlistP.write("write outN.raw all\n")
+        netlistP.write("write outP.raw all\n")
         netlistP.write("exit\n")
         netlistP.write(".endc\n")
         netlistP.write(".end\n")
