@@ -63,6 +63,32 @@ class charMOS:
             self.mosDat['nfet'][x]  = np.zeros((len(self.mosDat['nfet']['length']), len(self.vsb), len(self.vds), len(self.vgs)))
             self.mosDat['pfet'][x]  = np.zeros((len(self.mosDat['pfet']['length']), len(self.vsb), len(self.vds), len(self.vgs)))
 
+    def writeSources(self, netlistHandler, type: str):
+        # type: str - "nfet" or "pfet"
+        tab = {
+            "nfet": "modelN",
+            "pfet": "modelP"
+        }
+        tab1 = {
+            "nfet": "n",
+            "pfet": "p"
+        }
+        sizes = [self.mosDat[type]["length"], self.mosDat[type]["width"]]
+        assert length(self.mosDat[type]["length"]) == length(self.mosDat[type]["width"])
+        for i in length(self.mosDat[type]["length"]):
+                    for ivsb, vsb in enumerate(self.mosDat[type]["vsb"]):
+                        idx = f'{i}.{ivsb}{tab1[type]}'
+                        netlistHandler.write(f'vds.{idx}  nDrain.{idx} 0 dc 0\n')
+                        netlistHandler.write(f'vgs.{idx}  nGate.{idx}  0 dc 0\n')
+                        netlistHandler.write(f'vbs.{idx}  nBulk.{idx}  0 dc {-val}\n')
+                        netlistHandler.write("\n")
+                        model = self.settings[tab[type]]
+                        length = sizes[0][i]
+                        width = sizes[1][i]
+                        netlistN.write(f"xn{idx} nDrain.{idx} nGate.{idx} 0 nBulk {model} L={length*1e-6} W={width*1e-6}\n")
+                        netlistN.write("\n")
+                        netlistN.write(f"dc vgs{idx} 0 {0} {1} vds 0 {2} {3}\n".format(self.settings['vgsMax'], self.settings['vgsStep'], self.settings['vdsMax'], self.settings['vdsStep']))
+                        netlistN.write("\n")
 
     def genNetlistNngspice(self, fName='charNMOS.net'):
         netlistN = open(fName, 'w')
@@ -73,18 +99,7 @@ class charMOS:
             netlistN.write(".lib \"{0}\" {1}\n".format(modelFile, corner))
         netlistN.write("\n")
         pdb.set_trace()
-        sizes = zip(self.mosDat["nfet"]["length"], self.mosDat["nfet"]["width"])
-        for idx, sizePair in enumerate(sizes):
-
-            netlistN.write(f'vds{idx}  nDrain{idx} 0 dc 0\n')
-            netlistN.write(f'vgs{idx}  nGate{idx}  0 dc 0\n')
-            netlistN.write(f'vbs{idx}  nBulk{idx}  0 dc {-mosChar_sb}\n')
-            netlistN.write("\n")
-            model = self.settings['modelN']
-            length = sizePair[0]
-            width = sizePair[1]
-            netlistN.write(f"xn{idx} nDrain nGate 0 nBulk {model} L={length*1e-6} W={width*1e-6}\n")
-        netlistN.write("\n")
+        writeSources(netlistN, "nfet")
         netlistN.write(".options dccap post brief accurate\n")
         netlistN.write(".control\n")
         netlistN.write("save all " + devName + "[id] \n")
@@ -97,9 +112,6 @@ class charMOS:
         netlistN.write("+ " + devName + "[cgd] \n")
         netlistN.write("+ " + devName + "[cdd] \n")
         netlistN.write("+ " + devName + "[cbs] \n")
-        netlistN.write("\n")
-        for idx in range(len(netlistN["nfet"]["length"])):
-            netlistN.write(f"dc vgs{idx} 0 {0} {1} vds 0 {2} {3}\n".format(self.settings['vgsMax'], self.settings['vgsStep'], self.settings['vdsMax'], self.settings['vdsStep']))
         netlistN.write("\n")
         netlistN.write("let id   = " + devName + "[id]\n")
         netlistN.write("let vt   = " + devName + "[vth]\n")
@@ -127,20 +139,7 @@ class charMOS:
         for modelFile, corner in zip(self.settings['modelFiles'], self.mosDat['pfet']['corners']):
             netlistP.write(".lib \"{0}\" {1}\n".format(modelFile, corner))
         netlistP.write("\n")
-        netlistP.write("vds  nDrain 0 dc 0\n")
-        netlistP.write("vgs  nGate  0 dc 0\n")
-        netlistP.write("vbs  nBulk  0 dc mosChar_sb\n")
-        netlistP.write("\n")
-        for idx, sizePair in enumerate(zip(self.mosDat["pfet"]["length"], self.mosDat["pfet"]["width"])):
-            netlistP.write(f'vds{idx}  nDrain{idx} 0 dc 0\n')
-            netlistP.write(f'vgs{idx}  nGate{idx}  0 dc 0\n')
-            netlistP.write(f'vbs{idx}  nBulk{idx}  0 dc {-mosChar_sb}\n')
-            netlistP.write("\n")
-            width = sizePair[1]
-            length = sizePair[0]
-            model = self.settings['modelP']
-            netlistP.write(f"xp{idx} nDrain nGate 0 nBulk {model} L={length*1e-6} W={width*1e-6}\n")
-        netlistP.write("\n")
+        writeSources(netlistN, "pfet")
         netlistP.write(".options dccap post brief accurate\n")
         netlistP.write(".control\n")
         netlistP.write("save all " + devName + "[id] \n")
@@ -153,8 +152,6 @@ class charMOS:
         netlistP.write("+ " + devName + "[cgd] \n")
         netlistP.write("+ " + devName + "[cdd] \n")
         netlistP.write("+ " + devName + "[cbs] \n")
-        netlistP.write("\n")
-        netlistP.write("dc vgs 0 {0} {1} vds 0 {2} {3}\n".format(-self.settings['vgsMax'], -self.settings['vgsStep'], -self.settings['vdsMax'], -self.settings['vdsStep']))
         netlistP.write("\n")
         netlistP.write("let id   = " + devName + "[id]\n")
         netlistP.write("let vt   = " + devName + "[vth]\n")
@@ -230,7 +227,7 @@ class charMOS:
         else:
             print("ERROR: Invalid/Unsupported simulator specified")
             sys.exit(0)
-
+        pdb.set_trace()
         #  TODO: make sure the prog total is right. e.g. if num of nmos widths != num of pmos widths 
         progTotal = len(self.mosDat['nfet']['length'])*len(self.mosDat['nfet']['vsb'])*len(self.mosDat['nfet']['width'])
         progCurr  = 0
