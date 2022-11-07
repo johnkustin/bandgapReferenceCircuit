@@ -104,7 +104,7 @@ class charMOS:
                     
     def genNetlistNngspice(self, fName='charNMOS.net'):
         netlistN = open(fName, 'w')
-        netlistN.write("Characterize N Channel MOSFET\n")
+        netlistN.write("**Characterize N Channel MOSFET\n")
         netlistN.write("\n")
         pdb.set_trace()
         for modelFile, corner in zip(self.settings['modelFiles'], self.mosDat['nfet']['corners']):
