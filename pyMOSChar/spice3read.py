@@ -26,58 +26,75 @@ def split(plotDat):
     
     return plotDatSplit
 
-def read(filename):
+# MIT license: https://opensource.org/licenses/MIT
+# See https://github.com/Isotel/mixedsim/blob/master/python/ngspice_read.py
+# for a more complete library. Isotel's version is GPL licensed
+from __future__ import division
+import numpy as np
+BSIZE_SP = 512 # Max size of a line of data; we don't want to read the
+               # whole file to find a line, in case file does not have
+               # expected structure.
+MDATA_LIST = [b'title', b'date', b'plotname', b'flags', b'no. variables',
+              b'no. points', b'dimensions', b'command', b'option']
+
+def rawread(fname: str):
+    """Read ngspice binary raw files. Return tuple of the data, and the
+    plot metadata. The dtype of the data contains field names. This is
+    not very robust yet, and only supports ngspice.
+    >>> darr, mdata = rawread('test.py')
+    >>> darr.dtype.names
+    >>> plot(np.real(darr['frequency']), np.abs(darr['v(out)']))
     """
-        https://lab4sys.com/en/reading-spice-outputs-with-python/?cn-reloaded=1
-    """
-    f = open(filename,"r")
-    lignes = f.readlines()
-    k = 0
-    while not re.match("-+",lignes[k]):
-        print(lignes[k])
-        k += 1
-    k += 1
-    entete =lignes[k].strip()
-    champs = re.split("\s+",entete)
-    print(champs)
-    k += 2
-    ligne = lignes[k].strip()
-    valeurs = re.split("\s+",ligne)
-    complexes = []
-    data = {}
-    j = 0
-    for i in range(len(champs)):
-        valeurs[i] = valeurs[i].strip()
-        if valeurs[j][len(valeurs[j])-1] == ",":
-            complexes.append(True)
-            j += 2
-            data[champs[i]] = numpy.zeros(0,numpy.complex128)
+    # Example header of raw file
+    # Title: rc band pass example circuit
+    # Date: Sun Feb 21 11:29:14  2016
+    # Plotname: AC Analysis
+    # Flags: complex
+    # No. Variables: 3
+    # No. Points: 41
+    # Variables:
+    #         0       frequency       frequency       grid=3
+    #         1       v(out)  voltage
+    #         2       v(in)   voltage
+    # Binary:
+    fp = open(fname, 'rb')
+    plot = {}
+    count = 0
+    arrs = []
+    plots = []
+    while (True):
+        try:
+            mdata = fp.readline(BSIZE_SP).split(b':', maxsplit=1)
+        except:
+            raise
+        if len(mdata) == 2:
+            if mdata[0].lower() in MDATA_LIST:
+                plot[mdata[0].lower()] = mdata[1].strip()
+            if mdata[0].lower() == b'variables':
+                nvars = int(plot[b'no. variables'])
+                npoints = int(plot[b'no. points'])
+                plot['varnames'] = []
+                plot['varunits'] = []
+                for varn in range(nvars):
+                    varspec = (fp.readline(BSIZE_SP).strip()
+                               .decode('ascii').split())
+                    assert(varn == int(varspec[0]))
+                    plot['varnames'].append(varspec[1])
+                    plot['varunits'].append(varspec[2])
+            if mdata[0].lower() == b'binary':
+                rowdtype = np.dtype({'names': plot['varnames'],
+                                     'formats': [np.complex_ if b'complex'
+                                                 in plot[b'flags']
+                                                 else np.float_]*nvars})
+                # We should have all the metadata by now
+                arrs.append(np.fromfile(fp, dtype=rowdtype, count=npoints))
+                plots.append(plot)
+                fp.readline() # Read to the end of line
         else:
-            complexes.append(False)
-            j += 1
-            data[champs[i]] = numpy.zeros(0,numpy.float64)
-    index = 0
-    while k < len(lignes):
-        ligne = lignes[k].strip()
-        if re.match("^[\d+]",ligne):
-            valeurs = re.split("\s+",ligne)
-            j = 0
-            for i in range(len(champs)):
-                if complexes[i]:
-                    valeurs[j]= valeurs[j][:len(valeurs[2])-1]
-                    valeurs[j]= valeurs[j].replace(",",".")
-                    valeurs[j+1]= valeurs[j+1].replace(",",".")
-                    data[champs[i]] = numpy.append(data[champs[i]],complex(float(valeurs[j]),float(valeurs[j+1])))
-                    j += 2
-                else:
-                    valeurs[j]= valeurs[j].replace(",",".")
-                    data[champs[i]] = numpy.append(data[champs[i]],float(valeurs[j]))
-                    j += 1
-        k += 1
-    f.close()
-    return data
-            
-def read2(fileName, simulator="ngspice"):
+            break
+    return (arrs, plots)
+
+def read(fileName, simulator="ngspice"):
     """ Reads a SPICE3RAW file and stores the data. Returns an ordered
     dictionary containing 2D arrays of simulated data. 2D arrays are used in
     case the simulation is parametric.
