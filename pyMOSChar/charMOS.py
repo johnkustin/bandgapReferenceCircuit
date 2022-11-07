@@ -86,10 +86,10 @@ class charMOS:
                         model = self.settings[tab[type]]
                         length = sizes[0][i]
                         width = sizes[1][i]
-                        netlistN.write(f"xn{idx} nDrain.{idx} nGate.{idx} 0 nBulk {model} L={length*1e-6} W={width*1e-6}\n")
-                        netlistN.write("\n")
-                        netlistN.write(f"dc vgs{idx} 0 {0} {1} vds 0 {2} {3}\n".format(self.settings['vgsMax'], self.settings['vgsStep'], self.settings['vdsMax'], self.settings['vdsStep']))
-                        netlistN.write("\n")
+                        netlistHandler.write(f"xn{idx} nDrain.{idx} nGate.{idx} 0 nBulk {model} L={length*1e-6} W={width*1e-6}\n")
+                        netlistHandler.write("\n")
+                        netlistHandler.write(f"dc vgs{idx} 0 {0} {1} vds 0 {2} {3}\n".format(self.settings['vgsMax'], self.settings['vgsStep'], self.settings['vdsMax'], self.settings['vdsStep']))
+                        netlistHandler.write("\n")
 
     def genNetlistNngspice(self, fName='charNMOS.net'):
         netlistN = open(fName, 'w')
