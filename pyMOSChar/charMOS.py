@@ -6,6 +6,7 @@ import spice3read
 import numpy as np
 import pdb
 import signal
+import subprocess
 import sys
 
 class charMOS:
@@ -231,7 +232,9 @@ class charMOS:
         
     #  TODO: check that ngspice is installed on the machine
     def runSim(self, fileName='charMOS.net', simulator='ngspice'): 
-        os.system("{0} {1} &>> charMOSPy.log".format(simulator, fileName))
+        fileHandler = open('charMOSPy.log', 'w')
+        proc = subprocess.run([simulator, fileName], stdout=fileHandler, check=True)
+        # os.system("{0} {1} &>> charMOSPy.log".format(simulator, fileName))
 
 
     def genDB(self):
