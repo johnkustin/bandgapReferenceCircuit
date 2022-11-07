@@ -44,7 +44,7 @@ def main():
     # in microns
     mosWidthsN = [1, 2, 5]
     mosWidthsP = [2, 4, 10]
-    mosLengthsN = [1, 1, 1]
+    mosLengthsN = [0.9, 1, 1.1]
     mosLengthsP = mosLengthsN
 
     # Beware,
