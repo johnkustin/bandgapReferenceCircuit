@@ -76,8 +76,8 @@ class charMOS:
         data = self.mosDat[type]
         sizes = [data["length"], data["width"]]
         assert len(sizes[0]) == len(sizes[1])
-        for i in len(self.mosDat[type]["length"]):
-                    for ivsb, vsb in enumerate(self.mosDat[type]["vsb"]):
+        for i in range(len(sizes[0])):
+                    for ivsb, vsb in enumerate(data["vsb"]):
                         idx = f'{i}.{ivsb}{tab1[type]}'
                         netlistHandler.write(f'vds.{idx}  nDrain.{idx} 0 dc 0\n')
                         netlistHandler.write(f'vgs.{idx}  nGate.{idx}  0 dc 0\n')
