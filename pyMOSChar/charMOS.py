@@ -101,7 +101,11 @@ class charMOS:
                         netlistHandler.write(f"x{tab1[type]}d{idx} {tab1[type]}Draind{idx} {tab1[type]}Gated{idx} 0 {tab1[type]}Bulkd{idx} {model} L={length*1e-6} W={width*1e-6}\n")
                         netlistHandler.write("\n")
 
-        netlistHandler.write(f'.dc vgs 0 {0} {1} vds 0 {2} {3}\n'.format(self.settings['vgsMax'], self.settings['vgsStep'], self.settings['vdsMax'], self.settings['vdsStep']))
+        vgsMax = self.settings['vgsMax']
+        vgsStep = self.settings['vgsStep']
+        vdsMax = self.settings['vdsMax']
+        vdsStep = self.settings['vdsStep']
+        netlistHandler.write(f'.dc vgs 0 {vgsMax} {vgsStep} vds 0 {vdsMax} {vdsStep}\n'.format())
         
         return idxs, devNames
                     
