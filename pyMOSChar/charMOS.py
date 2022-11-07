@@ -282,7 +282,7 @@ class charMOS:
                     devTypes = ['nfet', 'pfet']
                     
                     devName = f'@m.x{tab1[devTypes[0]]}d{idx}.m'+self.settings[tab[devTypes[0]]]
-                    self.mosDat[devTypes[0]]['id'][idxL][idxVSB]  = simDat[f'i({devName})']
+                    self.mosDat[devTypes[0]]['id'][idxL][idxVSB]  = simDat[f'i({devName}[id])']
                     self.mosDat[devTypes[0]]['vt'][idxL][idxVSB]  = simDat['v({devName}[vth])']
                     self.mosDat[devTypes[0]]['gm'][idxL][idxVSB]  = simDat[f'{devName}[gm]']
                     self.mosDat[devTypes[0]]['gmb'][idxL][idxVSB] = simDat[f'{devName}[gmb]']
@@ -298,7 +298,7 @@ class charMOS:
                     simDat = spice3read.read('outP.raw')
                     
                     devName = f'@m.x{tab1[devTypes[1]]}d{idx}.m'+self.settings[tab[devTypes[1]]]
-                    self.mosDat[devTypes[1]]['id'][idxL][idxVSB]  = simDat[f'i({devName})']
+                    self.mosDat[devTypes[1]]['id'][idxL][idxVSB]  = simDat[f'i({devName}[id])']
                     self.mosDat[devTypes[1]]['vt'][idxL][idxVSB]  = simDat['v({devName}[vth])']
                     self.mosDat[devTypes[1]]['gm'][idxL][idxVSB]  = simDat[f'{devName}[gm]']
                     self.mosDat[devTypes[1]]['gmb'][idxL][idxVSB] = simDat[f'{devName}[gmb]']
