@@ -79,9 +79,11 @@ class charMOS:
         # the driving voltage sources of the 1 analysis
         netlistHandler.write(f"dc vgs 0 {0} {1} vdsd 0 {2} {3}\n".format(self.settings['vgsMax'], self.settings['vgsStep'], self.settings['vdsMax'], self.settings['vdsStep']))
         devNames = []
+        idxs = []
         for i in range(len(sizes[0])):
                     for ivsb, vsb in enumerate(data["vsb"]):
                         idx = f'{i}d{ivsb}d{tab1[type]}'
+                        idxs.append(idx)
                         devName = f'@m.x{tab1[type]}d{idx}.m'+self.settings[tab[type]]
                         devNames.append(devName)
                         netlistHandler.write(f'vds vdsd{idx} 0 dc 0\n')
