@@ -360,5 +360,5 @@ class charMOS:
         os.system('rm -fr charNMOS.net charPMOS.net outN.raw outP.raw b3v33check.log charMOS.scs simParams.scs charMOS.raw charMOS.raw.psf charMOS.ahdlSimDB charMOS.log')
         print
         print("Data generated. Saving...")
-        pickle.dump(self.mosDat, open(datFileName, "wb"), pickle.HIGHEST_PROTOCOL)
-        print("Done! Data saved in " + datFileName)
+        pickle.dump(self.mosDat, open(self.settings["datFileName"], "wb"), pickle.HIGHEST_PROTOCOL)
+        print("Done! Data saved in " + self.settings["datFileName"])
