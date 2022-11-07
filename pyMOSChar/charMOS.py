@@ -76,9 +76,14 @@ class charMOS:
         data = self.mosDat[type]
         sizes = [data["length"], data["width"]]
         assert len(sizes[0]) == len(sizes[1])
+        # the driving voltage sources of the 1 analysis
+        netlistHandler.write(f"dc vgs 0 {0} {1} vdsd 0 {2} {3}\n".format(self.settings['vgsMax'], self.settings['vgsStep'], self.settings['vdsMax'], self.settings['vdsStep']))
+
         for i in range(len(sizes[0])):
                     for ivsb, vsb in enumerate(data["vsb"]):
                         idx = f'{i}d{ivsb}d{tab1[type]}'
+                        netlistHandler.write(f'vds vdsd{idx} 0 dc 0\n')
+                        netlistHandler.write(f'vgs vgsd{idx}  0 dc 0\n')
                         netlistHandler.write(f'vdsd{idx}  {tab1[type]}Draind{idx} 0 dc 0\n')
                         netlistHandler.write(f'vgsd{idx}  {tab1[type]}Gated{idx}  0 dc 0\n')
                         netlistHandler.write(f'vbsd{idx}  {tab1[type]}Bulkd{idx}  0 dc {-vsb}\n')
@@ -88,9 +93,7 @@ class charMOS:
                         width = sizes[1][i]
                         netlistHandler.write(f"x{tab1[type]}d{idx} {tab1[type]}Draind{idx} {tab1[type]}Gated{idx} 0 {tab1[type]}Bulkd{idx} {model} L={length*1e-6} W={width*1e-6}\n")
                         netlistHandler.write("\n")
-                        netlistHandler.write(f"dc vgsd{idx} 0 {0} {1} vdsd{idx} 0 {2} {3}\n".format(self.settings['vgsMax'], self.settings['vgsStep'], self.settings['vdsMax'], self.settings['vdsStep']))
-                        netlistHandler.write("\n")
-
+                    
     def genNetlistNngspice(self, fName='charNMOS.net'):
         netlistN = open(fName, 'w')
         netlistN.write("Characterize N Channel MOSFET\n")
