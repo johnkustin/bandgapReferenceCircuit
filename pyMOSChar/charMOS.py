@@ -88,9 +88,9 @@ class charMOS:
                         devNames.append(devName)
                         netlistHandler.write(f'vds vdsd{idx} 0 dc 0\n')
                         netlistHandler.write(f'vgs vgsd{idx}  0 dc 0\n')
-                        netlistHandler.write(f'vdsd{idx}  {tab1[type]}Draind{idx} 0 dc 0\n')
-                        netlistHandler.write(f'vgsd{idx}  {tab1[type]}Gated{idx}  0 dc 0\n')
-                        netlistHandler.write(f'vbsd{idx}  {tab1[type]}Bulkd{idx}  0 dc {-vsb}\n')
+                        netlistHandler.write(f'vvdsd{idx} vdsd{idx}  {tab1[type]}Draind{idx} dc 0\n')
+                        netlistHandler.write(f'vvgsd{idx} vgsd{idx}  {tab1[type]}Gated{idx}  dc 0\n')
+                        netlistHandler.write(f'vvbsd{idx} vbsd{idx}  {tab1[type]}Bulkd{idx}  dc {-vsb}\n')
                         netlistHandler.write("\n")
                         model = self.settings[tab[type]]
                         length = sizes[0][i]
@@ -98,7 +98,7 @@ class charMOS:
                         netlistHandler.write(f"x{tab1[type]}d{idx} {tab1[type]}Draind{idx} {tab1[type]}Gated{idx} 0 {tab1[type]}Bulkd{idx} {model} L={length*1e-6} W={width*1e-6}\n")
                         netlistHandler.write("\n")
 
-        netlistHandler.write(f"dc vgs 0 {0} {1} vdsd 0 {2} {3}\n".format(self.settings['vgsMax'], self.settings['vgsStep'], self.settings['vdsMax'], self.settings['vdsStep']))
+        netlistHandler.write(f"dc vgs 0 {0} {1} vds 0 {2} {3}\n".format(self.settings['vgsMax'], self.settings['vgsStep'], self.settings['vdsMax'], self.settings['vdsStep']))
         
         return idxs, devNames
                     
@@ -178,7 +178,7 @@ class charMOS:
             strList2.append(f'let cdd{idx}  = {devName}[cdd]')
             strList2.append(f'let css{idx}  = -{devName}[cgs]-{devName}[cbs]')
         netlistP.write('\n'.join(strList2))
-        
+        netlistHandler.write(f"dc vgs 0 {0} {1} vdsd 0 {2} {3}\n".format(self.settings['vgsMax'], self.settings['vgsStep'], self.settings['vdsMax'], self.settings['vdsStep']))
         netlistP.write("write outN.raw all\n")
         netlistP.write("exit\n")
         netlistP.write(".endc\n")
