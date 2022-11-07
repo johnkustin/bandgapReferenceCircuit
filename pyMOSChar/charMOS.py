@@ -234,6 +234,7 @@ class charMOS:
     def runSim(self, fileName='charMOS.net', simulator='ngspice'): 
         fileHandler = open('charMOSPy.log', 'w')
         proc = subprocess.run([simulator, fileName], stdout=fileHandler, check=True)
+        fileHandler.close()
         # os.system("{0} {1} &>> charMOSPy.log".format(simulator, fileName))
 
 
