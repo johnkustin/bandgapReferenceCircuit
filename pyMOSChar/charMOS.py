@@ -73,7 +73,8 @@ class charMOS:
             netlistN.write(".lib \"{0}\" {1}\n".format(modelFile, corner))
         netlistN.write("\n")
         pdb.set_trace()
-        for idx, sizePair in enumerate(zip(netlistN["nfet"]["length"], netlistN["nfet"]["width"])):
+        sizes = zip(netlistN["nfet"]["length"], netlistN["nfet"]["width"])
+        for idx, sizePair in enumerate(sizes):
 
             netlistN.write(f'vds{idx}  nDrain{idx} 0 dc 0\n')
             netlistN.write(f'vgs{idx}  nGate{idx}  0 dc 0\n')
