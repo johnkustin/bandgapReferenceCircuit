@@ -98,7 +98,7 @@ class charMOS:
                         model = self.settings[tab[type]]
                         length = sizes[0][i]
                         width = sizes[1][i]
-                        netlistHandler.write(f"x{tab1[type]}d{idx} {tab1[type]}Draind{idx} {tab1[type]}Gated{idx} 0 {tab1[type]}Bulkd{idx} {model} L={round(length*1e-6,3)} W={round(width*1e-6,3)}\n")
+                        netlistHandler.write(f"x{tab1[type]}d{idx} {tab1[type]}Draind{idx} {tab1[type]}Gated{idx} 0 {tab1[type]}Bulkd{idx} {model} L={round(length,3)}u W={round(width,3)}u\n")
                         netlistHandler.write("\n")
 
         vgsMax = self.settings['vgsMax']

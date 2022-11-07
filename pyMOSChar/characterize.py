@@ -41,10 +41,10 @@ def main():
     assert type(corners) == list
     print(modelFilePath)
 
-    # scale by 1e6 because the netlister scales the w by 1e-6
-    mosWidthsN = np.linspace(1, 10, 10, endpoint=True) * 1e6
+    
+    mosWidthsN = np.linspace(1, 10, 10, endpoint=True)
     mosWidthsP = mosWidthsN * 2
-    mosLengthsN = np.linspace(0.2, 1, 10, endpoint=True) * 1e6
+    mosLengthsN = np.linspace(0.2, 1, 10, endpoint=True)
     mosLengthsP = mosLengthsN
 
     # Beware,
