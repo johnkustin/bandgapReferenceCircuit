@@ -141,7 +141,7 @@ class lum:
         xi = np.asarray(np.meshgrid(L, VSB, VDS, VGS))
         xii = np.swapaxes(xi, 0, -1)
         xiii = np.swapaxes(xii, 0, 2)
-        vix = np.swapaxes(xiii, 2, 3)
+        xiv = np.swapaxes(xiii, 2, 3)
         if (mode == 1 or mode == 2):
             # result = np.squeeze(interpn(points, ydata, xi_mesh))
             # rresult = np.squeeze(result.reshape(
