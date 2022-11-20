@@ -27,7 +27,8 @@
 
 #### Flush any previous definition
 set XSCHEM_LIBRARY_PATH {}
-set XSCHEM_SKY130_PATH /home/users/kustinj/.xschem/xschem_library/xschem_sky130
+# set XSCHEM_SKY130_PATH /home/users/kustinj/.xschem/xschem_library/xschem_sky130
+set XSCHEM_SKY130_PATH /home/kustin/open_pdks/sources/xschem_sky130
 #### include devices/*.sym
 append XSCHEM_LIBRARY_PATH ${XSCHEM_SHAREDIR}/xschem_library
 #### include skywater libraries. Here i use [pwd]. This works if i start xschem from here.
@@ -269,5 +270,6 @@ lappend tcl_files $XSCHEM_SKY130_PATH/scripts/sky130_models.tcl
 ###########################################################################
 #### SKYWATER PDK SPECIFIC VARIABLES
 ###########################################################################
-set SKYWATER_MODELS /tmp/kustinj/ee272bclone/sky130_fd_pr_ngspice/latest
-set SKYWATER_STDCELLS ~/ee272b/pdk/libraries/sky130_fd_sc_hd/latest
+set SKYWATER_MODELS /home/kustin/skywater-pdk/libraries/sky130_fd_pr/latest/models/
+set SKYWATER_CELLS /home/kustin/skywater-pdk/libraries/sky130_fd_pr/latest/cells/
+
