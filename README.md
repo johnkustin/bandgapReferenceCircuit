@@ -1,4 +1,6 @@
 # stanford ee272b project - bandgap voltage reference in SKY130 technology
+IEEE Solid State Circuits Society Code-a-Chip Jupyter Notebook is located [here](https://github.com/johnkustin/bandgapReferenceCircuit/blob/main/jupyter/notebook.ipynb), at `bandgapReferenceCircuit/jupyter/notebook.ipynb`
+
 
 ## table of contents
 0. measurement results of 1 sample
