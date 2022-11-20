@@ -120,7 +120,7 @@ def lookup(mosType, *outVars, **inVars):
         points = (mosDat[mosType]['length'],  mosDat[mosType]['vsb'], -mosDat[mosType]['vds'], -mosDat[mosType]['vgs'])
     pdb.set_trace()
     xi_mesh = np.array(np.meshgrid(L, VSB, VDS, VGS))
-    xi = np.rollaxis(xi_mesh, 0, 5)
+    # xi = np.rollaxis(xi_mesh, 0, 5)
 
     len_L = len(L) if type(L) == np.ndarray or type(L) == list else 1
     len_VGS = len(VGS) if type(VGS) == np.ndarray or type(VGS) == list else 1
@@ -128,7 +128,7 @@ def lookup(mosType, *outVars, **inVars):
     len_VSB = len(VSB) if type(VSB) == np.ndarray or type(VSB) == list else 1
 
     if (mode == 1 or mode == 2):
-        result = np.squeeze(interpn(points, ydata, xi).reshape(len_L, len_VSB, len_VDS, len_VGS))
+        result = np.squeeze(interpn(points, ydata, xi_mesh).reshape(len_L, len_VSB, len_VDS, len_VGS))
     elif (mode == 3):
         print("ERROR: Mode 3 not supported yet :-(")
 
