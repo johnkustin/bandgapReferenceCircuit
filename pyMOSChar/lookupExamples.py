@@ -54,7 +54,7 @@ for idx in range(len(types)):
     ax1[0].grid(True)
     fig.tight_layout()
     for i, gi in enumerate(gmonid):
-        ax1[1].plot(gi, gi*fT[i]/1e9, 'o--', label=lengths[i])
+        ax1[1].plot(np.squeeze(gi), np.squeeze(gi)*fT[i]/1e9, 'o--', label=lengths[i])
     ax1[1].legend()
     for i, gi in enumerate(gmonid):
         ax1[2].plot(np.squeeze(VGS-vt[i]), gi*fT[i]/1e9, 'o--', label=lengths[i])
