@@ -26,7 +26,7 @@ for idx in range(len(types)):
     axK.set_ylabel('log10 (1/2 * mu_n * C_ox) / (L / W)')
     axK.set_title('{} Normalized square Law K term'.format(typ))
     indc = (VGS-vt) > 0.
-    VGSmesh = np.meshgrid(VGS, lengths)
+    VGSmesh = np.array(np.meshgrid(VGS, lengths))
     for i, k in enumerate(K_norm):
         axK.plot(VGSmesh[indc[i]]-vt[i][indc[i]], np.log10(k[indc[i]]), label=lengths[i])
     axK.legend()
