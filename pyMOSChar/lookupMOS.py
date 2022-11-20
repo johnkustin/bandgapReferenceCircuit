@@ -5,12 +5,11 @@ import pdb
 
 class lum:
   
-  mosDat = None
-  
   def init(self, fileName='MOS.dat'):
       self.mosDat = {}
       
       print("Loading MOSFET data. Please wait...")
+
       mosDat = pickle.load(open(fileName, 'rb'))
       print("Loading complete!")
   
@@ -119,15 +118,16 @@ class lum:
           points = (self.mosDat[mosType]['length'], -self.mosDat[mosType]['vsb'], self.mosDat[mosType]['vds'], self.mosDat[mosType]['vgs'])
       else:
           points = (self.mosDat[mosType]['length'],  self.mosDat[mosType]['vsb'], -self.mosDat[mosType]['vds'], -self.mosDat[mosType]['vgs'])
-      pdb.set_trace()
-      xi_mesh = np.array(np.meshgrid(L, VSB, VDS, VGS))
       
-  
       len_L = len(L) if type(L) == np.ndarray or type(L) == list else 1
       len_VGS = len(VGS) if type(VGS) == np.ndarray or type(VGS) == list else 1
       len_VDS = len(VDS) if type(VDS) == np.ndarray or type(VDS) == list else 1
       len_VSB = len(VSB) if type(VSB) == np.ndarray or type(VSB) == list else 1
+
+      pdb.set_trace()
+      xi_mesh = np.array(np.meshgrid(L, VSB, VDS, VGS))    
   
+
       if (mode == 1 or mode == 2):
           result = np.squeeze(interpn(points, ydata, xi_mesh))
           rresult = np.squeeze(result.reshape(len_L, len_VSB, len_VDS, len_VGS))
