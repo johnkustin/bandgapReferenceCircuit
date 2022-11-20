@@ -139,7 +139,7 @@ class lum:
         len_VSB = len(VSB) if type(
             VSB) == np.ndarray or type(VSB) == list else 1
 
-        pdb.set_trace()
+        # pdb.set_trace()
 
         interp = RegularGridInterpolator(points, ydata)
         xi = np.asarray(np.meshgrid(L, VSB, VDS, VGS))

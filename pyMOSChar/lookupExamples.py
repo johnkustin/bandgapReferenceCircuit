@@ -5,7 +5,6 @@ import matplotlib
 import pdb
 
 filename = 'sky130.mos.jupyterData.dat' 
-pdb.set_trace()
 lk = lum(filename)  
 VGS = np.linspace(0, 1.8, endpoint=True)
 matplotlib.rc('xtick',labelsize=15)
@@ -15,10 +14,10 @@ for idx in range(len(types)):
     typ = types[idx]
     widths = lk.mosDat[typ]['width']
     lengths = lk.mosDat[typ]['length']
-    id = np.squeeze(lk.lookup(typ, 'id', l=[l*1e6 for l in lengths], vds=1.8 ,vsb=0, vgs=VGS))
-    gm = np.squeeze(lk.lookup(typ, 'gm', l=[l*1e6 for l in lengths], vds=1.8,vsb=0, vgs=VGS))
-    vt = np.squeeze(lk.lookup(typ, 'vt', l=[l*1e6 for l in lengths], vds=1.8,vsb=0, vgs=VGS))
-    fT = np.squeeze(lk.lookup(typ, 'gm/cgg', l=[l*1e6 for l in lengths], vds=1.8, vgs=VGS)/2/np.pi)
+    id = np.squeeze(lk.lookup(typ, 'id', l=[l for l in lengths], vds=1.8 ,vsb=0, vgs=VGS))
+    gm = np.squeeze(lk.lookup(typ, 'gm', l=[l for l in lengths], vds=1.8,vsb=0, vgs=VGS))
+    vt = np.squeeze(lk.lookup(typ, 'vt', l=[l for l in lengths], vds=1.8,vsb=0, vgs=VGS))
+    fT = np.squeeze(lk.lookup(typ, 'gm/cgg', l=[l for l in lengths], vds=1.8, vgs=VGS)/2/np.pi)
     K = [id[i]/(VGS-vt[i])**2 * lengths[i] / widths[i] for i in range(len(lengths))] # = 1/2 * mu_n * C_ox
     K_norm = [K[i] / (lengths[i] / widths[i]) for i in range(len(lengths))]
     figK, axK = plt.subplots()
