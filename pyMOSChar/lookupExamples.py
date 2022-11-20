@@ -57,7 +57,7 @@ for idx in range(len(types)):
         ax1[1].plot(np.squeeze(gi), np.squeeze(gi)*np.squeeze(fT[i])/1e9, 'o--', label=lengths[i])
     ax1[1].legend()
     for i, gi in enumerate(gmonid):
-        ax1[2].plot(np.squeeze(VGS-vt[i]), gi*np.squeeze(fT[i])/1e9, 'o--', label=lengths[i])
+        ax1[2].plot(np.squeeze(VGS-vt[i]), np.squeeze(gi)*np.squeeze(fT[i])/1e9, 'o--', label=lengths[i])
     ax1[2].legend()
 
     ax1[1].set_xlabel('gm/Id (S/A)')
@@ -73,9 +73,8 @@ for idx in range(len(types)):
     ax.set_xlabel('Vgs (V)')
     ax.set_ylabel('I (uA)')
     ax.set_title('{} Id vs. Vgs. W = 1um'.format(typ))
-    idarr = lk.lookup(typ, 'id', l=[l*1e6 for l in lengths], vds=1.8, vsb=0, vgs=VGS)
-    for i,id in enumerate(idarr) :
-        ax.plot(np.squeeze(VGS), id*1e6, label=str((0.5 * i + 1)/1e6) + ' um')
+    for i,idd in enumerate(id) :
+        ax.plot(np.squeeze(VGS), idd*1e6, label=f'{lengths[i]} um')
     ax.legend()
 plt.show()
 
