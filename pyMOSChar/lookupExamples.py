@@ -28,7 +28,8 @@ for idx in range(len(types)):
     indc = (VGS-vt) > 0.
     VGSmesh = np.array(np.meshgrid(VGS, lengths))
     for i, k in enumerate(K_norm):
-        axK.plot(VGSmesh[indc[i]]-vt[i][indc[i]], np.log10(k[indc[i]]), label=lengths[i])
+        idxx = np.squeeze(indc[i])
+        axK.plot(VGSmesh[idxx]-vt[i][idxx], np.log10(k[idxx]), label=lengths[i])
     axK.legend()
     fig, ax1 = plt.subplots(3)
 
