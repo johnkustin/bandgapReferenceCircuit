@@ -1,18 +1,20 @@
-import lookupMOS as lk
+from lookupMOS import lum
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib
+import pdb
 
 filename = 'sky130.mos.jupyterData.dat' 
-lk.init(filename)  # global variable 
+pdb.set_trace()
+lk = lum(filename)  
 VGS = np.linspace(0, 1.8, endpoint=True)
 matplotlib.rc('xtick',labelsize=15)
 matplotlib.rc('ytick',labelsize=15)
 types = ['nfet', 'pfet']
 for idx in range(len(types)):
     typ = types[idx]
-    widths = mosDat[typ]['width']
-    lengths = mosDat[typ]['length']
+    widths = lk.mosDat[typ]['width']
+    lengths = lk.mosDat[typ]['length']
     id = lk.lookup(typ, 'id', l=[l*1e6 for l in lengths], vds=1.8 ,vsb=0, vgs=VGS)
     gm = lk.lookup(typ, 'gm', l=[l*1e6 for l in lengths], vds=1.8,vsb=0, vgs=VGS)
     vt = lk.lookup(typ, 'vt', l=[l*1e6 for l in lengths], vds=1.8,vsb=0, vgs=VGS)
