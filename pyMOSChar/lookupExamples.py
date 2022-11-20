@@ -3,16 +3,19 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib
 
-filename = 'mosSKY130__W1000000.0u.sky130_fd_pr__nfet_01v8_lvt.sky130_fd_pr__pfet_01v8_lvt.moreLengths.dat'
-lk.init(filename)
+filename = 'sky130.mos.jupyterData.dat' 
+lk.init(filename)  # global variable 
 VGS = np.linspace(0, 1.8, endpoint=True)
 matplotlib.rc('xtick',labelsize=15)
 matplotlib.rc('ytick',labelsize=15)
 # print('Available Lenghts: {}'.format(lk.mosDat['nfet']['length']))
-lengths = [0.35, 0.705102, 0.9250000] # micron
-width = 1 # micron
+lengths = [1] # micron
+width = 2 # micron
+sizes = [(2, 1), 
 types = ['pfet', 'nfet']
 for typ in types:
+    for size in sizes:
+
     id = lk.lookup(typ, 'id', l=[l*1e6 for l in lengths], vds=1.8 ,vsb=0, vgs=VGS)
     gm = lk.lookup(typ, 'gm', l=[l*1e6 for l in lengths], vds=1.8,vsb=0, vgs=VGS)
     vt = lk.lookup(typ, 'vt', l=[l*1e6 for l in lengths], vds=1.8,vsb=0, vgs=VGS)
