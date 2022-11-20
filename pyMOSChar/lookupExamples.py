@@ -20,7 +20,7 @@ for idx in range(len(types)):
     vt = lk.lookup(typ, 'vt', l=[l*1e6 for l in lengths], vds=1.8,vsb=0, vgs=VGS)
     fT = lk.lookup(typ, 'gm/cgg', l=[l*1e6 for l in lengths], vds=1.8, vgs=VGS)/2/np.pi
     K = [id[i]/(VGS-vt[i])**2 * lengths[i] / widths[i] for i in range(len(lengths))] # = 1/2 * mu_n * C_ox
-    K_norm = [K[i] / (lengths[i] / width) for i in range(len(lengths))]
+    K_norm = [K[i] / (lengths[i] / widths[i]) for i in range(len(lengths))]
     figK, axK = plt.subplots()
     axK.set_xlabel('Vov (V)')
     axK.set_ylabel('log10 (1/2 * mu_n * C_ox) / (L / W)')
