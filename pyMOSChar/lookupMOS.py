@@ -5,7 +5,7 @@ import pdb
 
 class lum:
   
-  def init(self, fileName='MOS.dat'):
+  def __init__(self, fileName='MOS.dat'):
       self.mosDat = {}
       
       print("Loading MOSFET data. Please wait...")
