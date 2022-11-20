@@ -7,26 +7,25 @@ class lum:
   
   mosDat = None
   
-  def init(fileName='MOS.dat'):
-      global mosDat
+  def init(self, fileName='MOS.dat'):
+      self.mosDat = {}
       
       print("Loading MOSFET data. Please wait...")
       mosDat = pickle.load(open(fileName, 'rb'))
       print("Loading complete!")
   
-  def reset():
-      global mosDat
-      mosDat = None
+  def reset(self):
+      self.mosDat = {}
   
-  def lookup(mosType, *outVars, **inVars):
+  def lookup(self, mosType, *outVars, **inVars):
   
       # Check if a valid MOSFET type is specified.
       mosType = mosType.lower()
       if (mosType not in ['nfet', 'pfet']):
           print("ERROR: Invalid MOSFET type. Valid types are 'nfet' and 'pfet'.")
-      defaultL = min(mosDat[mosType]['length'])
-      defaultVGS = mosDat[mosType]['vgs']
-      defaultVDS = max(mosDat[mosType]['vds'])/2;
+      defaultL = min(self.mosDat[mosType]['length'])
+      defaultVGS = self.mosDat[mosType]['vgs']
+      defaultVDS = max(self.mosDat[mosType]['vds'])/2;
       defaultVSB  = 0;
   
       # Figure out the mode of operation and the requested output arguments.
@@ -110,16 +109,16 @@ class lum:
       
       # Extract the data that was requested
       if (mode == 1):
-          ydata = mosDat[mosType][outVarList[0]]
+          ydata = self.mosDat[mosType][outVarList[0]]
       elif (mode == 2 or mode == 3):
-          ydata = eval("mosDat[mosType][outVarList[0]]" + outVarList[1] + "mosDat[mosType][outVarList[2]]")
+          ydata = eval("self.mosDat[mosType][outVarList[0]]" + outVarList[1] + "self.mosDat[mosType][outVarList[2]]")
           if (mode == 3):
-              xdata = eval("mosDat[mosType][outVarList[3]]" + outVarList[4] + "mosDat[mosType][outVarList[5]]")
+              xdata = eval("self.mosDat[mosType][outVarList[3]]" + outVarList[4] + "self.mosDat[mosType][outVarList[5]]")
       # Interpolate for the input variables provided
       if (mosType == 'nfet'):
-          points = (mosDat[mosType]['length'], -mosDat[mosType]['vsb'], mosDat[mosType]['vds'], mosDat[mosType]['vgs'])
+          points = (self.mosDat[mosType]['length'], -self.mosDat[mosType]['vsb'], self.mosDat[mosType]['vds'], self.mosDat[mosType]['vgs'])
       else:
-          points = (mosDat[mosType]['length'],  mosDat[mosType]['vsb'], -mosDat[mosType]['vds'], -mosDat[mosType]['vgs'])
+          points = (self.mosDat[mosType]['length'],  self.mosDat[mosType]['vsb'], -self.mosDat[mosType]['vds'], -self.mosDat[mosType]['vgs'])
       pdb.set_trace()
       xi_mesh = np.array(np.meshgrid(L, VSB, VDS, VGS))
       
