@@ -107,6 +107,9 @@ class lum:
         if ('vsb' in varNames):
             VSB = (inVars['vsb'])
 
+        if np.any(L > 1000000.0):
+            L = [round(L[i]/1000000.0,2) for i in range(len(L))]
+
         xdata = None
         ydata = None
 
