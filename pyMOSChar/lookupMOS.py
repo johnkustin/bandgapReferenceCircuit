@@ -155,4 +155,4 @@ class lum:
             print("ERROR: Mode 3 not supported yet :-(")
 
         # Return the result
-        return rresult
+        return result
