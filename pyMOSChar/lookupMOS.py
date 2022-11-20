@@ -99,13 +99,13 @@ class lum:
         VDS = defaultVDS
         VSB = defaultVSB
         if ('l' in varNames):
-            L = np.asarray(inVars['l'])
+            L = (inVars['l'])
         if ('vgs' in varNames):
-            VGS = np.asarray(inVars['vgs'])
+            VGS = (inVars['vgs'])
         if ('vds' in varNames):
-            VDS = np.asarray(inVars['vds'])
+            VDS = (inVars['vds'])
         if ('vsb' in varNames):
-            VSB = np.asarray(inVars['vsb'])
+            VSB = (inVars['vsb'])
 
         xdata = None
         ydata = None
