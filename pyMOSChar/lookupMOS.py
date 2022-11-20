@@ -129,7 +129,7 @@ class lum:
                       ['vsb'], self.mosDat[mosType]['vds'], self.mosDat[mosType]['vgs'])
         else:
             points = (self.mosDat[mosType]['length'],  self.mosDat[mosType]
-                      ['vsb'], -self.mosDat[mosType]['vds'], -self.mosDat[mosType]['vgs'])
+                      ['vsb'], self.mosDat[mosType]['vds'], self.mosDat[mosType]['vgs'])
 
         len_L = len(L) if type(L) == np.ndarray or type(L) == list else 1
         len_VGS = len(VGS) if type(
