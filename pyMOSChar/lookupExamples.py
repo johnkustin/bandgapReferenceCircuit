@@ -29,7 +29,9 @@ for idx in range(len(types)):
     VGSmesh = np.array(np.meshgrid(VGS, lengths))
     for i, k in enumerate(K_norm):
         idxx = np.squeeze(indc[i])
-        axK.plot(VGS[idxx]-vt[i][indc[i]], np.log10(k[indc[i]]), label=lengths[i])
+        x_axis = np.squeeze(VGS[idxx]-vt[i][indc[i]])
+        y_axis = np.squeeze(np.log10(k[indc[i]]))
+        axK.plot(x_axis, y_axis, label=lengths[i])
     axK.legend()
     fig, ax1 = plt.subplots(3)
 
