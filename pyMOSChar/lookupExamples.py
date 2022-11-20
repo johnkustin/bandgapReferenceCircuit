@@ -10,7 +10,7 @@ matplotlib.rc('xtick',labelsize=15)
 matplotlib.rc('ytick',labelsize=15)
 types = ['nfet', 'pfet']
 for idx in range(len(types)):
-    typ = types(idx)
+    typ = types[idx]
     widths = mosDat[typ]['width']
     lengths = mosDat[typ]['length']
     id = lk.lookup(typ, 'id', l=[l*1e6 for l in lengths], vds=1.8 ,vsb=0, vgs=VGS)
