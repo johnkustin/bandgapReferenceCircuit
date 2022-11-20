@@ -10,7 +10,7 @@ class lum:
       
       print("Loading MOSFET data. Please wait...")
 
-      mosDat = pickle.load(open(fileName, 'rb'))
+      self.mosDat = pickle.load(open(fileName, 'rb'))
       print("Loading complete!")
   
   def reset(self):
