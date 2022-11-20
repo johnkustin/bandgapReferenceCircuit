@@ -43,13 +43,13 @@ for idx in range(len(types)):
     gmonid = [gm[j]/id[j] for j in range(len(lengths))]
     fom = [gmonid[i]*fT[i]/1e9 for i in range(len(lengths))]
     for i, gmid in enumerate(gmonid):
-        lns1.append(ax1[0].plot(VGS-vt[i], gmid, 'o--', label=lengths[i]))
+        lns1.append(ax1[0].plot(np.squeeze(VGS-vt[i]), np.squeeze(gmid), 'o--', label=lengths[i]))
     ax1[0].legend()
     ax2 = ax1[0].twinx()
     ax2.set_ylabel('fT (GHz)')
 
     for i, f in enumerate(fT):
-        lns2.append(ax2.plot(VGS-vt[i], f/1e9, '+--', label='fT'))
+        lns2.append(ax2.plot(np.squeeze(VGS-vt[i]), np.squeeze(f)/1e9, '+--', label='fT'))
 
     ax1[0].grid(True)
     fig.tight_layout()
@@ -57,7 +57,7 @@ for idx in range(len(types)):
         ax1[1].plot(gi, gi*fT[i]/1e9, 'o--', label=lengths[i])
     ax1[1].legend()
     for i, gi in enumerate(gmonid):
-        ax1[2].plot(VGS-vt[i], gi*fT[i]/1e9, 'o--', label=lengths[i])
+        ax1[2].plot(np.squeeze(VGS-vt[i]), gi*fT[i]/1e9, 'o--', label=lengths[i])
     ax1[2].legend()
 
     ax1[1].set_xlabel('gm/Id (S/A)')
@@ -75,7 +75,7 @@ for idx in range(len(types)):
     ax.set_title('{} Id vs. Vgs. W = 1um'.format(typ))
     idarr = lk.lookup(typ, 'id', l=[l*1e6 for l in lengths], vds=1.8, vsb=0, vgs=VGS)
     for i,id in enumerate(idarr) :
-        ax.plot(VGS, id*1e6, label=str((0.5 * i + 1)/1e6) + ' um')
+        ax.plot(np.squeeze(VGS), id*1e6, label=str((0.5 * i + 1)/1e6) + ' um')
     ax.legend()
 plt.show()
 
