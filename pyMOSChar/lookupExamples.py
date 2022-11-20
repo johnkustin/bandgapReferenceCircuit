@@ -41,7 +41,7 @@ for idx in range(len(types)):
     lns1 = []
     lns2 = []
     gmonid = [gm[j]/id[j] for j in range(len(lengths))]
-    fom = [gmonid[i]*fT[i]/1e9 for i in range(len(lengths))]
+    fom = [gmonid[i]*np.squeeze(fT[i])/1e9 for i in range(len(lengths))]
     for i, gmid in enumerate(gmonid):
         lns1.append(ax1[0].plot(np.squeeze(VGS-vt[i]), np.squeeze(gmid), 'o--', label=lengths[i]))
     ax1[0].legend()
@@ -54,10 +54,10 @@ for idx in range(len(types)):
     ax1[0].grid(True)
     fig.tight_layout()
     for i, gi in enumerate(gmonid):
-        ax1[1].plot(np.squeeze(gi), np.squeeze(gi)*fT[i]/1e9, 'o--', label=lengths[i])
+        ax1[1].plot(np.squeeze(gi), np.squeeze(gi)*np.squeeze(fT[i])/1e9, 'o--', label=lengths[i])
     ax1[1].legend()
     for i, gi in enumerate(gmonid):
-        ax1[2].plot(np.squeeze(VGS-vt[i]), gi*fT[i]/1e9, 'o--', label=lengths[i])
+        ax1[2].plot(np.squeeze(VGS-vt[i]), gi*np.squeeze(fT[i])/1e9, 'o--', label=lengths[i])
     ax1[2].legend()
 
     ax1[1].set_xlabel('gm/Id (S/A)')
