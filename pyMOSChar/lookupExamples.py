@@ -71,8 +71,18 @@ for idx in range(len(types)):
     fig, ax = plt.subplots()
     ax.set_xlabel('Vgs (V)')
     ax.set_ylabel('I (uA)')
+    if typ == 'pfet':
+        ax.set_xlabel('-Vgs (V)')
+        ax.set_ylabel('-I (uA)')
+    else:
+        ax.set_xlabel('Vgs (V)')
+        ax.set_ylabel('I (uA)')
+
     ax.set_title('{} Id vs. Vgs. W = 1um'.format(typ))
     for i,idd in enumerate(id) :
+        if typ == 'pfet':
+            VGS = -VGS
+            
         ax.plot(np.squeeze(VGS), idd*1e6, label=f'{lengths[i]} um')
     ax.legend()
 plt.show()
