@@ -15,10 +15,10 @@ for idx in range(len(types)):
     typ = types[idx]
     widths = lk.mosDat[typ]['width']
     lengths = lk.mosDat[typ]['length']
-    id = lk.lookup(typ, 'id', l=[l*1e6 for l in lengths], vds=1.8 ,vsb=0, vgs=VGS)
-    gm = lk.lookup(typ, 'gm', l=[l*1e6 for l in lengths], vds=1.8,vsb=0, vgs=VGS)
-    vt = lk.lookup(typ, 'vt', l=[l*1e6 for l in lengths], vds=1.8,vsb=0, vgs=VGS)
-    fT = lk.lookup(typ, 'gm/cgg', l=[l*1e6 for l in lengths], vds=1.8, vgs=VGS)/2/np.pi
+    id = np.squeeze(lk.lookup(typ, 'id', l=[l*1e6 for l in lengths], vds=1.8 ,vsb=0, vgs=VGS))
+    gm = np.squeeze(lk.lookup(typ, 'gm', l=[l*1e6 for l in lengths], vds=1.8,vsb=0, vgs=VGS))
+    vt = np.squeeze(lk.lookup(typ, 'vt', l=[l*1e6 for l in lengths], vds=1.8,vsb=0, vgs=VGS))
+    fT = np.squeeze(lk.lookup(typ, 'gm/cgg', l=[l*1e6 for l in lengths], vds=1.8, vgs=VGS)/2/np.pi)
     K = [id[i]/(VGS-vt[i])**2 * lengths[i] / widths[i] for i in range(len(lengths))] # = 1/2 * mu_n * C_ox
     K_norm = [K[i] / (lengths[i] / widths[i]) for i in range(len(lengths))]
     figK, axK = plt.subplots()
