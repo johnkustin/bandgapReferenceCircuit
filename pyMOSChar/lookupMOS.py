@@ -125,7 +125,8 @@ class lum:
       len_VSB = len(VSB) if type(VSB) == np.ndarray or type(VSB) == list else 1
 
       pdb.set_trace()
-      xi_mesh = np.squeeze(np.array(np.meshgrid(len_L, len_VSB, len_VDS, len_VGS)))
+      VGS_broad = np.ones((len(VGS),len(points))) * VGS
+      xi_mesh = np.squeeze(np.array(np.meshgrid(L,[VSB], [VDS], VGS)))
   
 
       if (mode == 1 or mode == 2):
