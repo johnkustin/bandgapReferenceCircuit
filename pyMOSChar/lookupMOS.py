@@ -120,7 +120,7 @@ def lookup(mosType, *outVars, **inVars):
         points = (mosDat[mosType]['length'],  mosDat[mosType]['vsb'], -mosDat[mosType]['vds'], -mosDat[mosType]['vgs'])
     pdb.set_trace()
     xi_mesh = np.array(np.meshgrid(L, VSB, VDS, VGS))
-    # xi = np.rollaxis(xi_mesh, 0, 5)
+    
 
     len_L = len(L) if type(L) == np.ndarray or type(L) == list else 1
     len_VGS = len(VGS) if type(VGS) == np.ndarray or type(VGS) == list else 1

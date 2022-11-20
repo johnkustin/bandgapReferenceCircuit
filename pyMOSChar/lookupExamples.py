@@ -8,19 +8,16 @@ lk.init(filename)  # global variable
 VGS = np.linspace(0, 1.8, endpoint=True)
 matplotlib.rc('xtick',labelsize=15)
 matplotlib.rc('ytick',labelsize=15)
-# print('Available Lenghts: {}'.format(lk.mosDat['nfet']['length']))
-lengths = [1] # micron
-width = 2 # micron
-sizes = [(2, 1), 
-types = ['pfet', 'nfet']
-for typ in types:
-    for size in sizes:
-
+types = ['nfet', 'pfet']
+for idx in range(len(types)):
+    typ = types(idx)
+    widths = mosDat[typ]['width']
+    lengths = mosDat[typ]['length']
     id = lk.lookup(typ, 'id', l=[l*1e6 for l in lengths], vds=1.8 ,vsb=0, vgs=VGS)
     gm = lk.lookup(typ, 'gm', l=[l*1e6 for l in lengths], vds=1.8,vsb=0, vgs=VGS)
     vt = lk.lookup(typ, 'vt', l=[l*1e6 for l in lengths], vds=1.8,vsb=0, vgs=VGS)
     fT = lk.lookup(typ, 'gm/cgg', l=[l*1e6 for l in lengths], vds=1.8, vgs=VGS)/2/np.pi
-    K = [id[i]/(VGS-vt[i])**2 * lengths[i] / width for i in range(len(lengths))] # = 1/2 * mu_n * C_ox
+    K = [id[i]/(VGS-vt[i])**2 * lengths[i] / widths[i] for i in range(len(lengths))] # = 1/2 * mu_n * C_ox
     K_norm = [K[i] / (lengths[i] / width) for i in range(len(lengths))]
     figK, axK = plt.subplots()
     axK.set_xlabel('Vov (V)')
